@@ -25,13 +25,14 @@ class Story {
       this.element.innerHTML +=`
         <div>
             <p> 
-                Quote: "<em></em><br>
+                Quote: <em>${this.quote.body}</em><br>
                 Story posted by User ${this.user_id} on ${this.created_at}<br>
                 ${this.description}
             </p>
         </div>
         <button>Delete</button>
       `
+
       return this.element
     }
 
@@ -50,16 +51,19 @@ class Story {
         `
     }
 
-    static emptyAll(){
-        delete Story.all
-    }
+    // static emptyAll(){
+    //     delete Story.all
+    // }
 
     handleClick = (event) =>{
         // debugger;
         if (event.target.innerText === 'Delete'){
             storyService.deleteStory(this.id);
-            // delete Story.all[this.id]
             event.target.parentElement.remove()
+            // Trying to update the Story.al array with below code; does not work
+            // const index = Story.all.findIndex(x => x.id === this.id)
+            // Story.all.splice(index,index) 
+            
         }
     }
 }

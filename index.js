@@ -8,7 +8,7 @@ const storyService = new StoryService(base_url)
 authorService.getAuthors()
 storyService.getStories()
 
-
+console.log(Story.all)
 Story.storyForm.addEventListener('submit', handleSubmit)
 
 Story.renderForm()

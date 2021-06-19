@@ -28,12 +28,12 @@ class StoryService {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(story)
-            
         }
 
         fetch(`${this.endpoint}/stories`, configObj)
         .then(resp => resp.json())
         .then(story => {
+            
             const s = new Story(story)
             console.log(s)
             s.addToDom()
@@ -48,7 +48,14 @@ class StoryService {
              }
          })
          .then(resp => resp.json())
-         .then(json => alert(json.message))
+         .then(json => {
+            debugger;
+             alert(json.message)
+             
+             delete Story.all[this.id]       
+             
+
+         })
      }
 
      
