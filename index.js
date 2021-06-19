@@ -17,6 +17,7 @@ Story.renderForm()
 function handleSubmit(){
   event.preventDefault()
   storyService.createStory()
+  event.target.reset()
 }
 
 

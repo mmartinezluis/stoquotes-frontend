@@ -10,7 +10,6 @@ class StoryService {
         .then(stories =>  {
             for (const story of stories ){
                 const s =  new Story(story)
-                console.log(story)   
                 s.addToDom()
             }
         })
@@ -20,8 +19,7 @@ class StoryService {
         const story = {
             description: document.getElementById('description').value,
             user_id: 1,
-            quote_id: 1
-            
+            quote_id: 1,
         }
     
         const configObj = {
@@ -36,7 +34,22 @@ class StoryService {
         fetch(`${this.endpoint}/stories`, configObj)
         .then(resp => resp.json())
         .then(story => {
-            console.log(story)
+            const s = new Story(story)
+            console.log(s)
+            s.addToDom()
         })
      }
+
+     deleteStory(id){
+         fetch(`${this.endpoint}/stories/${id}`, {
+             method: 'DELETE',
+             headers: {
+                 'Content-Type': 'application/json'
+             }
+         })
+         .then(resp => resp.json())
+         .then(json => alert(json.message))
+     }
+
+     
 }
