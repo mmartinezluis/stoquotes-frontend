@@ -23,7 +23,7 @@ class Author {
         return this.element
     }
 
-    slapOnDom(){
+    addToDom(){
         Author.authorContainer.appendChild(this.authorHTML())
     }
 
