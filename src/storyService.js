@@ -39,6 +39,18 @@ class StoryService {
         })
      }
 
+     sendPatch(storyObj){
+         debugger
+         fetch(`${this.endpoint}/stories/${id}`, {
+             method: 'PATCH',
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             
+
+         })
+     }
+
      deleteStory(id){
          fetch(`${this.endpoint}/stories/${id}`, {
              method: 'DELETE',

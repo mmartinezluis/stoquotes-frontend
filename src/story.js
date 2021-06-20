@@ -53,8 +53,9 @@ class Story {
 
     handleClick = (event) =>{
         if (event.target.innerText === 'Delete'){
-            storyService.deleteStory(this.id);
             event.target.parentElement.remove()
+            storyService.deleteStory(this.id);
+            
             // Trying to update the Story.al array with below code; does not work
             // const index = Story.all.findIndex(x => x.id === this.id)
             // Story.all.splice(index,index) 
@@ -62,7 +63,7 @@ class Story {
         } else if (event.target.innerText === 'Edit'){
             event.target.innerText = 'Save'
             this.createEditFields(event.target)
-            // storyService.editStory(this.id);
+            
         } else if (event.target.innerText === 'Save'){
             event.target.innerText = 'Edit'
             this.saveUpdatedItem()
@@ -77,10 +78,10 @@ class Story {
         let inputValue = story.innerText
         let property = story.classList[0]
         story.outerHTML = `<input type="textarea" class="edit-${property}" value ="${inputValue}">`
-
     }
 
-
-
-
+    saveUpdatedItem = () => {
+        this.description = this.element.querySelector(".edit-description").value
+        storyService.sendPatch(this)
+    }
 }
