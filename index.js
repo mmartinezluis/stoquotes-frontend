@@ -9,12 +9,10 @@ const addBtn = document.getElementById('new-story-btn');
 authorService.getAuthors()
 storyService.getStories()
 
-
+Story.renderForm()
 Story.storyForm.addEventListener('submit', handleSubmit)
 
-
 addBtn.addEventListener('click', (e) => {
-    // Story.renderForm()
     addStory = !addStory;
     if (addStory){
         Story.storyForm.style.display = 'block';
@@ -24,7 +22,7 @@ addBtn.addEventListener('click', (e) => {
 })
 
 
-Story.renderForm()
+
 
 
 function handleSubmit(){
@@ -36,7 +34,7 @@ function handleSubmit(){
 function handleUpdate(){
   event.preventDefault()
   storyService.updateStory()
-  e
+
 }
 
 

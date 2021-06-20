@@ -27,7 +27,7 @@ class Story {
             <p> 
                 Quote: <em>${this.quote.body}</em><br>
                 Story posted by User ${this.user_id} on ${this.created_at}<br>
-                ${this.description}
+                <span class="description">${this.description}</span>
             </p>
         </div>
         <button>Edit</button>
@@ -60,7 +60,27 @@ class Story {
             // Story.all.splice(index,index) 
             
         } else if (event.target.innerText === 'Edit'){
-            storyService.editStory(this.id);
+            event.target.innerText = 'Save'
+            this.createEditFields(event.target)
+            // storyService.editStory(this.id);
+        } else if (event.target.innerText === 'Save'){
+            event.target.innerText = 'Edit'
+            this.saveUpdatedItem()
         }
     }
+
+    createEditFields = (editBtn) => {
+        const li = this.element
+        const div = this.element.querySelector('div')
+        
+        const story = div.querySelector('span')
+        let inputValue = story.innerText
+        let property = story.classList[0]
+        story.outerHTML = `<input type="textarea" class="edit-${property}" value ="${inputValue}">`
+
+    }
+
+
+
+
 }
