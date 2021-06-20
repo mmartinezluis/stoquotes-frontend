@@ -30,9 +30,9 @@ class Story {
                 ${this.description}
             </p>
         </div>
+        <button>Edit</button>
         <button>Delete</button>
       `
-
       return this.element
     }
 
@@ -40,7 +40,6 @@ class Story {
         Story.storyContainer.appendChild(this.storyHTML())
     }
     
-
     static renderForm(){
         Story.storyForm.innerHTML += `
         <form id="new-story-form"> 
@@ -49,14 +48,10 @@ class Story {
           <input type="submit" id="create">
         </form>
         `
+        Story.storyForm.style.display = 'none'
     }
 
-    // static emptyAll(){
-    //     delete Story.all
-    // }
-
     handleClick = (event) =>{
-        // debugger;
         if (event.target.innerText === 'Delete'){
             storyService.deleteStory(this.id);
             event.target.parentElement.remove()
@@ -64,6 +59,8 @@ class Story {
             // const index = Story.all.findIndex(x => x.id === this.id)
             // Story.all.splice(index,index) 
             
+        } else if (event.target.innerText === 'Edit'){
+            storyService.editStory(this.id);
         }
     }
 }
