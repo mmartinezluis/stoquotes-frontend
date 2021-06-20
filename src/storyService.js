@@ -39,15 +39,22 @@ class StoryService {
         })
      }
 
-     sendPatch(storyObj){
-         debugger
-         fetch(`${this.endpoint}/stories/${id}`, {
+     sendPatch(story){
+         let {description} = story;
+         const storyInfo = {description}
+         const configObj = {
              method: 'PATCH',
              headers: {
                  'Content-Type': 'application/json'
              },
-             
+             body: JSON.stringify(storyInfo)
+         }
 
+         fetch(`${this.endpoint}/stories/${story.id}`, configObj)
+         .then(resp => resp.json())
+         .then(json => {
+             story.storyHTML()
+            //  alert(`Story #${story.id} successfully updated`)
          })
      }
 

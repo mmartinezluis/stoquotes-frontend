@@ -22,7 +22,7 @@ class Story {
     }
 
     storyHTML(){
-      this.element.innerHTML +=`
+      this.element.innerHTML =`
         <div>
             <p> 
                 Quote: <em>${this.quote.body}</em><br>
