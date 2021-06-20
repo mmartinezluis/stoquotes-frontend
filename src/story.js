@@ -62,7 +62,7 @@ class Story {
             
         } else if (event.target.innerText === 'Edit'){
             event.target.innerText = 'Save'
-            this.createEditFields(event.target)
+            this.createEditFields()         // change the span field for the story into an input field for editing
             
         } else if (event.target.innerText === 'Save'){
             event.target.innerText = 'Edit'
@@ -70,11 +70,8 @@ class Story {
         }
     }
 
-    createEditFields = (editBtn) => {
-        const li = this.element
-        const div = this.element.querySelector('div')
-        
-        const story = div.querySelector('span')
+    createEditFields = () => { 
+        const story = this.element.querySelector('span')
         let inputValue = story.innerText
         let property = story.classList[0]
         story.outerHTML = `<input type="textarea" class="edit-${property}" value ="${inputValue}">`
