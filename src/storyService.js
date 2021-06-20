@@ -56,6 +56,10 @@ class StoryService {
              story.storyHTML()
             //  alert(`Story #${story.id} successfully updated`)
          })
+         .catch(function(error){
+            alert(error.message)
+        })
+    
      }
 
      deleteStory(id){
