@@ -41,7 +41,7 @@ class Story {
     }
     
     static renderForm(){
-        Story.storyForm.innerHTML += `
+        Story.storyForm.innerHTML = `
         <form id="new-story-form"> 
           Description: <br>
           <textarea id="description"></textarea>

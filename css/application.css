@@ -1,10 +1,11 @@
 main {
   display: grid;
-  grid-template-columns: 70%;
+  /* grid-template-columns: 70%; */
   /* grid-template-rows: 22%; */
   grid-template-areas:
-    "modal modal"
-    "quotes stories";
+    "modal "
+    "stories"
+    "quotes ";
  justify-items: normal;
 }
 
@@ -29,8 +30,12 @@ main {
 }
 
 #machine {
-  max-width: 20rem;
+  border: solid red 2px;
+  border-radius: 2rem;
+  max-width: 50rem;
   max-height: 35rem;
+  
+  
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
