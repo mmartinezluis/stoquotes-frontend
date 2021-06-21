@@ -12,31 +12,20 @@ storyService.getStories()
 Story.renderForm()
 Story.storyForm.addEventListener('submit', handleSubmit)
 
-addBtn.addEventListener('click', (e) => {
-    addStory = !addStory;
-    if (addStory){
-        Story.storyForm.style.display = 'block';
-    } else {
-        Story.storyForm.style.display = 'none';
-    }
-})
-
-
-
-
-
 function handleSubmit(){
   event.preventDefault()
   storyService.createStory()
   event.target.reset()
 }
 
-function handleUpdate(){
-  event.preventDefault()
-  storyService.updateStory()
-
-}
-
-
 // any initialzations of application
+
+addBtn.addEventListener('click', (e) => {
+  addStory = !addStory;
+  if (addStory){
+      Story.storyForm.style.display = 'block';
+  } else {
+      Story.storyForm.style.display = 'none';
+  }
+})
 

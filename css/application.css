@@ -1,0 +1,29 @@
+main {
+  display: grid;
+  grid-template-columns: 60%;
+  /* grid-template-rows: 22%; */
+  grid-template-areas:
+    "modal modal"
+    "quotes stories";
+ justify-items: normal;
+}
+
+#modal-box { 
+  grid-area: modal;
+  border: solid black 2px;
+}
+
+#black-box {
+  grid-area: quotes;
+  border: solid blue 2px;
+}
+
+#white-box {
+  grid-area: stories;
+  border: solid yellow 2px;
+  /* overflow: scroll; */
+}
+
+#offcanvasScrolling {
+  overflow: scroll;
+}
