@@ -1,6 +1,6 @@
 main {
   display: grid;
-  grid-template-columns: 60%;
+  grid-template-columns: 70%;
   /* grid-template-rows: 22%; */
   grid-template-areas:
     "modal modal"
@@ -26,4 +26,11 @@ main {
 
 #offcanvasScrolling {
   overflow: scroll;
+}
+
+#machine {
+  max-width: 20rem;
+  max-height: 35rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
