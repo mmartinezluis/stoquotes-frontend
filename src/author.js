@@ -10,7 +10,7 @@ class Author {
         this.element = document.createElement('li')
         this.element.dataset.id = this.id
         this.element.id = `author-${this.id}`
-        this.element.addEventListener('lcick', this.getAuthorQuote)
+        this.element.addEventListener('click', this.handleClick)
 
         Author.all.push(this)
     }
@@ -18,7 +18,7 @@ class Author {
     authorHTML(){
         this.element.innerHTML += `
             <a href="#">
-                <h3>${this.name}</h3>
+                ${this.name}
             </a>
         `
         return this.element
@@ -28,8 +28,12 @@ class Author {
         Author.authorContainer.appendChild(this.authorHTML())
     }
 
-    // getAuthorQuote = () => {
+    handleClick = (e) => {
+      if (e.target.tagName === "A"){
+          debugger
+          authorService.getAuthorQuote(this.id)
 
-    // }
+      }
+    }
 
 }

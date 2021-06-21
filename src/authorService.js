@@ -15,6 +15,15 @@ class AuthorService {
         })
     }
 
+    getAuthorQuote(authorId){
+      fetch(`${this.endpoint}/authors/${authorId}`)
+      .then(resp => resp.json())
+      .then(author => {
+        
+      })
+    }
+
+
 
 
 }
