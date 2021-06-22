@@ -33,7 +33,7 @@ main {
   border: solid red 2px;
   border-radius: 2rem;
   max-width: 50rem;
-  max-height: 35rem;
+  height: 25rem;
   
   
   margin-top: 2rem;

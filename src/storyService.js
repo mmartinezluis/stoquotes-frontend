@@ -15,11 +15,15 @@ class StoryService {
         })
      }
 
-     createStory(){
+     createStory(user_id, quote_id){
+        //  Create a new quote object from the API 
+        const quoteObject = quoteService.getQuote(user_id, quote_id)
+        console.log(quoteObject)
+
         const story = {
             description: document.getElementById('description').value,
-            user_id: 1,
-            quote_id: 1,
+            user_id: user_id,
+            quote_id: quote_id,
         }
     
         const configObj = {
@@ -59,7 +63,6 @@ class StoryService {
          .catch(function(error){
             alert(error.message)
         })
-    
      }
 
      deleteStory(id){

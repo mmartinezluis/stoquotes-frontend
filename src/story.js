@@ -21,6 +21,10 @@ class Story {
         Story.all.push(this)
     }
 
+    quote(){
+        return Quote.all.find( q => q.id === this.quote_id)
+    }
+
     storyHTML(){
       this.element.innerHTML =`
         <div>
@@ -40,15 +44,23 @@ class Story {
         Story.storyContainer.appendChild(this.storyHTML())
     }
     
-    static renderForm(){
+    static renderForm(user_id, quote_id){
         Story.storyForm.innerHTML = `
         <form id="new-story-form"> 
+          <input type="hidden" class="user_id" value= ${user_id}>
+          <input type="hidden" class="quote_id" value= ${quote_id}>
           Description: <br>
           <textarea id="description"></textarea>
           <input type="submit" id="create">
         </form>
         `
         Story.storyForm.style.display = 'none'
+        // Prime the form with the current user's id and the current quote's id
+        Story.storyForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            storyService.createStory(user_id, quote_id)
+            e.target.reset()
+        })
     }
 
     handleClick = (event) =>{

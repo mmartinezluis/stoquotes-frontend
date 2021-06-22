@@ -3,11 +3,11 @@ class CategoryService {
         this.endpoint = endpoint
     }
 
-    getCategories(){
-        fetch(`${this.enpoint}/categories`)
-        .then( resp => resp.json())
-        .then(categories => {
+    // getCategories(){
+    //     fetch(`${this.enpoint}/categories`)
+    //     .then( resp => resp.json())
+    //     .then(categories => {
             
-        })
-    }
+    //     })
+    // }
 }
