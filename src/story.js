@@ -54,13 +54,6 @@ class Story {
           <input type="submit" id="create">
         </form>
         `
-        Story.storyForm.style.display = 'none'
-        // Prime the form with the current user's id and the current quote's id
-        Story.storyForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-            storyService.createStory(user_id, quote_id)
-            e.target.reset()
-        })
     }
 
     handleClick = (event) =>{

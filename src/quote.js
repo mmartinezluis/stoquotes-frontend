@@ -8,7 +8,7 @@ class Quote {
         this.body = body,
         this.author_id = author_id,
         this.author_name = author_name
-
+        
         Quote.all.push(this)
     }
 

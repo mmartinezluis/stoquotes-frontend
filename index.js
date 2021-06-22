@@ -11,14 +11,16 @@ addBtn.style.display = 'none'
 authorService.getAuthors()
 storyService.getStories()
 
-// Story.renderForm()
-// Story.storyForm.addEventListener('submit', handleSubmit)
+Story.storyForm.style.display = 'none'
+Story.storyForm.addEventListener('submit', handleSubmit)
 
-//  function handleSubmit() {
-//   event.preventDefault()
-//   storyService.createStory()
-//   event.target.reset()
-// }
+ function handleSubmit() {
+  event.preventDefault()
+  const user_id = document.getElementsByClassName('user_id')[0].value
+  const quote_id = document.getElementsByClassName('quote_id')[0].value
+  storyService.createStory(user_id, quote_id)
+  event.target.reset()
+}
 
 // Random number generator from an array; used in 'authorService.js', getAuthorQuote method
 Array.prototype.random = function () {
