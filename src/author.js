@@ -30,9 +30,7 @@ class Author {
 
     handleClick = (e) => {
       if (e.target.tagName === "A"){
-          debugger
           authorService.getAuthorQuote(this.id)
-
       }
     }
 

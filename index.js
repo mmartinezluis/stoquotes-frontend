@@ -18,6 +18,11 @@ function handleSubmit(){
   event.target.reset()
 }
 
+// Random number generator from an array; 
+Array.prototype.random = function () {
+  return this[Math.floor((Math.random()*this.length))]
+}
+
 // any initialzations of application
 
 addBtn.addEventListener('click', (e) => {
