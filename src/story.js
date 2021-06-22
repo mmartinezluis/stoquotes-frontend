@@ -61,10 +61,6 @@ class Story {
             event.target.parentElement.remove()
             storyService.deleteStory(this.id);
             
-            // Trying to update the Story.al array with below code; does not work
-            // const index = Story.all.findIndex(x => x.id === this.id)
-            // Story.all.splice(index,index) 
-            
         } else if (event.target.innerText === 'Edit'){
             event.target.innerText = 'Save'
             this.createEditFields()         // change the span field for the story into an input field for editing

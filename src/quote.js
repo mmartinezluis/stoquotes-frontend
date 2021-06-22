@@ -19,7 +19,7 @@ class Quote {
       quote.element.innerHTML = `<p><em>"${quote.body}"</em><br>${quote.author_name}</p>`
     //   Display the quote on the DOM
       Quote.quotesContainer.innerHTML = quote.element.innerHTML
-    //   Once a quote is dsplayed,show the ndw story button and activate the new story form 
+    //   Once a quote is dsplayed,show the new story button and activate the new story form 
       addBtn.style.display = 'block'
       Story.renderForm(1, quote.id)
 
