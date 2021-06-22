@@ -17,7 +17,8 @@ class StoryService {
 
      createStory(user_id, quote_id){
         //  Create a new quote object from the API 
-        quoteService.getQuote(user_id, quote_id)
+        // debugger
+        // quoteService.getQuote(user_id, quote_id)
 
         const story = {
             description: document.getElementById('description').value,
