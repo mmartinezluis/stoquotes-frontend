@@ -1,7 +1,7 @@
 class Author {
     // remember objects
     static all = []
-    static authorContainer = document.getElementById('authors-container')
+    static authorsContainer = document.getElementById('authors-container')
 
     constructor({id, name}) {
         this.id = id,
@@ -16,8 +16,8 @@ class Author {
     }
 
     authorHTML(){
-        this.element.innerHTML += `
-            <a href="#">
+        this.element.innerHTML = `
+            <a href="/">
                 ${this.name}
             </a>
         `
@@ -25,11 +25,12 @@ class Author {
     }
 
     addToDom(){
-        Author.authorContainer.appendChild(this.authorHTML())
+        Author.authorsContainer.appendChild(this.authorHTML())
     }
 
     handleClick = (e) => {
       if (e.target.tagName === "A"){
+          e.preventDefault()
           authorService.getAuthorQuote(this.id)
       }
     }

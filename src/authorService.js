@@ -8,6 +8,7 @@ class AuthorService {
         fetch(`${this.endpoint}/authors`)
         .then (resp => resp.json())
         .then(authors => {
+            Author.authorsContainer.innerHTML = ""
             for (const author of authors){
                 const a = new Author(author)
                 a.addToDom()
