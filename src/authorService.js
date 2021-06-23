@@ -24,8 +24,4 @@ class AuthorService {
         Quote.temporaryQuote(author.quotes.random())
       })
     }
-
-
-
-
 }

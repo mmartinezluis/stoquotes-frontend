@@ -6,6 +6,7 @@ const base_url = "http://localhost:3000"
 const authorService = new AuthorService(base_url)
 const storyService = new StoryService(base_url)
 const quoteService = new QuoteService(base_url)
+const categoryService = new CategoryService(base_url)
 
 
 // Main navigation pane buttons
@@ -14,6 +15,7 @@ const randomQuoteTab = document.getElementById('nav-random-qoute-tab')
 const authorsTab = document.getElementById('nav-authors-tab')
 const categoriesTab = document.getElementById('nav-categories-tab')
 const searchAuthorTab = document.getElementById('nav-search-author-tab')
+let navTabs = document.getElementsByClassName('nav-link flex-sm-fill')
 
 
 // The 'Wrtie a story' button (addBtn) and modal
@@ -24,8 +26,10 @@ addBtn.style.display = 'none'
 let addStory = false;
 
 
-// If there are any stories, stories are loaded first
+// Load the user stories and the categories
 storyService.getStories()
+categoryService.getCategories()
+
 
 Story.storyForm.style.display = 'none'
 Story.storyForm.addEventListener('submit', handleSubmit)
@@ -39,9 +43,43 @@ function handleSubmit() {
   event.target.reset()
 }
 
+function hideStoryBtnFormAndQuote(){
+  addBtn.style.display = "none"
+  Story.storyForm.innerHTML = ""
+  Quote.quotesContainer.innerHTML = ""
+}
 
 
-authorsTab.addEventListener('click', function(){ authorService.getAuthors() })
+for(const tab of navTabs){
+  tab.addEventListener('click', handleNavTabs)
+}
+
+function handleNavTabs(event){
+  switch(event.target.id){
+    case "nav-home-tab":
+      hideStoryBtnFormAndQuote();
+      break;
+    case "nav-random-quote-tab":
+      // There are a total of 757 authors; chose a random one
+      let authorId = [...Array(756).keys()].random()
+      authorService.getAuthorQuote(authorId)
+      break;
+    case "nav-authors-tab":
+      hideStoryBtnFormAndQuote()
+      authorService.getAuthors()
+      break;
+    case "nav-categories-tab":
+      hideStoryBtnFormAndQuote()
+      break;
+    case 'nav-search-author-tab':
+      hideStoryBtnFormAndQuote()
+  }
+}
+
+// authorsTab.addEventListener('click', () => {
+//   authorService.getAuthors()
+//   // hideStoryBtnAndForm()
+// })
 
 
 // Random number generator from an array; used in 'authorService.js', getAuthorQuote method
@@ -50,6 +88,8 @@ Array.prototype.random = function () {
 }
 
 // any initialzations of application
+
+// Toggle display property of story form
 addBtn.addEventListener('click', (e) => {
   addStory = !addStory;
   if (addStory){
