@@ -16,7 +16,7 @@ main {
 
 #black-box {
   grid-area: quotes;
-  border: solid blue 2px;
+  border: solid black 2px;
 }
 
 #white-box {
