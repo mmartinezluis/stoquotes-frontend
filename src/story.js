@@ -75,7 +75,7 @@ class Story {
         const story = this.element.querySelector('span')
         let inputValue = story.innerText
         let property = story.classList[0]
-        story.outerHTML = `<input type="textarea" class="edit-${property}" value ="${inputValue}">`
+        story.outerHTML = `<textarea class="edit-${property}" value ="${inputValue}">${inputValue}</textarea>`
     }
 
     saveUpdatedItem = () => {

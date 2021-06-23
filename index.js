@@ -5,8 +5,10 @@ const base_url = "http://localhost:3000"
 const authorService = new AuthorService(base_url)
 const storyService = new StoryService(base_url)
 const quoteService = new QuoteService(base_url)
-const addBtn = document.getElementById('new-story-btn');
+const addBtn = document.getElementById('new-story-btn')
+const modal = document.getElementById('modal-box')
 addBtn.style.display = 'none'
+
 
 authorService.getAuthors()
 storyService.getStories()
@@ -14,7 +16,7 @@ storyService.getStories()
 Story.storyForm.style.display = 'none'
 Story.storyForm.addEventListener('submit', handleSubmit)
 
- function handleSubmit() {
+function handleSubmit() {
   event.preventDefault()
   const user_id = document.getElementsByClassName('user_id')[0].value
   const quote_id = document.getElementsByClassName('quote_id')[0].value
@@ -37,4 +39,12 @@ addBtn.addEventListener('click', (e) => {
       Story.storyForm.style.display = 'none';
   }
 })
+
+function showModal(message){
+  modal.innerText = message
+  modal.className=""
+  setTimeout(() => { modal.className="hidden"}, 3000)
+}
+
+
 

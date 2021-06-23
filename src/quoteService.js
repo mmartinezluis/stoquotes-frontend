@@ -7,7 +7,6 @@ class QuoteService {
         fetch(`${this.endpoint}/users/${user_id}/quotes/${quote_id}`)
         .then(resp => resp.json())
         .then(quote => {
-            // debugger
             const q = new Quote(quote)
             console.log(q)
         })
