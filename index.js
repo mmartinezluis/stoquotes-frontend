@@ -29,6 +29,7 @@ let addStory = false;
 // Load the user stories and the categories
 storyService.getStories()
 categoryService.getCategories()
+authorService.loadAuthors()
 
 
 Story.storyForm.style.display = 'none'
@@ -49,7 +50,7 @@ function hideStoryBtnFormAndQuote(){
   Quote.quotesContainer.innerHTML = ""
 }
 
-
+// Add event listeners to the nav tabs
 for(const tab of navTabs){
   tab.addEventListener('click', handleNavTabs)
 }
@@ -77,16 +78,21 @@ function handleNavTabs(event){
   }
 }
 
-// authorsTab.addEventListener('click', () => {
-//   authorService.getAuthors()
-//   // hideStoryBtnAndForm()
-// })
-
 
 // Random number generator from an array; used index.js and in 'authorService.js', getAuthorQuote method
 Array.prototype.random = function () {
   return this[Math.floor((Math.random()*this.length))]
 }
+
+// Used in author.js
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array
+}
+
 
 // any initialzations of application
 
@@ -99,6 +105,7 @@ addBtn.addEventListener('click', (e) => {
       Story.storyForm.style.display = 'none';
   }
 })
+
 
 function showModal(message){
   modal.innerText = message

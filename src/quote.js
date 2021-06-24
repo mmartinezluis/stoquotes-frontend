@@ -13,6 +13,7 @@ class Quote {
     }
 
     static temporaryQuote(quote){
+        // debugger
       quote.element = document.createElement('div')
       quote.element.dataset.id = quote.id
       quote.element.id = `quote-${quote.id}`
