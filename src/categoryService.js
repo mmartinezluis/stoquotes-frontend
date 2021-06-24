@@ -4,7 +4,7 @@ class CategoryService {
     }
 
     getCategories(){
-        fetch(`${this.enpoint}/categories`)
+        fetch(`${this.endpoint}/categories`)
         .then( resp => resp.json())
         .then(categories => {
             for(const category of categories){
@@ -12,5 +12,13 @@ class CategoryService {
                 c.addToDom()
             }
         })
+    }
+
+    getCategoryQuote(categoryId){
+      fetch(`${this.endpoint}/categories/${categoryId}`)
+      .then(resp => resp.json())
+      .then(quote => {
+          Quote.temporaryQuote(quote)
+      })
     }
 }

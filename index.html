@@ -7,17 +7,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Document</title>
 </head>
+
 <body>
    <main class="container">
-
+<!-- MODAL BOX -->
     <div class="hidden" id="modal-box">
         <h4>This is the modal box</h4>
     </div>
-
+<!-- THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF AUTHORS AND CATEGORIES-->
     <div class="container" id="black-box">
+        
         <div class="container" id="machine">
-
               <nav>
+                  <!-- THE  BALCK BOX NAV TABS -->
                 <div class="nav nav-tabs nav-pills flex-column flex-sm-row" id="nav-tab" role="tablist">
                   <button class="nav-link flex-sm-fill active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
                   <button class="nav-link flex-sm-fill" id="nav-random-quote-tab" data-bs-toggle="tab" data-bs-target="#nav-random-quote" type="button" role="tab" aria-controls="nav-random-quote" aria-selected="false">Quote</button>
@@ -28,7 +30,16 @@
               </nav>
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    .WLECOME..
+                   <h3>WELCOME</h3> 
+                   <p>Welcome to StoQuotes, a place to get inspired and inspire others. StoQuotes displays random quotes, quotes from authors, and quotes from categories. </p>
+                   <p>
+                      Find inspiration: clicking on the 'Quotes' tab displays a random quote; a new quote will be rendred for each click.
+                      Clicking on the 'Authors' tab will display 10 random authors; if you click again, a new set of 10 authors will be displayed. Then clicking on an author's name displays a quote from that author.
+                      Clicking on the 'Categories' tab will display 10 categories; then clicking on a category name will display a qoute from that category.
+                      If you would like quotes from a specific author, then click on the 'Search Author' tab.
+                   </p>
+                   <p>Inpire others: you can write a story for any given quote. Clicking on the 'Stories' navabar will display your created stories and the stories created by other users.</p>
+                   <p> Enjoy the quote journey!</p>
                 </div>
 
                 <div class="tab-pane fade" id="nav-random-quote" role="tabpanel" aria-labelledby="nav-random-quote-tab">
@@ -44,7 +55,7 @@
 
                 <div class="tab-pane fade" id="nav-categories" role="tabpanel" aria-labelledby="nav-categories-tab">
                     .TITOTA..
-                    <div class="contaienr" id="categories-container">
+                    <div class="container" id="categories-container">
                         <h4>This is the categories container</h4>
                     </div>
                 </div>
@@ -55,14 +66,8 @@
                         <h4>This is the search author container</h4>
                     </div>
                 </div>
-
               </div>
 
-
-
-          
-
-          
 
             <div class="contaienr" id="quotes-container">
                 <h4>This is the quotes container</h4>
@@ -73,6 +78,7 @@
                 <h4>This is the form container</h4>
             </div>
 
+    
         </div>
     </div>
 

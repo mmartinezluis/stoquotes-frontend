@@ -9,6 +9,7 @@ class Category {
         this.element = document.createElement('li')
         this.element.dataset.id = this.id
         this.element.id = `category-${this.id}`
+        this.element.addEventListener('click', this.handleClick)
 
         Category.all.push(this)
     }
@@ -20,5 +21,12 @@ class Category {
 
     addToDom(){
         Category.categoriesContainer.appendChild(this.categoryHTML())
+    }
+
+    handleClick = (event) => {
+      if (event.target.tagName === "A"){
+          event.preventDefault()
+        categoryService.getCategoryQuote(this.id)
+      }
     }
 }

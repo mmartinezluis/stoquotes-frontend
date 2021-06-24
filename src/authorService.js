@@ -19,9 +19,9 @@ class AuthorService {
     getAuthorQuote(authorId){
       fetch(`${this.endpoint}/authors/${authorId}`)
       .then(resp => resp.json())
-      .then(author => {
+      .then(quote => {
         // This static method displays a quote but does not create a quote  
-        Quote.temporaryQuote(author.quotes.random())
+        Quote.temporaryQuote(quote)
       })
     }
 }
