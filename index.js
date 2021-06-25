@@ -32,6 +32,10 @@ categoryService.getCategories()
 authorService.loadAuthors()
 
 
+// This method does not work
+Author.createOptionFields()
+
+
 Story.storyForm.style.display = 'none'
 Story.storyForm.addEventListener('submit', handleSubmit)
 
@@ -75,6 +79,7 @@ function handleNavTabs(event){
       break;
     case 'nav-search-author-tab':
       hideStoryBtnFormAndQuote()
+      
   }
 }
 

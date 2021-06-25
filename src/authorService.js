@@ -30,18 +30,6 @@ class AuthorService {
         authors.forEach(author => author.addToDom())
     }
 
-    // getAuthors(){
-    //     fetch(`${this.endpoint}/authors`)
-    //     .then (resp => resp.json())
-    //     .then(authors => {
-    //         Author.authorsContainer.innerHTML = ""
-    //         for (const author of authors){
-    //             const a = new Author(author)
-    //             a.addToDom()
-    //         }
-    //     })
-    // }
-
     getAuthorQuote(authorId){
       fetch(`${this.endpoint}/authors/${authorId}`)
       .then(resp => resp.json())

@@ -2,6 +2,7 @@ class Author {
     // remember objects
     static all = []
     static authorsContainer = document.getElementById('authors-container')
+    static datalist = document.getElementById('author-name')
 
     constructor({id, name}) {
         this.id = id,
@@ -35,4 +36,19 @@ class Author {
       }
     }
 
+    static renderSearchForm(){
+        const datalist = document.getElementById('author-name');
+        console.log(datalist)
+        
+    }
+
+    static createOptionFields(){
+        let div = document.createElement('div')
+        Author.all.slice(0,10).forEach(function(author){
+           let option = document.createElement('option');
+           option.value = author.name;
+           div.appendChild(option);
+        });
+        Author.datalist.innerHTML = div.innerHTML
+    }
 }
