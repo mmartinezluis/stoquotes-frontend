@@ -44,7 +44,7 @@ class Author {
 
     static createOptionFields(){
         let div = document.createElement('div')
-        Author.all.slice(0,10).forEach(function(author){
+        Author.all.forEach(function(author){
            let option = document.createElement('option');
            option.value = author.name;
            div.appendChild(option);

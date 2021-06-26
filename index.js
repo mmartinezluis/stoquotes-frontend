@@ -65,8 +65,8 @@ function handleNavTabs(event){
       hideStoryBtnFormAndQuote();
       break;
     case "nav-random-quote-tab":
-      // There are a total of 757 authors; chose a random one
       hideStoryBtnFormAndQuote()
+      // There are a total of 757 authors; chose a random author id
       let authorId = [...Array(756).keys()].random()
       authorService.getAuthorQuote(authorId)
       break;
@@ -79,7 +79,6 @@ function handleNavTabs(event){
       break;
     case 'nav-search-author-tab':
       hideStoryBtnFormAndQuote()
-      
   }
 }
 

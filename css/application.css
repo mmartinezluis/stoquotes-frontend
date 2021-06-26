@@ -17,11 +17,12 @@ main {
 #black-box {
   grid-area: quotes;
   border: solid black 2px;
+  margin-bottom: 1rem;
 }
 
 #white-box {
   grid-area: stories;
-  border: solid yellow 2px;
+  border: solid  2px;
   /* overflow: scroll; */
 }
 
@@ -34,10 +35,11 @@ main {
   border-radius: 2rem;
   max-width: 50rem;
   min-height: 25rem;
-  
+  padding: 1rem;
   
   margin-top: 2rem;
   margin-bottom: 2rem;
+  
 }
 
 .hidden {
