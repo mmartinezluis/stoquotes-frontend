@@ -11,6 +11,7 @@ class AuthorService {
             for (const author of authors){
                 const a = new Author(author)
             }
+            Author.populateDatalist();
         })
     }
 
@@ -27,8 +28,9 @@ class AuthorService {
             }
             return 0;
         });
-        authors.forEach(author => author.addToDom())
+         authors.forEach(author => author.addToDom())
     }
+
 
     getAuthorQuote(authorId){
       fetch(`${this.endpoint}/authors/${authorId}`)

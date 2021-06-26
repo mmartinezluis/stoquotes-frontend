@@ -66,9 +66,14 @@
 
                 <div class="tab-pane fade" id="nav-search-author" role="tabpanel" aria-labelledby="nav-search-author-tab">
                     <div class="container" id="search-author-container">
-                        <input type="text" list="author-name">
-                        <datalist id="author-name">
-                        </datalist>
+                        <form>
+                            <label for="author-name">Author name:</label>
+                            <input type="text" list="author-name">
+                            <datalist id="author-name">
+                                <!-- This data list gets populated iwth author names upon initialization of app -->
+                            </datalist>
+                            <input type="submit" value="Get quote" id="get-quote">
+                        </form>
                         <h4>This is the search author container</h4>
                     </div>
                 </div>

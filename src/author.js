@@ -37,18 +37,31 @@ class Author {
     }
 
     static renderSearchForm(){
-        const datalist = document.getElementById('author-name');
+        Author.datalist = document.getElementById('author-name');
         console.log(datalist)
+        
+    }
+
+    static populateDatalist(){
+        // debugger
+        const options = Author.createOptionFields()
+        // console.log(options)
+        Author.datalist.innerHTML = options
+        // document.getElementById('author-name');
+        // console.log(datalist)
         
     }
 
     static createOptionFields(){
         let div = document.createElement('div')
         Author.all.forEach(function(author){
+            
            let option = document.createElement('option');
            option.value = author.name;
            div.appendChild(option);
         });
-        Author.datalist.innerHTML = div.innerHTML
+        // console.log(div)
+        return div.innerHTML;
+        // Author.datalist.innerHTML = div.innerHTML
     }
 }

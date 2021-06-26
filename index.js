@@ -10,11 +10,6 @@ const categoryService = new CategoryService(base_url)
 
 
 // Main navigation pane buttons
-const homeTab = document.getElementById('nav-home-tab')
-const randomQuoteTab = document.getElementById('nav-random-qoute-tab')
-const authorsTab = document.getElementById('nav-authors-tab')
-const categoriesTab = document.getElementById('nav-categories-tab')
-const searchAuthorTab = document.getElementById('nav-search-author-tab')
 let navTabs = document.getElementsByClassName('nav-link flex-sm-fill')
 
 
@@ -33,7 +28,7 @@ authorService.loadAuthors()
 
 
 // This method does not work
-Author.createOptionFields()
+// Author.createOptionFields()
 
 
 Story.storyForm.style.display = 'none'
