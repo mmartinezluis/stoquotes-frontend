@@ -8,10 +8,15 @@ class Author {
         this.id = id,
         this.name = name 
 
+        // 'this.element' is used for rendering authors
         this.element = document.createElement('li')
         this.element.dataset.id = this.id
         this.element.id = `author-${this.id}`
         this.element.addEventListener('click', this.handleClick)
+
+        // 'this.option' is Used for Search Author datalist
+        this.option = document.createElement('option')
+        this.option.value = this.name
 
         Author.all.push(this)
     }
@@ -36,32 +41,8 @@ class Author {
       }
     }
 
-    static renderSearchForm(){
-        Author.datalist = document.getElementById('author-name');
-        console.log(datalist)
-        
+    addToDatalist(){
+        Author.datalist.appendChild(this.option)
     }
 
-    static populateDatalist(){
-        // debugger
-        const options = Author.createOptionFields()
-        // console.log(options)
-        Author.datalist.innerHTML = options
-        // document.getElementById('author-name');
-        // console.log(datalist)
-        
-    }
-
-    static createOptionFields(){
-        let div = document.createElement('div')
-        Author.all.forEach(function(author){
-            
-           let option = document.createElement('option');
-           option.value = author.name;
-           div.appendChild(option);
-        });
-        // console.log(div)
-        return div.innerHTML;
-        // Author.datalist.innerHTML = div.innerHTML
-    }
 }

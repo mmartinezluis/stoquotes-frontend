@@ -10,8 +10,8 @@ class AuthorService {
         .then(authors => {
             for (const author of authors){
                 const a = new Author(author)
+                a.addToDatalist()
             }
-            Author.populateDatalist();
         })
     }
 
