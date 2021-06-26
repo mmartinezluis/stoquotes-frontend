@@ -27,15 +27,17 @@ class Story {
 
     storyHTML(){
       this.element.innerHTML =`
-        <div>
+        <div class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary bg-gradient">
             <p> 
-                Quote: <em>${this.quote.body}</em><br>
+                Quote: <br>
+                <em>"${this.quote.body}"</em><br>
                 Story posted by User ${this.user_id} on ${this.created_at}<br>
                 <span class="description">${this.description}</span>
             </p>
+            <button>Edit</button>
+            <button>Delete</button>
         </div>
-        <button>Edit</button>
-        <button>Delete</button>
+        <hr>
       `
       return this.element
     }

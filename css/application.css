@@ -45,3 +45,7 @@ main {
 .hidden {
   visibility: hidden;
 }
+
+#stories-container {
+  list-style-type: none;
+}

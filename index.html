@@ -10,16 +10,17 @@
 
 <body>
    <main class="container">
-<!-- MODAL BOX -->
+    
+    <!-- MODAL BOX -->
     <div class="hidden" id="modal-box">
         <p>This is the modal box</p>
     </div>
-<!-- THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF AUTHORS AND CATEGORIES-->
+
+    <!-- THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF AUTHORS AND CATEGORIES-->
     <div class="container" id="black-box">
-        
         <div class="container" id="machine">
+              <!-- THE  BLACK BOX NAV TABS -->
               <nav>
-                  <!-- THE  BALCK BOX NAV TABS -->
                 <div class="nav nav-tabs nav-pills flex-column flex-sm-row" id="nav-tab" role="tablist">
                   <button class="nav-link flex-sm-fill active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
                   <button class="nav-link flex-sm-fill" id="nav-random-quote-tab" data-bs-toggle="tab" data-bs-target="#nav-random-quote" type="button" role="tab" aria-controls="nav-random-quote" aria-selected="false">Quote</button>
@@ -28,6 +29,7 @@
                   <button class="nav-link flex-sm-fill" id="nav-search-author-tab" data-bs-toggle="tab" data-bs-target="#nav-search-author" type="button" role="tab" aria-controls="nav-search-author" aria-selected="false">Search Author</button>
                 </div>
               </nav>
+              <!-- THE CONTENT FOR THE NAV TABS -->
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <br>
@@ -46,21 +48,19 @@
                 </div>
 
                 <div class="tab-pane fade" id="nav-random-quote" role="tabpanel" aria-labelledby="nav-random-quote-tab">
-                    
+                    <!-- A random quote is displayed here each time the Quote tab is clicked -->
                 </div>
 
                 <div class="tab-pane fade" id="nav-authors" role="tabpanel" aria-labelledby="nav-authors-tab">
                     <br>
                     <div class="container" id="authors-container">
-                        <h4>This is the authors container</h4>
+                        <!-- Authors are displayed here -->
                     </div>
-                    
                 </div>
 
                 <div class="tab-pane fade" id="nav-categories" role="tabpanel" aria-labelledby="nav-categories-tab">
-                    
                     <div class="container" id="categories-container">
-                        <h4>This is the categories container</h4>
+                        <!-- Categories are displayed here -->
                     </div>
                 </div>
 
@@ -70,112 +70,106 @@
                             <label for="author-name">Author name:</label>
                             <input type="text" list="author-name">
                             <datalist id="author-name">
-                                <!-- This data list gets populated iwth author names upon initialization of app -->
+                                <!-- This data list gets populated with author names upon initialization of app -->
                             </datalist>
                             <input type="submit" value="Get quote" id="get-quote">
                         </form>
-                        <h4>This is the search author container</h4>
                     </div>
                 </div>
-              </div>
-
-      
-
-            <div class="contaienr" id="quotes-container">
                 
+              </div>
+              <!-- END OF NAV TABS CONTENT -->
+
+              
+            <div class="contaienr" id="quotes-container">
+                <!-- quotes are displayed here; this container is used in multitple NAV TABS -->
             </div>
             <button id="new-story-btn">Write a story</button>
-            
             <div class="contaienr" id="form-container">
-                <h4>This is the form container</h4>
+                <!-- This is the new story form container -->
             </div>
 
-    
         </div>
+        <!-- END OF MACHINE CONTAINER -->
     </div>
+    <!-- END OF BLACK BOX CONTAINER -->
 
-<div class="container" id="white-box">
+    <!-- START OF WHITE-BOX; HOLDS THE CREATED STORIES -->
+    <div class="container" id="white-box">
 
-    <nav class="navbar navbar-dark bg-dark" aria-label="Main navigation">
-        <div class="container-fluid">
-            
-            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">Stories</a>
+        <nav class="navbar navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">Stories</a>
 
-            <div class="navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                <div class="offcanvas-header">
-                  <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Stories</h3>
-                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                  <p>Try scrolling the rest of the page to see this option in action.</p>
-                </div>
-                <ul class="">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">My Stories</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Feed</a>
-                    </li>
-                </ul>
-                <div class="collapse d-flex flex-column align-items-stretch flex-shrink-0 bg-white navbar-collapse offcanvas-collapse open" style="width: 380px;">
-                    <!-- <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;"></div> -->
-                      <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-                        <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-                        <span class="fs-5 fw-semibold">List group</span>
-                      </a>
-                      <div class="list-group list-group-flush border-bottom scrollarea">
-                        <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
-                          <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">List group item heading</strong>
-                            <small>Wed</small>
-                          </div>
-                          <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                        </a>
-                        <li href="#" class="list-group-item list-group-item-action py-3 lh-tight text-white bg-secondary bg-gradient">
-                          <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">List group item heading</strong>
-                            <small class="text-white">Tues</small>
-                          </div>
-                          <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                <div class="navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                    <div class="offcanvas-header">
+                        <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Stories</h3>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <p>Try scrolling the rest of the page to see this option in action.</p>
+                    </div>
+                    <ul class="">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">My Stories</a>
                         </li>
-                        <hr>
-                        <a href="#" class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary bg-gradient">
-                          <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">List group item heading</strong>
-                            <small class="text-white">Mon</small>
-                          </div>
-                          <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Feed</a>
+                        </li>
+                    </ul>
+                    <div class="collapse d-flex flex-column align-items-stretch flex-shrink-0 bg-white navbar-collapse offcanvas-collapse open" style="width: 380px;">
+                        <!-- <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;"></div> -->
+                        <a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                            <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                            <span class="fs-5 fw-semibold">List group</span>
                         </a>
-                  
-                        <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
-                          <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">List group item heading</strong>
-                            <small class="text-muted">Wed</small>
-                          </div>
-                          <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                          <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">List group item heading</strong>
-                            <small class="text-muted">Mon</small>
-                          </div>
-                          <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                        </a>
-                      </div>
-                      <div id="stories-container">
 
-                    </div>
-                    </div>
+                        <div class="list-group list-group-flush border-bottom scrollarea">
+                            <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">List group item heading</strong>
+                                    <small>Wed</small>
+                                </div>
+                                <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                            </a>
+                            <li href="#" class="list-group-item list-group-item-action py-3 lh-tight text-white bg-secondary bg-gradient">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">List group item heading</strong>
+                                    <small class="text-white">Tues</small>
+                                </div>
+                                <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                            </li>
+                            <hr>
+                            <li href="#" class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary bg-gradient">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">List group item heading</strong>
+                                    <small class="text-white">Mon</small>
+                                </div>
+                                <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                            </li>
+                            <hr>
+                            <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">List group item heading</strong>
+                                    <small class="text-muted">Wed</small>
+                                </div>
+                                <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                            </a>
+                            <div id="stories-container">
+                            </div>
+                        </div>
+
+                       
+
+                        </div>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-
-
-</div>
+    </div>
 
 </main>
     

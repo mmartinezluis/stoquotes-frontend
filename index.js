@@ -70,7 +70,8 @@ function handleNavTabs(event){
       hideStoryBtnFormAndQuote()
       break;
     case 'nav-search-author-tab':
-      hideStoryBtnFormAndQuote()
+      hideStoryBtnFormAndQuote();
+      authorSearchForm.reset()
   }
 }
 
