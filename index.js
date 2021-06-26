@@ -93,12 +93,16 @@ function shuffleArray(array) {
 
 // any initialzations of application
 
+// Show an error message if author is not found else render a qoute from selected author upon form submission
 authorSearchForm.addEventListener('submit', (e) => {
   e.preventDefault()
-  // debugger
   let input = e.target.querySelector('input').value
-  let authorId = Author.all.find( author => author.name === input).id
-  authorService.getAuthorQuote(authorId)
+  let author = Author.all.find( author => author.name === input)
+  if (author === undefined){
+    showModal("Author not found")
+   } else {
+     authorService.getAuthorQuote(author.id)
+    } 
 })
 
 // Toggle display property of story form
@@ -111,7 +115,7 @@ addBtn.addEventListener('click', (e) => {
   }
 })
 
-
+// Load the message in modal box, hide the modal box, then show it for 3 seconds
 function showModal(message){
   modal.innerText = message
   modal.className=""

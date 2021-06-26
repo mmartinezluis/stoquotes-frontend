@@ -11,167 +11,161 @@
 <body>
    <main class="container">
     
-    <!-- MODAL BOX -->
-    <div class="hidden" id="modal-box">
-        <p>This is the modal box</p>
-    </div>
-
-    <!-- THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF AUTHORS AND CATEGORIES-->
-    <div class="container" id="black-box">
-        <div class="container" id="machine">
-              <!-- THE  BLACK BOX NAV TABS -->
-              <nav>
-                <div class="nav nav-tabs nav-pills flex-column flex-sm-row" id="nav-tab" role="tablist">
-                  <button class="nav-link flex-sm-fill active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                  <button class="nav-link flex-sm-fill" id="nav-random-quote-tab" data-bs-toggle="tab" data-bs-target="#nav-random-quote" type="button" role="tab" aria-controls="nav-random-quote" aria-selected="false">Quote</button>
-                  <button class="nav-link flex-sm-fill" id="nav-authors-tab" data-bs-toggle="tab" data-bs-target="#nav-authors" type="button" role="tab" aria-controls="nav-authors" aria-selected="false">Authors</button>
-                  <button class="nav-link flex-sm-fill" id="nav-categories-tab" data-bs-toggle="tab" data-bs-target="#nav-categories" type="button" role="tab" aria-controls="nav-categories" aria-selected="false">Categories</button>
-                  <button class="nav-link flex-sm-fill" id="nav-search-author-tab" data-bs-toggle="tab" data-bs-target="#nav-search-author" type="button" role="tab" aria-controls="nav-search-author" aria-selected="false">Search Author</button>
-                </div>
-              </nav>
-              <!-- THE CONTENT FOR THE NAV TABS -->
-              <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <br>
-                   <h5>Welcome</h5> 
-                   <p>Welcome to StoQuotes, a place to get inspired and inspire others. StoQuotes displays random quotes, quotes from authors, and quotes from categories. </p>
-                   <p>
-                      <h5>Find Inspiration:</h5> 
-                      The Quote tab and the Authors tab are multiclickable: each time you click on the Quote tab will display
-                      a random quote, and the Authors tab wil display ten random authors. The links within the Authors tab and the Categories tab are also multiclickable: 
-                      a new quote from the clicked author or category is dispalyed for each click. 
-                      If you would like quotes from a specific author, then click on the Search Author tab and type the name of  your desired author.
-                   </p>
-                   <p><h5>Inspire Others:</h5> 
-                      You can write a story for any given quote. Clicking on the 'Stories' navabar will display your created stories and the stories created by other users. You can edit or delete your stories.</p>
-                   <p> Enjoy the quote journey!</p>
-                </div>
-
-                <div class="tab-pane fade" id="nav-random-quote" role="tabpanel" aria-labelledby="nav-random-quote-tab">
-                    <!-- A random quote is displayed here each time the Quote tab is clicked -->
-                </div>
-
-                <div class="tab-pane fade" id="nav-authors" role="tabpanel" aria-labelledby="nav-authors-tab">
-                    <br>
-                    <div class="container" id="authors-container">
-                        <!-- Authors are displayed here -->
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="nav-categories" role="tabpanel" aria-labelledby="nav-categories-tab">
-                    <div class="container" id="categories-container">
-                        <!-- Categories are displayed here -->
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="nav-search-author" role="tabpanel" aria-labelledby="nav-search-author-tab">
-                    <div class="container" id="search-author-container">
-                        <form id="search">
-                            <label for="author-name">Author name:</label>
-                            <input type="text" list="author-name">
-                            <datalist id="author-name">
-                                <!-- This data list gets populated with author names upon initialization of app -->
-                            </datalist>
-                            <input type="submit" value="Get quote" id="get-quote">
-                        </form>
-                    </div>
-                </div>
-                
-              </div>
-              <!-- END OF NAV TABS CONTENT -->
-
-              
-            <div class="contaienr" id="quotes-container">
-                <!-- quotes are displayed here; this container is used in multitple NAV TABS -->
-            </div>
-            <button id="new-story-btn">Write a story</button>
-            <div class="contaienr" id="form-container">
-                <!-- This is the new story form container -->
-            </div>
-
+        <!-- MODAL BOX -->
+        <div class="hidden" id="modal-box">
+            <p>This is the modal box</p>
         </div>
-        <!-- END OF MACHINE CONTAINER -->
-    </div>
-    <!-- END OF BLACK BOX CONTAINER -->
 
-    <!-- START OF WHITE-BOX; HOLDS THE CREATED STORIES -->
-    <div class="container" id="white-box">
-
-        <nav class="navbar navbar-dark bg-dark" aria-label="Main navigation">
-            <div class="container-fluid">
-                <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="#">Stories</a>
-
-                <div class="navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                    <div class="offcanvas-header">
-                        <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Stories</h3>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <!-- THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF AUTHORS AND CATEGORIES -->
+        <div class="container" id="black-box">
+            <!-- START OF MACHINE CONTAINER -->
+            <div class="container" id="machine">
+                <!-- THE NAV TABS -->
+                <nav>
+                    <div class="nav nav-tabs nav-pills flex-column flex-sm-row" id="nav-tab" role="tablist">
+                    <button class="nav-link flex-sm-fill active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+                    <button class="nav-link flex-sm-fill" id="nav-random-quote-tab" data-bs-toggle="tab" data-bs-target="#nav-random-quote" type="button" role="tab" aria-controls="nav-random-quote" aria-selected="false">Quote</button>
+                    <button class="nav-link flex-sm-fill" id="nav-authors-tab" data-bs-toggle="tab" data-bs-target="#nav-authors" type="button" role="tab" aria-controls="nav-authors" aria-selected="false">Authors</button>
+                    <button class="nav-link flex-sm-fill" id="nav-categories-tab" data-bs-toggle="tab" data-bs-target="#nav-categories" type="button" role="tab" aria-controls="nav-categories" aria-selected="false">Categories</button>
+                    <button class="nav-link flex-sm-fill" id="nav-search-author-tab" data-bs-toggle="tab" data-bs-target="#nav-search-author" type="button" role="tab" aria-controls="nav-search-author" aria-selected="false">Search Author</button>
                     </div>
-                    <div class="offcanvas-body">
-                        <p>Try scrolling the rest of the page to see this option in action.</p>
+                </nav>
+                <!-- THE CONTENT FOR THE NAV TABS -->
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <h5>Welcome</h5> 
+                        <p>Welcome to StoQuotes, a place to get inspired and inspire others. StoQuotes displays random quotes, quotes from authors, and quotes from categories. </p>
+                        <h5>Find Inspiration:</h5> 
+                        <p>The Quote tab and the Authors tab are multiclickable: each time you click on the Quote tab will display
+                            a random quote, and the Authors tab wil display ten random authors. The links within the Authors tab and the Categories tab are also multiclickable: 
+                            a new quote from the clicked author or category is dispalyed for each click. 
+                            If you would like quotes from a specific author, then click on the Search Author tab and type the name of  your desired author.
+                        </p>
+                        <h5>Inspire Others:</h5> 
+                        <p>You can write a story for any given quote. Clicking on the 'Stories' navabar will display your created stories and the stories created by other users. You can edit or delete your stories.</p>
+                        <p> Enjoy the quote journey!</p>
                     </div>
-                    <ul class="">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">My Stories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Feed</a>
-                        </li>
-                    </ul>
-                    <div class="collapse d-flex flex-column align-items-stretch flex-shrink-0 bg-white navbar-collapse offcanvas-collapse open" style="width: 380px;">
-                        <!-- <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;"></div> -->
-                        <a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-                            <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-                            <span class="fs-5 fw-semibold">List group</span>
-                        </a>
 
-                        <div class="list-group list-group-flush border-bottom scrollarea">
-                            <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
-                                <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <strong class="mb-1">List group item heading</strong>
-                                    <small>Wed</small>
-                                </div>
-                                <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                            </a>
-                            <li href="#" class="list-group-item list-group-item-action py-3 lh-tight text-white bg-secondary bg-gradient">
-                                <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <strong class="mb-1">List group item heading</strong>
-                                    <small class="text-white">Tues</small>
-                                </div>
-                                <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                    <div class="tab-pane fade" id="nav-random-quote" role="tabpanel" aria-labelledby="nav-random-quote-tab">
+                        <!-- A random quote is displayed here each time the Quote tab is clicked -->
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-authors" role="tabpanel" aria-labelledby="nav-authors-tab">
+                        <div class="container" id="authors-container">
+                            <!-- Authors are displayed here -->
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-categories" role="tabpanel" aria-labelledby="nav-categories-tab">
+                        <div class="container" id="categories-container">
+                            <!-- Categories are displayed here -->
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-search-author" role="tabpanel" aria-labelledby="nav-search-author-tab">
+                        <div class="container" id="search-author-container">
+                            <form id="search">
+                                <label for="author-name">Author name:</label>
+                                <input type="text" list="author-name">
+                                <datalist id="author-name">
+                                    <!-- This data list gets populated with author names upon initialization of app -->
+                                </datalist>
+                                <input type="submit" value="Get quote" id="get-quote">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END OF NAV TABS CONTENT -->
+    
+                <div class="contaienr" id="quotes-container">
+                    <!-- quotes are displayed here; this container is used across multitple NAV TABS -->
+                </div>
+                <!-- END OF QUOTES CONTAINER -->
+                <button id="new-story-btn">Write a story</button>
+                <div class="contaienr" id="form-container">
+                    <!-- This is the new story form container -->
+                </div>
+                <!-- END OF NEW STORY FORM CONTAINER -->
+            </div>
+            <!-- END OF MACHINE CONTAINER -->
+        </div>
+        <!-- END OF BLACK BOX CONTAINER -->
+
+        <!-- START OF WHITE-BOX; HOLDS ALL CREATED STORIES -->
+        <div class="container" id="white-box">
+            <!-- THIS NAVBAR  -->
+            <nav class="navbar navbar-dark bg-dark" aria-label="Main navigation">
+                <div class="container-fluid">
+                    <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Stories</a>
+
+                    <div class="navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                        <div class="offcanvas-header">
+                            <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Stories</h3>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <p>Try scrolling the rest of the page to see this option in action.</p>
+                        </div>
+                        <ul class="">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">My Stories</a>
                             </li>
-                            <hr>
-                            <li href="#" class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary bg-gradient">
-                                <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <strong class="mb-1">List group item heading</strong>
-                                    <small class="text-white">Mon</small>
-                                </div>
-                                <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Feed</a>
                             </li>
-                            <hr>
-                            <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
-                                <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <strong class="mb-1">List group item heading</strong>
-                                    <small class="text-muted">Wed</small>
-                                </div>
-                                <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                        </ul>
+                        <div class="collapse d-flex flex-column align-items-stretch flex-shrink-0 bg-white navbar-collapse offcanvas-collapse open" style="width: 380px;">
+                            <!-- <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;"></div> -->
+                            <a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                                <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                                <span class="fs-5 fw-semibold">List group</span>
                             </a>
-                            <div id="stories-container">
+
+                            <div class="list-group list-group-flush border-bottom scrollarea">
+                                <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <strong class="mb-1">List group item heading</strong>
+                                        <small>Wed</small>
+                                    </div>
+                                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                                </a>
+                                <li href="#" class="list-group-item list-group-item-action py-3 lh-tight text-white bg-secondary bg-gradient">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <strong class="mb-1">List group item heading</strong>
+                                        <small class="text-white">Tues</small>
+                                    </div>
+                                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                                </li>
+                                <hr>
+                                <li href="#" class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary bg-gradient">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <strong class="mb-1">List group item heading</strong>
+                                        <small class="text-white">Mon</small>
+                                    </div>
+                                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                                </li>
+                                <hr>
+                                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <strong class="mb-1">List group item heading</strong>
+                                        <small class="text-muted">Wed</small>
+                                    </div>
+                                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                                </a>
+
+                                <div id="stories-container">
+                                    <!-- STORIES ARE INCLUDED INSIDE THIS CONTAINER -->
+                                </div>
                             </div>
                         </div>
-
-                       
-
-                        </div>
-                </div>
+                    </div>
+                </nav>
             </div>
-        </nav>
-
-    </div>
-
-</main>
+    </main>
     
     <script src="src/models/author.js"></script>
     <script src="src/models/category.js"></script>

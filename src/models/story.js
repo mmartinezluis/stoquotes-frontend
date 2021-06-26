@@ -27,7 +27,7 @@ class Story {
 
     storyHTML(){
       this.element.innerHTML =`
-        <div class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary bg-gradient">
+        <div class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary ">
             <p> 
                 Quote: <br>
                 <em>"${this.quote.body}"</em><br>

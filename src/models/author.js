@@ -15,7 +15,7 @@ class Author {
         this.element.id = `author-${this.id}`
         this.element.addEventListener('click', this.handleClick)
 
-        // 'this.option' is Used for Search Author datalist
+        // 'this.option' is Used for author-name datalist
         this.option = document.createElement('option')
         this.option.value = this.name
 

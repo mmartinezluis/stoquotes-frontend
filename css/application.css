@@ -12,6 +12,7 @@ main {
 #modal-box { 
   grid-area: modal;
   border: solid black 2px;
+  text-align: center;
 }
 
 #black-box {
