@@ -11,7 +11,8 @@ const categoryService = new CategoryService(base_url)
 
 // Main navigation pane buttons
 let navTabs = document.getElementsByClassName('nav-link flex-sm-fill')
-
+// Form for searching for authors
+const authorSearchForm = document.getElementById('search')
 
 // The 'Wrtie a story' button (addBtn) and modal
 const addBtn = document.getElementById('new-story-btn')
@@ -90,6 +91,14 @@ function shuffleArray(array) {
 
 
 // any initialzations of application
+
+authorSearchForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  // debugger
+  let input = e.target.querySelector('input').value
+  let authorId = Author.all.find( author => author.name === input).id
+  authorService.getAuthorQuote(authorId)
+})
 
 // Toggle display property of story form
 addBtn.addEventListener('click', (e) => {
