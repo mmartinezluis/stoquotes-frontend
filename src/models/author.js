@@ -4,7 +4,6 @@ class Author {
     static authorsContainer = document.getElementById('authors-container')
     static datalist = document.getElementById('author-name')
 
-
     constructor({id, name}) {
         this.id = id,
         this.name = name 
