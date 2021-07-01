@@ -33,9 +33,9 @@ $ git clone https://github.com/mmartinezluis/stoquotes-backend.git
 
 3. In the backend respository, run `bundle install` to install lthe required gems. Then run `rails db:migrate` to crreate the migrations.
 
-4. Again, in the backend repositiory, run 
+4. Again, in the backend repository, run 
 ```ruby
-rails db:seed
+$ rails db:seed
 ```
 (caution: once you run `rails db:seed`, the API will create more than 700 authors and more than 23,000 quotes with associations; it can take up to 7 minutes for this process to run; do not close the app or run other commands while the seeding process is in progress)
 
