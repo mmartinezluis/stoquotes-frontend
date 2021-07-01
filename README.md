@@ -17,7 +17,7 @@ StoQuotes consists of two main components: a Quote rendering and Story writing c
 * Write a story for any quote rendered in the Search Author tab. 
 * Some more functionalities...
 
-Video walkthrough on YouTube: 
+Video walkthrough on YouTube: https://www.youtube.com/watch?v=erydVfABsu0
 
 ## Installation
 To run the app in your local machine follow the next steps:
