@@ -21,25 +21,30 @@ Video walkthrough on YouTube:
 
 ## Installation
 To run the app in your local machine follow the next steps:
-1. CLone this repository to your local machine:
+1. Clone this repository to your local machine:
 ``` ruby
 $ git clone https://github.com/mmartinezluis/stoquotes-fronend.git
 ```
-2. Clone the [backend API repositaory](https://github.com/mmartinezluis/stoquotes-backend) for this app to your locak machine:
+
+2. Clone the [backend API repository](https://github.com/mmartinezluis/stoquotes-backend) for this app to your local machine:
 ``` ruby
 $ git clone https://github.com/mmartinezluis/stoquotes-backend.git
 ```
-3. In the backend respository, run `bundle install` to intsal lthe required gems. Then run `rails db:migrate` to crreate the migrations.
+
+3. In the backend respository, run `bundle install` to install lthe required gems. Then run `rails db:migrate` to crreate the migrations.
+
 4. Again, in the backend repositiory, run 
 ```ruby
 rails db:seed
 ```
-(caution: once you run `rails db:seed`, the API will create more than 700 authors and more than 23,000 quotes with assocations; it can take up to 7 minutes for this process to run; do not close the app or run other commands while the seeding process is in progress)
+(caution: once you run `rails db:seed`, the API will create more than 700 authors and more than 23,000 quotes with associations; it can take up to 7 minutes for this process to run; do not close the app or run other commands while the seeding process is in progress)
+
 5. Finally, for the backend, run
 ```ruby 
-rails server
+$ rails server
 ```
-6. And finally, for the frontend repository, open the file `index.html` using a live server (either right click on the file and click on 'Open with live server' or click on 'Go Live' on the blue bottom bar if using VS code). And now you are ready to go.
+
+6. Last, for the frontend repository, open the file `index.html` using a live server (either right click on the file and click on 'Open with live server' or click on 'Go Live' on the blue bottom bar if using VS code). And now you are ready to go.
 
 ## Contributing
 Contributions and pull requests are welcomed. You can also create an issue to report a bug or make a request. For pull requests, you may follow these steps:
