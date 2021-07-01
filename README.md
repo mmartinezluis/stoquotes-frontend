@@ -19,3 +19,35 @@ StoQuotes consists of two main components: a Quote rendering and Story writing c
 
 Video walkthrough on YouTube: 
 
+## Installation
+To run the app in your local machine follow the next steps:
+1. CLone this repository to your local machine:
+``` ruby
+$ git clone https://github.com/mmartinezluis/stoquotes-fronend.git
+```
+2. Clone the [backend API repositaory](https://github.com/mmartinezluis/stoquotes-backend) for this app to your locak machine:
+``` ruby
+$ git clone https://github.com/mmartinezluis/stoquotes-backend.git
+```
+3. In the backend respository, run `bundle install` to intsal lthe required gems. Then run `rails db:migrate` to crreate the migrations.
+4. Again, in the backend repositiory, run 
+```ruby
+rails db:seed
+```
+(caution: once you run `rails db:seed`, the API will create more than 700 authors and more than 23,000 quotes with assocations; it can take up to 7 minutes for this process to run; do not close the app or run other commands while the seeding process is in progress)
+5. Finally, for the backend, run
+```ruby 
+rails server
+```
+6. And finally, for the frontend repository, open the file `index.html` using a live server (either right click on the file and click on 'Open with live server' or click on 'Go Live' on the blue bottom bar if using VS code). And now you are ready to go.
+
+## Contributing
+Contributions and pull requests are welcomed. You can also create an issue to report a bug or make a request. For pull requests, you may follow these steps:
+1. Fork and clone this repository.
+2. Create a branch name denoting the feature or bug. For example: `git checkout -b feature/new-feature` or `git checkout -b bug/bug-fix`.
+3. Write your code and submit changes with a clear commit message.
+4. Push to the branch with `git push origin feature/new-feature`. 
+5. Create a pull request, and explain the reason for the requested change (why the written code should be implemented).
+
+## License
+StoQuotes is available as open source under the terms of the [MIT License](https://github.com/mmartinezluis/stoquotes-frontend/blob/main/LICENCE.txt). 
