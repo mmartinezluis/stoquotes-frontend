@@ -12,7 +12,7 @@
    <main class="container">
     
         <!-- MODAL BOX -->
-        <div class="hidden" id="modal-box">
+        <div class="hidden" tabindex="-1" a-bs-toggle="modal" data-bs-target="#modal-box" data-bs-toggle="offcanvas" id="modal-box">
             <p>This is the modal box</p>
         </div>
 
@@ -102,14 +102,14 @@
                     </button>
                     <a class="navbar-brand" href="#">Stories</a>
 
-                    <div class="navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                    <div class="navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 700px" >
                         <div class="offcanvas-header">
                             <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Stories</h3>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
-                        <div class="offcanvas-body">
-                            <p>Try scrolling the rest of the page to see this option in action.</p>
-                        </div>
+                        <!-- <div class="offcanvas-body">
+                            
+                        </div> -->
                         <ul class="">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">My Stories</a>
@@ -118,30 +118,10 @@
                                 <a class="nav-link" href="#">Feed</a>
                             </li>
                         </ul>
-                        <div class="collapse d-flex flex-column align-items-stretch flex-shrink-0 bg-white navbar-collapse offcanvas-collapse open" style="width: 380px;">
+                        <div class="collapse d-flex flex-column align-items-stretch flex-shrink-0 bg-white navbar-collapse offcanvas-collapse open" style="width: 650px;">
                             <!-- <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;"></div> -->
-                            <a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-                                <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-                                <span class="fs-5 fw-semibold">List group</span>
-                            </a>
-
                             <div class="list-group list-group-flush border-bottom scrollarea">
-                                <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <strong class="mb-1">List group item heading</strong>
-                                        <small>Wed</small>
-                                    </div>
-                                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                                </a>
-                                <li href="#" class="list-group-item list-group-item-action py-3 lh-tight text-white bg-secondary bg-gradient">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <strong class="mb-1">List group item heading</strong>
-                                        <small class="text-white">Tues</small>
-                                    </div>
-                                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                                </li>
-                                <hr>
-                                <li href="#" class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary bg-gradient">
+                                <!-- <li href="#" class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary bg-gradient">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
                                         <strong class="mb-1">List group item heading</strong>
                                         <small class="text-white">Mon</small>
@@ -155,7 +135,7 @@
                                         <small class="text-muted">Wed</small>
                                     </div>
                                     <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                                </a>
+                                </a> -->
 
                                 <div id="stories-container">
                                     <!-- STORIES ARE INCLUDED INSIDE THIS CONTAINER -->

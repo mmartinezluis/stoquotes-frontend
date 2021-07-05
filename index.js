@@ -90,6 +90,11 @@ function shuffleArray(array) {
   return array
 }
 
+// Function for converting dates
+function normalizeDate(date) {
+  return new Date(date).toDateString()
+}
+
 
 // any initialzations of application
 

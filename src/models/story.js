@@ -28,12 +28,11 @@ class Story {
     storyHTML(){
       this.element.innerHTML =`
         <div class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary ">
-            <p> 
-                Quote: <br>
-                <em>"${this.quote.body}"</em><br>
-                Story posted by User ${this.user_id} on ${this.created_at}<br>
-                <span class="description">${this.description}</span>
-            </p>
+            <span>Quote: </span><br>
+            <span><em>"${this.quote.body}"</em></span><br>
+            <span>${this.quote.author_name}</span><br>
+            <span>Story posted by User ${this.user_id} on ${normalizeDate(this.created_at)}:</span><br>
+            <span class="description" rows="3">${this.description}</span><br>
             <button>Edit</button>
             <button>Delete</button>
         </div>
@@ -74,10 +73,10 @@ class Story {
     }
 
     createEditFields = () => { 
-        const story = this.element.querySelector('span')
+        const story = this.element.querySelector('.description')
         let inputValue = story.innerText
         let property = story.classList[0]
-        story.outerHTML = `<textarea class="edit-${property}" value ="${inputValue}">${inputValue}</textarea>`
+        story.outerHTML = `<textarea class="edit-${property}" value =${inputValue} rows="3">${inputValue}</textarea>`
     }
 
     saveUpdatedItem = () => {

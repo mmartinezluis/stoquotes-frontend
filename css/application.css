@@ -50,3 +50,11 @@ main {
 #stories-container {
   list-style-type: none;
 }
+
+textarea{
+  min-width: 70%;
+}
+
+.tab-content, #quote-container{
+  padding-top: 1rem;
+}
