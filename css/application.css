@@ -9,6 +9,9 @@ main {
  justify-items: normal;
 }
 
+li {
+  list-style-type: none;
+}
 #modal-box { 
   grid-area: modal;
   border: solid black 2px;

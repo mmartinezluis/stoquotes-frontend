@@ -37,7 +37,9 @@ class Story {
         <div>
             <div class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary ">
                 <span>Quote: </span><br>
-                <span><em>"${this.quote.body}"</em></span><br>
+                <blockquote class="blockquote"><em>"${
+                  this.quote.body
+                }"</em></blockquote>
                 <span>${this.quote.author_name}</span><br>
                 <span>Story posted by User ${this.user_id} on ${normalizeDate(
       this.created_at
@@ -63,9 +65,12 @@ class Story {
         <form id="new-story-form"> 
           <input type="hidden" class="user_id" value= ${user_id}>
           <input type="hidden" class="quote_id" value= ${quote_id}>
-          Description: <br>
-          <textarea id="description"></textarea>
-          <input type="submit" id="create">
+          <br>
+          <div class="form-floating">
+            <textarea class="form-control" id="description" style="height: 100px"></textarea>
+            <label for="description">Description</label>
+          </div>
+          <input type="submit" class="btn btn-success" id="create">
         </form>
         `;
   }
