@@ -12,6 +12,11 @@ main {
 li {
   list-style-type: none;
 }
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
 #modal-box { 
   grid-area: modal;
   border: solid black 2px;

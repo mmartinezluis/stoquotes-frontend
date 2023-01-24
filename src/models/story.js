@@ -2,6 +2,7 @@ class Story {
   static all = [];
   static storyContainer = document.getElementById("stories-container");
   static storyForm = document.getElementById("form-container");
+  static showForm = false;
 
   constructor({
     id,

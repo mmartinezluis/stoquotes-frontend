@@ -17,8 +17,6 @@ const authorSearchForm = document.getElementById("search");
 const addBtn = document.getElementById("new-story-btn");
 const modal = document.getElementById("modal-box");
 addBtn.style.display = "none";
-// Variable for toggling the display prperty of the story form
-let addStory = false;
 
 // Load the user stories and the categories
 storyService.getStories();
@@ -28,12 +26,12 @@ authorService.loadAuthors();
 Story.storyForm.style.display = "none";
 Story.storyForm.addEventListener("submit", handleSubmit);
 
-function handleSubmit() {
+function handleSubmit(event) {
   event.preventDefault();
   const user_id = document.getElementsByClassName("user_id")[0].value;
   const quote_id = document.getElementsByClassName("quote_id")[0].value;
   quoteService.getQuote(user_id, quote_id);
-  storyService.createStory(user_id, quote_id);
+  storyService.createStory(user_id, quote_id, hideStoryBtnFormAndQuote);
   event.target.reset();
 }
 
@@ -51,25 +49,26 @@ for (const tab of navTabs) {
 function handleNavTabs(event) {
   switch (event.target.id) {
     case "nav-home-tab":
-      hideStoryBtnFormAndQuote();
+      // hideStoryBtnFormAndQuote();
       break;
     case "nav-random-quote-tab":
-      hideStoryBtnFormAndQuote();
+      // hideStoryBtnFormAndQuote();
       // There are a total of 757 authors; chose a random author id
       let authorId = Math.floor(Math.random() * Author.total);
       authorService.getAuthorQuote(authorId);
       break;
     case "nav-authors-tab":
-      hideStoryBtnFormAndQuote();
+      // hideStoryBtnFormAndQuote();
       authorService.getAuthors();
       break;
     case "nav-categories-tab":
-      hideStoryBtnFormAndQuote();
+      // hideStoryBtnFormAndQuote();
       break;
     case "nav-search-author-tab":
-      hideStoryBtnFormAndQuote();
+      // hideStoryBtnFormAndQuote();
       authorSearchForm.reset();
   }
+  hideStoryBtnFormAndQuote();
 }
 
 // Used in author.js
@@ -102,8 +101,8 @@ authorSearchForm.addEventListener("submit", (e) => {
 
 // Toggle display property of story form
 addBtn.addEventListener("click", (e) => {
-  addStory = !addStory;
-  if (addStory) {
+  Story.showForm = !Story.showForm;
+  if (Story.showForm) {
     Story.storyForm.style.display = "block";
   } else {
     Story.storyForm.style.display = "none";
