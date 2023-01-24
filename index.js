@@ -56,7 +56,6 @@ function handleNavTabs(event) {
     case "nav-random-quote-tab":
       hideStoryBtnFormAndQuote();
       // There are a total of 757 authors; chose a random author id
-      // let authorId = [...Array(756).keys()].random()
       let authorId = Math.floor(Math.random() * Author.total);
       authorService.getAuthorQuote(authorId);
       break;
@@ -72,11 +71,6 @@ function handleNavTabs(event) {
       authorSearchForm.reset();
   }
 }
-
-// Random number generator from an array; used index.js and in 'authorService.js', getAuthorQuote method
-Array.prototype.random = function () {
-  return this[Math.floor(Math.random() * this.length)];
-};
 
 // Used in author.js
 function shuffleArray(array) {
