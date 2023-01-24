@@ -49,6 +49,7 @@ main {
 
 #stories-container {
   list-style-type: none;
+  padding-top: 10px;
 }
 
 textarea{

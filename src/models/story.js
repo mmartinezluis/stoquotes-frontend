@@ -34,18 +34,22 @@ class Story {
 
   storyHTML() {
     this.element.innerHTML = `
-        <div class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary ">
-            <span>Quote: </span><br>
-            <span><em>"${this.quote.body}"</em></span><br>
-            <span>${this.quote.author_name}</span><br>
-            <span>Story posted by User ${this.user_id} on ${normalizeDate(
+        <div>
+            <div class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary ">
+                <span>Quote: </span><br>
+                <span><em>"${this.quote.body}"</em></span><br>
+                <span>${this.quote.author_name}</span><br>
+                <span>Story posted by User ${this.user_id} on ${normalizeDate(
       this.created_at
     )}:</span><br>
-            <span class="description" rows="3">${this.description}</span><br>
-            <button>Edit</button>
-            <button>Delete</button>
+                <span class="description" rows="3">${
+                  this.description
+                }</span><br>
+                <button>Edit</button>
+                <button>Delete</button>
+            </div>
+            <hr>
         </div>
-        <hr>
       `;
     return this.element;
   }
@@ -68,7 +72,7 @@ class Story {
 
   handleClick = (event) => {
     if (event.target.innerText === "Delete") {
-      event.target.parentElement.remove();
+      event.target.parentElement.parentElement.remove();
       storyService.deleteStory(this.id);
     } else if (event.target.innerText === "Edit") {
       event.target.innerText = "Save";
