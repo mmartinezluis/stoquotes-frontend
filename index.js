@@ -13,10 +13,10 @@ let navTabs = document.getElementsByClassName("nav-link flex-sm-fill");
 // Form for searching for authors
 const authorSearchForm = document.getElementById("search");
 
-// The 'Wrtie a story' button (addBtn) and modal
-const addBtn = document.getElementById("new-story-btn");
+// The 'Wrtie a story' button (writeStoryBtn) and modal
+const writeStoryBtn = document.getElementById("new-story-btn");
 const modal = document.getElementById("modal-box");
-addBtn.style.display = "none";
+writeStoryBtn.style.display = "none";
 
 // Load the user stories and the categories
 storyService.getStories();
@@ -36,8 +36,11 @@ function handleSubmit(event) {
 }
 
 function hideStoryBtnFormAndQuote() {
-  addBtn.style.display = "none";
+  writeStoryBtn.style.display = "none";
+  writeStoryBtn.className = writeStoryBtn.className.replace("active", "");
+  Story.storyForm.style.display = "none";
   Story.storyForm.innerHTML = "";
+  Story.showForm = false;
   Quote.quotesContainer.innerHTML = "";
 }
 
@@ -47,28 +50,24 @@ for (const tab of navTabs) {
 }
 
 function handleNavTabs(event) {
+  hideStoryBtnFormAndQuote();
   switch (event.target.id) {
     case "nav-home-tab":
-      // hideStoryBtnFormAndQuote();
       break;
     case "nav-random-quote-tab":
-      // hideStoryBtnFormAndQuote();
+      // debugger;
       // There are a total of 757 authors; chose a random author id
       let authorId = Math.floor(Math.random() * Author.total);
       authorService.getAuthorQuote(authorId);
       break;
     case "nav-authors-tab":
-      // hideStoryBtnFormAndQuote();
       authorService.getAuthors();
       break;
     case "nav-categories-tab":
-      // hideStoryBtnFormAndQuote();
       break;
     case "nav-search-author-tab":
-      // hideStoryBtnFormAndQuote();
       authorSearchForm.reset();
   }
-  hideStoryBtnFormAndQuote();
 }
 
 // Used in author.js
@@ -100,12 +99,14 @@ authorSearchForm.addEventListener("submit", (e) => {
 });
 
 // Toggle display property of story form
-addBtn.addEventListener("click", (e) => {
+writeStoryBtn.addEventListener("click", (e) => {
   Story.showForm = !Story.showForm;
   if (Story.showForm) {
     Story.storyForm.style.display = "block";
+    writeStoryBtn.className = writeStoryBtn.className + " active";
   } else {
     Story.storyForm.style.display = "none";
+    writeStoryBtn.className = writeStoryBtn.className.replace("active", "");
   }
 });
 

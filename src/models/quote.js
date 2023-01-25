@@ -22,8 +22,8 @@ class Quote {
       ${quote.author_name}`;
     //   Display the quote on the DOM
     Quote.quotesContainer.innerHTML = quote.element.innerHTML;
-    //   Once a quote is dsplayed,show the new story button and activate the new story form
-    addBtn.style.display = "block";
+    //   Once a quote is dsplayed,show the write a story button and activate the new story form
+    writeStoryBtn.style.display = "block";
     Story.renderForm(1, quote.id);
   }
 }

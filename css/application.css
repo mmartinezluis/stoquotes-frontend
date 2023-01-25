@@ -29,6 +29,10 @@ li {
   margin-bottom: 1rem;
 }
 
+#machine {
+  min-height: 456px !important;
+}
+
 #white-box {
   grid-area: stories;
   border: solid  2px;
