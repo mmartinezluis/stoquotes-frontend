@@ -16,10 +16,14 @@ class Quote {
     quote.element.dataset.id = quote.id;
     quote.element.id = `quote-${quote.id}`;
     quote.element.innerHTML = `
+    <figure>
       <blockquote class="blockquote">
-        <em><i class="bi bi-quote">${quote.body}</i></em>
+        <p><em><i class="bi bi-quote">${quote.body}</i></em></p>
       </blockquote>
-      ${quote.author_name}`;
+      <figcaption class="blockquote-footer">
+        <cite title="Source Title">${quote.author_name}</cite>
+      </figcaption>
+    </figure>`;
     //   Display the quote on the DOM
     Quote.quotesContainer.innerHTML = quote.element.innerHTML;
     //   Once a quote is dsplayed,show the write a story button and activate the new story form

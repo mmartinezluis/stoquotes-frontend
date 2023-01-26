@@ -57,9 +57,33 @@ li {
 
 #quotes-container {
   margin-top: 20px;
-  padding: 15px 20px 10px;
+  padding: 20px 30px 5px;
   background-color: antiquewhite;
   border-radius: 1rem;
+}
+
+#quotes-container blockquote {
+  margin-bottom: 1.5rem;
+}
+
+#quotes-container blockquote p:before {
+  content: "\201C";
+  /* font-weight: bold; */
+  font-size: 2rem;
+  display: inline-block;
+  vertical-align: -0.25em;
+  line-height: 0.5;
+  /* font-family: 'Georgia';  */
+}
+
+#quotes-container blockquote p:after {
+  content: "\201D";
+  /* font-weight: bold; */
+  font-size: 2rem;
+  display: inline-block;
+  vertical-align: -0.25em;
+  line-height: 0.5;
+  /* font-family: 'Georgia';  */
 }
 
 #story-compose {
