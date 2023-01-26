@@ -68,7 +68,7 @@ class Story {
           <input type="hidden" class="quote_id" value= ${quote_id}>
           <br>
           <div class="form-floating">
-            <textarea class="form-control" id="description" style="height: 100px"></textarea>
+            <textarea class="form-control" id="description" required style="height: 100px"></textarea>
             <label for="description">Description</label>
           </div>
           <br>
