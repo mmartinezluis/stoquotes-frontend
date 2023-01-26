@@ -159,6 +159,11 @@ li {
   padding-top: 10px;
 }
 
+.stories-navigation {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .profile-story > div {
   border-radius: 1rem;
   border: solid 2px var(--bs-gray);

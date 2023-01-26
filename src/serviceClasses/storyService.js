@@ -15,8 +15,10 @@ class StoryService {
   }
 
   createStory(user_id, quote_id) {
-    const description = document.getElementById("description").value;
-    if (!description.trim().length) {
+    const description = document
+      .querySelector("#new-story-form textarea")
+      .value.trim();
+    if (!description.length) {
       showModal("Story description cannot be blank");
       return;
     }
@@ -48,25 +50,27 @@ class StoryService {
       });
   }
 
-  sendPatch(story) {
-    let { description } = story;
-    const storyInfo = { description };
+  sendPatch(story, new_description) {
+    // let { description } = story;
+    // const storyInfo = { description };
     const configObj = {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(storyInfo),
+      // important: the Ruby on Rails backend accepts "description" as a param
+      body: JSON.stringify({ description: new_description }),
     };
 
     fetch(`${this.endpoint}/stories/${story.id}`, configObj)
       .then((resp) => resp.json())
       .then((json) => {
+        story.description = new_description;
         story.storyHTML();
         showModal(`Story #${story.id} successfully updated`);
       })
       .catch(function (error) {
-        alert(error.message);
+        alert(error);
       });
   }
 

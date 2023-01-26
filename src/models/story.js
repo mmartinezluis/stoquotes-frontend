@@ -103,18 +103,27 @@ class Story {
   createEditFields = () => {
     const story = this.element.querySelector(".description");
     let inputValue = story.innerText;
-    console.log(story.classList);
     let property = story.classList[0];
     // story.outerHTML = `<textarea class="edit-${property}" value =${inputValue} rows="3">${inputValue}</textarea>`;
     story.outerHTML = `
         <div class="form-floating edit-description">
-            <textarea class="form-control" id="current-description" rows="3">${inputValue}</textarea>
+            <textarea class="form-control" id="current-description" required rows="3">${inputValue}</textarea>
             <label for="current-description">Description</label>
         </div>`;
   };
 
   saveUpdatedItem = () => {
-    this.description = this.element.querySelector("textarea").value;
-    storyService.sendPatch(this);
+    const new_description = this.element.querySelector("textarea").value.trim();
+    // @TODO use a hashing function two compare the two descriptions
+    if (!new_description.length) {
+      showModal("Story description cannot be blank");
+      return;
+    }
+    if (new_description === this.description) {
+      this.storyHTML();
+      return;
+    }
+    // this.description = this.element.querySelector("textarea").value;
+    storyService.sendPatch(this, new_description);
   };
 }
