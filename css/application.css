@@ -56,7 +56,7 @@ li {
 }
 
 #quotes-container {
-  margin-top: 20px;
+  margin: 20px 4rem 0;
   padding: 20px 30px 5px;
   background-color: antiquewhite;
   border-radius: 1rem;
@@ -68,24 +68,27 @@ li {
 
 #quotes-container blockquote p:before {
   content: "\201C";
-  /* font-weight: bold; */
   font-size: 2rem;
   display: inline-block;
   vertical-align: -0.25em;
   line-height: 0.5;
-  /* font-family: 'Georgia';  */
 }
 
 #quotes-container blockquote p:after {
   content: "\201D";
-  /* font-weight: bold; */
   font-size: 2rem;
   display: inline-block;
   vertical-align: -0.25em;
   line-height: 0.5;
-  /* font-family: 'Georgia';  */
 }
 
+#form-container {
+  margin: 0 4rem 0 4rem;
+}
+
+#nav-authors,
+#nav-categories,
+#nav-search-author,
 #story-compose {
   margin-top: 20px;
 }
