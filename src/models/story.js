@@ -33,6 +33,8 @@ class Story {
     return Quote.all.find((q) => q.id === this.quote_id);
   }
 
+  static storyTemplate() {}
+
   storyHTML() {
     // this.element.innerHTML = `
     //     <div>
@@ -55,9 +57,9 @@ class Story {
     //     </div>
     //   `;
     this.element.innerHTML = `
-        <div class="">
-            <div class="list-group-item list-group-item-action py-3 lh-tigh text-white bg-secondary ">
-                <span>Quote: </span><br>
+        <div class="profile-story">
+            <div class="list-group-item list-group-item-action py-3 lh-tigh">
+                <span>Quote:</span>
                 ${Quote.generateQuoteTemplate(
                   this.quote,
                   Quote.templateStyle.profile
@@ -68,8 +70,8 @@ class Story {
                 <span class="description" rows="3">${
                   this.description
                 }</span><br>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button class="btn btn-primary btn-sm">Edit</button>
+                <button class="btn btn-danger btn-sm">Delete</button>
             </div>
             <hr>
         </div>
@@ -102,10 +104,18 @@ class Story {
       event.target.parentElement.parentElement.remove();
       storyService.deleteStory(this.id);
     } else if (event.target.innerText === "Edit") {
+      event.target.className = event.target.className.replace(
+        "btn-primary",
+        "btn-success"
+      );
       event.target.innerText = "Save";
       // change the span field for the story into an input field for editing
       this.createEditFields();
     } else if (event.target.innerText === "Save") {
+      event.target.className = event.target.className.replace(
+        "btn-sucess",
+        "btn-primary"
+      );
       event.target.innerText = "Edit";
       this.saveUpdatedItem();
     }

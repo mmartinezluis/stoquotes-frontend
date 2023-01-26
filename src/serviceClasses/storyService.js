@@ -16,7 +16,7 @@ class StoryService {
 
   createStory(user_id, quote_id) {
     const description = document.getElementById("description").value;
-    if (!description.trim().legth) {
+    if (!description.trim().length) {
       showModal("Story description cannot be blank");
       return;
     }

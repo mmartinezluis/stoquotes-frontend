@@ -67,8 +67,8 @@ li {
 }
 
 .profile-quote-box {
-  margin: 20px 0rem 0;
-  padding: 20px 30px 5px;
+  /* margin: 20px 0rem 0; */
+  /* padding: 20px 30px 5px; */
   /* background-color: antiquewhite; */
   border-radius: 1rem;
 }
@@ -157,6 +157,31 @@ li {
 #stories-container {
   list-style-type: none;
   padding-top: 10px;
+}
+
+.profile-story > div {
+  border-radius: 1rem;
+  border: solid 2px var(--bs-gray);
+}
+
+.profile-story blockquote {
+  font-size: 1rem;
+}
+
+.profile-story blockquote p:before {
+  content: "\201C";
+  font-size: 1rem;
+  display: inline-block;
+  vertical-align: -0.15em;
+  line-height: 0.5;
+}
+
+.profile-story blockquote p:after {
+  content: "\201D";
+  font-size: 1rem;
+  display: inline-block;
+  vertical-align: -0.15em;
+  line-height: 0.5;
 }
 
 textarea{
