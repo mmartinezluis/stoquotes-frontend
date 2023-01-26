@@ -15,8 +15,13 @@ class StoryService {
   }
 
   createStory(user_id, quote_id) {
+    const description = document.getElementById("description").value;
+    if (!description.trim().legth) {
+      showModal("Story description cannot be blank");
+      return;
+    }
     const story = {
-      description: document.getElementById("description").value,
+      description: description,
       user_id: user_id,
       quote_id: quote_id,
     };
@@ -39,6 +44,7 @@ class StoryService {
       })
       .catch((err) => {
         console.log(err);
+        showModal(err);
       });
   }
 
