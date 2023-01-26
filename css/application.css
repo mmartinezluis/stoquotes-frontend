@@ -139,6 +139,10 @@ li {
   margin-top: 20px;
 }
 
+#search-author-container #get-quote:is(:active, :focus) {
+  background-color: rgb(108, 117, 125);
+}
+
 .hidden {
   visibility: hidden;
 }

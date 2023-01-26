@@ -23,6 +23,8 @@ storyService.getStories();
 categoryService.getCategories();
 authorService.loadAuthors();
 
+Author.toggleBtnBackground(document.getElementById("get-quote"));
+
 Story.storyForm.style.display = "none";
 Story.storyForm.addEventListener("submit", handleSubmit);
 

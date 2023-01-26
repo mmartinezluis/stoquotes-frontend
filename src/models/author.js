@@ -4,6 +4,9 @@ class Author {
   static total = 0;
   static authorsContainer = document.getElementById("authors-container");
   static datalist = document.getElementById("author-name");
+  static toggleBtnBackground = (el) => {
+    el.addEventListener("click", () => el.blur());
+  };
 
   constructor({ id, name }) {
     (this.id = id), (this.name = name);
