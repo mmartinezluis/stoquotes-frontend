@@ -55,7 +55,11 @@ li {
   
 }
 
-#quotes-container {
+#home-container {
+  padding: 0 2rem;
+}
+
+#pseudo-quote-box {
   margin: 20px 4rem 0;
   padding: 20px 30px 5px;
   background-color: antiquewhite;
@@ -83,12 +87,55 @@ li {
 }
 
 #form-container {
-  margin: 0 4rem 0 4rem;
+  margin: 0 4rem;
 }
 
+:is(#nav-authors, #nav-categories) a {
+  text-decoration: none;
+}
+
+#authors-container,
+#categories-container {
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  #home-container {
+    padding: 0.5rem;
+  }
+
+  #authors-container,
+  #categories-container {
+    margin-left: 1rem;
+  }
+  #pseudo-quote-box {
+    margin: 20px 2rem 0;
+  }
+  #form-container {
+    margin: 0 2rem;
+  }
+}
+@media screen and (max-width: 460px) {
+  #authors-container,
+  #categories-container {
+    margin-left: 0.5rem;
+  }
+  #pseudo-quote-box {
+    margin: 20px 1rem 0;
+    padding: 15px 25px 1px;
+  }
+  #form-container {
+    margin: 0rem;
+  }
+}
+
+#home-container,
 #nav-authors,
 #nav-categories,
-#nav-search-author,
+#nav-search-author {
+  margin-top: 8px;
+}
+
 #story-compose {
   margin-top: 20px;
 }
