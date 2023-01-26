@@ -29,9 +29,9 @@ li {
   margin-bottom: 1rem;
 }
 
-#machine {
+/* #machine {
   min-height: 456px !important;
-}
+} */
 
 #white-box {
   grid-area: stories;
@@ -53,6 +53,17 @@ li {
   margin-top: 2rem;
   margin-bottom: 2rem;
   
+}
+
+#quotes-container {
+  margin-top: 20px;
+  padding: 15px 20px 10px;
+  background-color: antiquewhite;
+  border-radius: 1rem;
+}
+
+#story-compose {
+  margin-top: 20px;
 }
 
 .hidden {

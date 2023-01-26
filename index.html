@@ -23,27 +23,29 @@
                 <!-- THE NAV TABS -->
                 <nav>
                     <div class="nav nav-tabs nav-pills flex-column flex-sm-row" id="nav-tab" role="tablist">
-                    <button class="nav-link flex-sm-fill active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                    <button class="nav-link flex-sm-fill" id="nav-random-quote-tab" data-bs-toggle="tab" data-bs-target="#nav-random-quote" type="button" role="tab" aria-controls="nav-random-quote" aria-selected="false">Quote</button>
-                    <button class="nav-link flex-sm-fill" id="nav-authors-tab" data-bs-toggle="tab" data-bs-target="#nav-authors" type="button" role="tab" aria-controls="nav-authors" aria-selected="false">Authors</button>
-                    <button class="nav-link flex-sm-fill" id="nav-categories-tab" data-bs-toggle="tab" data-bs-target="#nav-categories" type="button" role="tab" aria-controls="nav-categories" aria-selected="false">Categories</button>
-                    <button class="nav-link flex-sm-fill" id="nav-search-author-tab" data-bs-toggle="tab" data-bs-target="#nav-search-author" type="button" role="tab" aria-controls="nav-search-author" aria-selected="false">Search Author</button>
+                        <button class="nav-link flex-sm-fill active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+                        <button class="nav-link flex-sm-fill" id="nav-random-quote-tab" data-bs-toggle="tab" data-bs-target="#nav-random-quote" type="button" role="tab" aria-controls="nav-random-quote" aria-selected="false">Quote</button>
+                        <button class="nav-link flex-sm-fill" id="nav-authors-tab" data-bs-toggle="tab" data-bs-target="#nav-authors" type="button" role="tab" aria-controls="nav-authors" aria-selected="false">Authors</button>
+                        <button class="nav-link flex-sm-fill" id="nav-categories-tab" data-bs-toggle="tab" data-bs-target="#nav-categories" type="button" role="tab" aria-controls="nav-categories" aria-selected="false">Categories</button>
+                        <button class="nav-link flex-sm-fill" id="nav-search-author-tab" data-bs-toggle="tab" data-bs-target="#nav-search-author" type="button" role="tab" aria-controls="nav-search-author" aria-selected="false">Search Author</button>
                     </div>
                 </nav>
                 <!-- THE CONTENT FOR THE NAV TABS -->
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <h5>Welcome</h5> 
-                        <p>Welcome to StoQuotes, a place to get inspired and inspire others. StoQuotes displays random quotes, quotes from authors, and quotes from categories. </p>
-                        <h5>Find Inspiration:</h5> 
-                        <p>The Quote tab and the Authors tab are multiclickable: each time you click on the Quote tab will display
-                            a random quote, and the Authors tab will display ten random authors. The links within the Authors tab and the Categories tab are also multiclickable: 
-                            a new quote from the clicked author or category is displayed for each click. 
-                            If you would like quotes from a specific author, then click on the Search Author tab and type the name of your desired author.
-                        </p>
-                        <h5>Inspire Others:</h5> 
-                        <p>You can write a story for any given quote. Clicking on the Stories navabar will display your created stories and the stories created by other users. You can edit or delete your stories.</p>
-                        <p> Enjoy the quote journey!</p>
+                        <div class="container">
+                            <h5>Welcome</h5> 
+                            <p>Welcome to StoQuotes, a place to get inspired and inspire others. StoQuotes displays random quotes, quotes from authors, and quotes from categories. </p>
+                            <h5>Find Inspiration:</h5> 
+                            <p>The Quote tab and the Authors tab are multiclickable: each time you click on the Quote tab will display
+                                a random quote, and the Authors tab will display ten random authors. The links within the Authors tab and the Categories tab are also multiclickable: 
+                                a new quote from the clicked author or category is displayed for each click. 
+                                If you would like quotes from a specific author, then click on the Search Author tab and type the name of your desired author.
+                            </p>
+                            <h5>Inspire Others:</h5> 
+                            <p>You can write a story for any given quote. Clicking on the Stories navabar will display your created stories and the stories created by other users. You can edit or delete your stories.</p>
+                            <p> Enjoy the quote journey!</p>
+                        </div>
                     </div>
 
                     <div class="tab-pane fade" id="nav-random-quote" role="tabpanel" aria-labelledby="nav-random-quote-tab">
@@ -83,9 +85,9 @@
                     <!-- quotes are displayed here; this container is used across multitple NAV TABS -->
                 </div>
                 <!-- END OF QUOTES CONTAINER -->
-                <div id="story-compose">
+                <div class="container" id="story-compose">
                     <button type="button" class="btn btn-outline-dark" id="new-story-btn">Write a story</button>
-                    <div class="container" id="form-container">
+                    <div id="form-container">
                         <!-- This is the new story form container -->
                     </div>
                     <!-- END OF NEW STORY FORM CONTAINER -->

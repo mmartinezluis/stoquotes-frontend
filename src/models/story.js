@@ -71,6 +71,7 @@ class Story {
             <textarea class="form-control" id="description" style="height: 100px"></textarea>
             <label for="description">Description</label>
           </div>
+          <br>
           <input type="submit" class="btn btn-success" id="create">
         </form>
         `;
