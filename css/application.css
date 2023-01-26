@@ -59,10 +59,17 @@ li {
   padding: 0 2rem;
 }
 
-#pseudo-quote-box {
+.pseudo-quote-box {
   margin: 20px 4rem 0;
   padding: 20px 30px 5px;
   background-color: antiquewhite;
+  border-radius: 1rem;
+}
+
+.profile-quote-box {
+  margin: 20px 0rem 0;
+  padding: 20px 30px 5px;
+  /* background-color: antiquewhite; */
   border-radius: 1rem;
 }
 
@@ -107,7 +114,7 @@ li {
   #categories-container {
     margin-left: 1rem;
   }
-  #pseudo-quote-box {
+  .pseudo-quote-box {
     margin: 20px 2rem 0;
   }
   #form-container {
@@ -119,7 +126,7 @@ li {
   #categories-container {
     margin-left: 0.5rem;
   }
-  #pseudo-quote-box {
+  .pseudo-quote-box {
     margin: 20px 1rem 0;
     padding: 15px 25px 1px;
   }
