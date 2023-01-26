@@ -7,8 +7,8 @@ class StoryService {
     fetch(`${this.endpoint}/stories`)
       .then((resp) => resp.json())
       .then((stories) => {
-        for (const story of stories) {
-          const s = new Story(story);
+        for (let i = stories.length - 1; i >= 0; i--) {
+          const s = new Story(stories[i]);
           s.addToDom();
         }
       });
