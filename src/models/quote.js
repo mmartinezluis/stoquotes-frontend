@@ -1,7 +1,6 @@
 class Quote {
   static all = [];
   static quotesContainer = document.getElementById("quotes-container");
-  static temporaryQuote = null;
 
   constructor({ id, body, author_id, author_name }) {
     this.id = id;

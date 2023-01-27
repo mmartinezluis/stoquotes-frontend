@@ -40,7 +40,6 @@ class StoryService {
       .then((resp) => resp.json())
       .then((story) => {
         const s = new Story(story);
-        console.log(s);
         s.addToDom();
         showModal(`Story successfully created`);
       })
