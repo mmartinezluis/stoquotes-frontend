@@ -52,9 +52,6 @@ class Story {
                 ${Story.storyTemplate(this.description)}<br>
                 <button class="btn btn-primary btn-sm">Edit</button>
                 <button class="btn btn-danger btn-sm">Delete</button>
-                <input type="hidden" id="profile-story-${this.id}" value=${
-      this.id
-    }>
             </div>
             <hr>
         </div>
@@ -100,6 +97,12 @@ class Story {
         "btn-success"
       );
       event.target.innerText = "Save";
+      const cancelButton = document.createElement("button");
+      cancelButton.className = "btn btn-secondary btn-sm";
+      cancelButton.innerText = "Cancel";
+      this.element
+        .querySelector(".profile-story > div")
+        .appendChild(cancelButton);
       // change the span field for the story into an input field for editing
       this.createEditFields();
     } else if (event.target.innerText === "Save") {
@@ -110,6 +113,8 @@ class Story {
       );
       event.target.innerText = "Edit";
       this.saveUpdatedItem();
+    } else if (event.target.innerText === "Cancel") {
+      console.log("dfdfdfdffdf");
     }
   };
 
