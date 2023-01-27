@@ -1,6 +1,7 @@
 class Quote {
   static all = [];
   static quotesContainer = document.getElementById("quotes-container");
+  static temporaryQuote = null;
 
   constructor({ id, body, author_id, author_name }) {
     this.id = id;
@@ -30,7 +31,7 @@ class Quote {
       </div>`;
   }
 
-  static temporaryQuote(quote) {
+  static renderTempQuote(quote) {
     quote.element = document.createElement("div");
     quote.element.dataset.id = quote.id;
     quote.element.id = `quote-${quote.id}`;

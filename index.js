@@ -32,7 +32,6 @@ function handleSubmit(event) {
   event.preventDefault();
   const user_id = document.getElementsByClassName("user_id")[0].value;
   const quote_id = document.getElementsByClassName("quote_id")[0].value;
-  // quoteService.getQuote(user_id, quote_id);
   storyService.createStory(user_id, quote_id, hideStoryBtnFormAndQuote);
   event.target.reset();
 }

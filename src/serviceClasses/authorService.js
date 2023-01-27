@@ -38,7 +38,7 @@ class AuthorService {
       .then((resp) => resp.json())
       .then((quote) => {
         // This static method displays a quote but does not create a quote
-        Quote.temporaryQuote(quote);
+        Quote.renderTempQuote(quote);
       });
   }
 }
