@@ -3,6 +3,7 @@ class Story {
   static storyContainer = document.getElementById("stories-container");
   static storyForm = document.getElementById("form-container");
   static showForm = false;
+  static currentlyUpdatingId = null;
 
   constructor({
     id,
@@ -51,6 +52,9 @@ class Story {
                 ${Story.storyTemplate(this.description)}<br>
                 <button class="btn btn-primary btn-sm">Edit</button>
                 <button class="btn btn-danger btn-sm">Delete</button>
+                <input type="hidden" id="profile-story-${this.id}" value=${
+      this.id
+    }>
             </div>
             <hr>
         </div>
@@ -83,6 +87,14 @@ class Story {
       event.target.parentElement.parentElement.remove();
       storyService.deleteStory(this.id);
     } else if (event.target.innerText === "Edit") {
+      const currentlyUpdating = Story.currentlyUpdatingId;
+      if (currentlyUpdating !== null && currentlyUpdating !== this.id) {
+        // @TODO: Store the currently logged in user stories in a separate static method
+        Story.all.find((s) => s.id === currentlyUpdating)?.storyHTML();
+        Story.currentlyUpdatingId = this.id;
+      } else if (currentlyUpdating === null) {
+        Story.currentlyUpdatingId = this.id;
+      }
       event.target.className = event.target.className.replace(
         "btn-primary",
         "btn-success"
@@ -91,6 +103,7 @@ class Story {
       // change the span field for the story into an input field for editing
       this.createEditFields();
     } else if (event.target.innerText === "Save") {
+      Story.currentlyUpdatingId = null;
       event.target.className = event.target.className.replace(
         "btn-sucess",
         "btn-primary"
