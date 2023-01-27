@@ -160,10 +160,16 @@ li {
 }
 
 .stories-navigation {
-  display: flex;
-  flex-wrap: wrap;
   position: sticky;
   top:0;
+  z-index: 10;
+  /* background-color: white; */
+  /* opacity: 0.5; */
+}
+
+.stories-navigation ul {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .profile-story > div {
