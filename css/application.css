@@ -162,6 +162,8 @@ li {
 .stories-navigation {
   display: flex;
   flex-wrap: wrap;
+  position: sticky;
+  top:0;
 }
 
 .profile-story > div {
