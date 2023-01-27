@@ -100,6 +100,7 @@ class Story {
       const cancelButton = document.createElement("button");
       cancelButton.className = "btn btn-secondary btn-sm";
       cancelButton.innerText = "Cancel";
+      cancelButton.addEventListener("click", () => this.storyHTML());
       this.element
         .querySelector(".profile-story > div")
         .appendChild(cancelButton);
