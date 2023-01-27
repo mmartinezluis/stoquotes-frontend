@@ -172,6 +172,12 @@ li {
   flex-wrap: wrap;
 }
 
+.stories-navigation ul a.active {
+  color: white;
+  background-color: var(--bs-purple);
+  border-radius: 5px;
+}
+
 .profile-story > div {
   border-radius: 1rem;
   border: solid 2px var(--bs-gray);

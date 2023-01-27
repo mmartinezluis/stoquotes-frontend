@@ -39,6 +39,10 @@ class AuthorService {
       .then((quote) => {
         // This static method displays a quote but does not create a quote
         Quote.renderTempQuote(quote);
+      })
+      .catch((err) => {
+        console.log(err);
+        showModal(err);
       });
   }
 }

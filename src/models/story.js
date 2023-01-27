@@ -105,7 +105,7 @@ class Story {
     let inputValue = story.innerText;
     story.outerHTML = `
         <div class="form-floating edit-description">
-            <textarea class="form-control" id="current-description" required rows="3">${inputValue}</textarea>
+            <textarea class="form-control" id="current-description" required rows="2">${inputValue}</textarea>
             <label for="current-description">Description</label>
         </div>`;
   };

@@ -11,6 +11,10 @@ class StoryService {
           const s = new Story(stories[i]);
           s.addToDom();
         }
+      })
+      .catch((err) => {
+        console.log(err);
+        showModal(err);
       });
   }
 
