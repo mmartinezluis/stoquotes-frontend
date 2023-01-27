@@ -51,8 +51,6 @@ class StoryService {
   }
 
   sendPatch(story, new_description) {
-    // let { description } = story;
-    // const storyInfo = { description };
     const configObj = {
       method: "PATCH",
       headers: {

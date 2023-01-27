@@ -103,8 +103,6 @@ class Story {
   createEditFields = () => {
     const story = this.element.querySelector(".description");
     let inputValue = story.innerText;
-    let property = story.classList[0];
-    // story.outerHTML = `<textarea class="edit-${property}" value =${inputValue} rows="3">${inputValue}</textarea>`;
     story.outerHTML = `
         <div class="form-floating edit-description">
             <textarea class="form-control" id="current-description" required rows="3">${inputValue}</textarea>
@@ -123,7 +121,6 @@ class Story {
       this.storyHTML();
       return;
     }
-    // this.description = this.element.querySelector("textarea").value;
     storyService.sendPatch(this, new_description);
   };
 }
