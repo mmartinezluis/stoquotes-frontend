@@ -158,5 +158,49 @@
     <script src="src/serviceClasses/quoteService.js"></script>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <button id="posting">Post to API Gateway</button>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script type="module">    
+        // import axios from "https://cdn.skypack.dev/axios";
+        // axios.get("https://www.8ilsokdkbj.execute-api.us-east-2.amazonaws.com/first_deployment/users")
+        // axios.get("https://www.google.com", {
+            // headers: {
+                // 'Access-Control-Allow-Origin' : '*',
+                // "Accept": '*/*',
+                // "Access-Control-Allow-Credentials" : true,
+                // "Access-Control-Allow-Origin" : "*",
+                // "X-Requested-With" : "*"
+                // 'Access-Control-Allow-Credentials':true
+            // }
+        fetch("https://8ilsokdkbj.execute-api.us-east-2.amazonaws.com/first_deployment/users")
+        .then((resp) => resp.json())
+        .then((resp) => {
+            console.log(resp);
+        })
+        .catch(err => console.log('at fetch,', err))
+
+        document.getElementById('posting').addEventListener('click', execute)
+        function execute() {
+            const payload = {
+                user_id: '44',
+                
+                // relaionships: {
+                //     follwers: ['user100', 'user1001']
+                // },
+                // feed: [],
+                // reactions: {}
+            }
+            fetch('https://8ilsokdkbj.execute-api.us-east-2.amazonaws.com/first_deployment/users', {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(resp => resp.json())
+            .then(data => console.log(data))
+        }
+    </script>
 </body>
 </html>
