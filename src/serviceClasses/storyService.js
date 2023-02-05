@@ -21,7 +21,7 @@ export default class StoryService {
       });
   }
 
-  createStory(user_id, quote_id) {
+  createStory(user_id, quote_id, event) {
     const description = document
       .querySelector("#new-story-form textarea")
       .value.trim();
@@ -48,6 +48,13 @@ export default class StoryService {
       .then((story) => {
         const s = new Story(story);
         s.addToDom();
+        event.target.reset();
+        Story.storyForm.style.display = "none";
+        Story.showForm = false;
+        Story.writeStoryBtn.className = Story.writeStoryBtn.className.replace(
+          "active",
+          ""
+        );
         showModal(`Story successfully created`);
       })
       .catch((err) => {

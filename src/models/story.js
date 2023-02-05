@@ -55,8 +55,8 @@ export default class Story {
       this.created_at
     )}:</span><br>
                 ${Story.storyTemplate(this.description)}<br>
-                <button class="btn btn-primary btn-sm">Edit</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
+                <button class="btn btn-outline-primary btn-sm">Edit</button>
+                <button class="btn btn-outline-danger btn-sm">Delete</button>
             </div>
             <hr>
         </div>
@@ -103,7 +103,7 @@ export default class Story {
       );
       event.target.innerText = "Save";
       const cancelButton = document.createElement("button");
-      cancelButton.className = "btn btn-secondary btn-sm";
+      cancelButton.className = "btn btn-outline-secondary btn-sm";
       cancelButton.innerText = "Cancel";
       cancelButton.addEventListener("click", () => this.storyHTML());
       this.element
@@ -135,11 +135,11 @@ export default class Story {
 
   saveUpdatedItem = () => {
     const new_description = this.element.querySelector("textarea").value.trim();
-    // @TODO use a hashing function two compare the two descriptions
     if (!new_description.length) {
       showModal("Story description cannot be blank");
       return;
     }
+    // @TODO use a hashing function to compare the two descriptions
     if (new_description === this.description) {
       this.storyHTML();
       return;
