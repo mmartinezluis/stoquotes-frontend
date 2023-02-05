@@ -1,6 +1,6 @@
 import Quote from "./quote.js";
-import { normalizeDate } from "../tools/customFunctions.js";
 import { storyService } from "../output.js";
+import { normalizeDate } from "../tools/customFunctions.js";
 
 export default class Story {
   static all = [];
@@ -86,8 +86,10 @@ export default class Story {
 
   handleClick = (event) => {
     if (event.target.innerText === "Delete") {
-      event.target.parentElement.parentElement.remove();
-      storyService.deleteStory(this.id);
+      const result = confirm("Are you sure you want to delete this story?");
+      if (result) {
+        storyService.deleteStory(this.id, event);
+      }
     } else if (event.target.innerText === "Edit") {
       const currentlyUpdating = Story.currentlyUpdatingId;
       if (currentlyUpdating !== null && currentlyUpdating !== this.id) {
@@ -98,8 +100,8 @@ export default class Story {
         Story.currentlyUpdatingId = this.id;
       }
       event.target.className = event.target.className.replace(
-        "btn-primary",
-        "btn-success"
+        "btn-outline-primary",
+        "btn-outline-success"
       );
       event.target.innerText = "Save";
       const cancelButton = document.createElement("button");
@@ -114,8 +116,8 @@ export default class Story {
     } else if (event.target.innerText === "Save") {
       Story.currentlyUpdatingId = null;
       event.target.className = event.target.className.replace(
-        "btn-sucess",
-        "btn-primary"
+        "btn-outline-sucess",
+        "btn-outline-primary"
       );
       event.target.innerText = "Edit";
       this.saveUpdatedItem();

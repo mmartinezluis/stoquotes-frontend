@@ -26,6 +26,7 @@ export default class StoryService {
       .querySelector("#new-story-form textarea")
       .value.trim();
     if (!description.length) {
+      event.target.reset();
       showModal("Story description cannot be blank");
       return;
     }
@@ -35,7 +36,7 @@ export default class StoryService {
       quote_id: quote_id,
     };
 
-    const configObj = {
+    const config = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +44,7 @@ export default class StoryService {
       body: JSON.stringify(story),
     };
 
-    fetch(`${this.endpoint}/stories`, configObj)
+    fetch(`${this.endpoint}/stories`, config)
       .then((resp) => resp.json())
       .then((story) => {
         const s = new Story(story);
@@ -85,7 +86,7 @@ export default class StoryService {
       });
   }
 
-  deleteStory(id) {
+  deleteStory(id, event) {
     fetch(`${this.endpoint}/stories/${id}`, {
       method: "DELETE",
       headers: {
@@ -94,7 +95,12 @@ export default class StoryService {
     })
       .then((resp) => resp.json())
       .then((json) => {
+        event.target.parentElement.parentElement.remove();
         showModal(json.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        showModal(err);
       });
   }
 }

@@ -57,7 +57,7 @@ function handleNavTabs(event) {
     case "nav-home-tab":
       break;
     case "nav-random-quote-tab":
-      // There are a total of 757 authors; chose a random author id
+      // There are a total of 757 authors; choose a random author id
       let authorId = Math.floor(Math.random() * Author.total);
       authorService.getAuthorQuote(authorId);
       break;
