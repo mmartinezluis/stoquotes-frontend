@@ -1,4 +1,7 @@
-class CategoryService {
+import Category from "../models/category.js";
+import Quote from "../models/quote.js";
+
+export default class CategoryService {
   constructor(endpoint) {
     this.endpoint = endpoint;
   }

@@ -1,12 +1,24 @@
-// any global variables
+import {
+  User,
+  Story,
+  Quote,
+  Category,
+  Author,
+  storyService,
+  quoteService,
+  categoryService,
+  authorService,
+  showModal,
+} from "./src/output.js";
 
+// any global variables
 const base_url = "http://localhost:3000";
 
 // Service classes
-const authorService = new AuthorService(base_url);
-const storyService = new StoryService(base_url);
-const quoteService = new QuoteService(base_url);
-const categoryService = new CategoryService(base_url);
+// const authorService = new AuthorService(base_url);
+// const storyService = new StoryService(base_url);
+// const quoteService = new QuoteService(base_url);
+// const categoryService = new CategoryService(base_url);
 
 // Main navigation pane buttons
 let navTabs = document.getElementsByClassName("nav-link flex-sm-fill");
@@ -14,8 +26,9 @@ let navTabs = document.getElementsByClassName("nav-link flex-sm-fill");
 const authorSearchForm = document.getElementById("search");
 
 // The 'Wrtie a story' button (writeStoryBtn) and modal
-const writeStoryBtn = document.getElementById("new-story-btn");
-const modal = document.getElementById("modal-box");
+// const writeStoryBtn = document.getElementById("new-story-btn");
+const writeStoryBtn = Story.writeStoryBtn;
+// const modal = document.getElementById("modal-box");
 writeStoryBtn.style.display = "none";
 
 // Load the user stories and the categories
@@ -72,18 +85,18 @@ function handleNavTabs(event) {
 }
 
 // Used in author.js
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+// function shuffleArray(array) {
+//   for (let i = array.length - 1; i > 0; i--) {
+//     const j = Math.floor(Math.random() * (i + 1));
+//     [array[i], array[j]] = [array[j], array[i]];
+//   }
+//   return array;
+// }
 
 // Function for converting dates
-function normalizeDate(date) {
-  return new Date(date).toDateString();
-}
+// function normalizeDate(date) {
+//   return new Date(date).toDateString();
+// }
 
 // any initialzations of application
 
@@ -112,10 +125,10 @@ writeStoryBtn.addEventListener("click", (e) => {
 });
 
 // Load the message in modal box, hide the modal box, then show it for 3 seconds
-function showModal(message) {
-  modal.innerText = message;
-  modal.className = "";
-  setTimeout(() => {
-    modal.className = "hidden";
-  }, 3000);
-}
+// function showModal(message) {
+//   modal.innerText = message;
+//   modal.className = "";
+//   setTimeout(() => {
+//     modal.className = "hidden";
+//   }, 3000);
+// }

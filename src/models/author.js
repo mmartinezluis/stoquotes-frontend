@@ -1,5 +1,6 @@
-class Author {
-  // remember objects
+import { authorService } from "../output.js";
+
+export default class Author {
   static all = [];
   static total = 0;
   static authorsContainer = document.getElementById("authors-container");
@@ -9,8 +10,8 @@ class Author {
   };
 
   constructor({ id, name }) {
-    (this.id = id), (this.name = name);
-
+    this.id = id;
+    this.name = name;
     // 'this.element' is used for rendering authors
     this.element = document.createElement("li");
     this.element.dataset.id = this.id;
@@ -37,6 +38,8 @@ class Author {
     Author.authorsContainer.appendChild(this.authorHTML());
   }
 
+  // Arrow function is needed here to not lose execution context in handleClick assignment in Auhor contructor;
+  // if not used, the 'this' keyword will refer to the 'li' element rather than the Author class instance
   handleClick = (e) => {
     if (e.target.tagName === "A") {
       e.preventDefault();

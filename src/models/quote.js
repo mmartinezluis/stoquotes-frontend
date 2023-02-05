@@ -1,4 +1,6 @@
-class Quote {
+import Story from "./story.js";
+
+export default class Quote {
   static all = [];
   static quotesContainer = document.getElementById("quotes-container");
 
@@ -40,7 +42,7 @@ class Quote {
     );
     Quote.quotesContainer.innerHTML = quote.element.innerHTML;
     // Once a quote is dsplayed, show the write a story button and activate the new story form
-    writeStoryBtn.style.display = "block";
+    Story.writeStoryBtn.style.display = "block";
     Story.renderForm(1, quote.id);
   }
 }

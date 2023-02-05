@@ -1,9 +1,14 @@
-class Story {
+import Quote from "./quote.js";
+import { normalizeDate } from "../tools/customFunctions.js";
+import { storyService } from "../output.js";
+
+export default class Story {
   static all = [];
   static storyContainer = document.getElementById("stories-container");
   static storyForm = document.getElementById("form-container");
   static showForm = false;
   static currentlyUpdatingId = null;
+  static writeStoryBtn = document.getElementById("new-story-btn");
 
   constructor({
     id,
@@ -115,7 +120,6 @@ class Story {
       event.target.innerText = "Edit";
       this.saveUpdatedItem();
     } else if (event.target.innerText === "Cancel") {
-      console.log("dfdfdfdffdf");
     }
   };
 

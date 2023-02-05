@@ -1,4 +1,9 @@
-class AuthorService {
+import Author from "../models/author.js";
+import Quote from "../models/quote.js";
+import { showModal } from "../output.js";
+import { shuffleArray } from "../tools/customFunctions.js";
+
+export default class AuthorService {
   constructor(endpoint) {
     this.endpoint = endpoint;
   }

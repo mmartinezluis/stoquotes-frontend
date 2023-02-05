@@ -1,4 +1,7 @@
-class StoryService {
+import Story from "../models/story.js";
+import { showModal } from "../output.js";
+
+export default class StoryService {
   constructor(endpoint) {
     this.endpoint = endpoint;
   }
