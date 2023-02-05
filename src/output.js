@@ -12,7 +12,7 @@ import { showModal } from "./modal/modal.js";
 // any global variables
 const base_url = "http://localhost:3000";
 
-// Initialize Service classes
+// Initialize the Service classes
 const authorService = new AuthorService(base_url);
 const storyService = new StoryService(base_url);
 const quoteService = new QuoteService(base_url);

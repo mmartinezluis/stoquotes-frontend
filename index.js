@@ -11,27 +11,16 @@ import {
   showModal,
 } from "./src/output.js";
 
-// any global variables
-const base_url = "http://localhost:3000";
-
-// Service classes
-// const authorService = new AuthorService(base_url);
-// const storyService = new StoryService(base_url);
-// const quoteService = new QuoteService(base_url);
-// const categoryService = new CategoryService(base_url);
-
 // Main navigation pane buttons
 let navTabs = document.getElementsByClassName("nav-link flex-sm-fill");
 // Form for searching for authors
 const authorSearchForm = document.getElementById("search");
 
-// The 'Wrtie a story' button (writeStoryBtn) and modal
-// const writeStoryBtn = document.getElementById("new-story-btn");
+// The 'Wrtie a story' button (writeStoryBtn)
 const writeStoryBtn = Story.writeStoryBtn;
-// const modal = document.getElementById("modal-box");
 writeStoryBtn.style.display = "none";
 
-// Load the user stories and the categories
+// Load the user stories, the categories, and the authors
 storyService.getStories();
 categoryService.getCategories();
 authorService.loadAuthors();
@@ -69,7 +58,6 @@ function handleNavTabs(event) {
     case "nav-home-tab":
       break;
     case "nav-random-quote-tab":
-      // debugger;
       // There are a total of 757 authors; chose a random author id
       let authorId = Math.floor(Math.random() * Author.total);
       authorService.getAuthorQuote(authorId);
@@ -83,20 +71,6 @@ function handleNavTabs(event) {
       authorSearchForm.reset();
   }
 }
-
-// Used in author.js
-// function shuffleArray(array) {
-//   for (let i = array.length - 1; i > 0; i--) {
-//     const j = Math.floor(Math.random() * (i + 1));
-//     [array[i], array[j]] = [array[j], array[i]];
-//   }
-//   return array;
-// }
-
-// Function for converting dates
-// function normalizeDate(date) {
-//   return new Date(date).toDateString();
-// }
 
 // any initialzations of application
 
@@ -123,12 +97,3 @@ writeStoryBtn.addEventListener("click", (e) => {
     writeStoryBtn.className = writeStoryBtn.className.replace("active", "");
   }
 });
-
-// Load the message in modal box, hide the modal box, then show it for 3 seconds
-// function showModal(message) {
-//   modal.innerText = message;
-//   modal.className = "";
-//   setTimeout(() => {
-//     modal.className = "hidden";
-//   }, 3000);
-// }
