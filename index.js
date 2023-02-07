@@ -10,6 +10,7 @@ import {
   authorService,
   showModal,
 } from "./src/output.js";
+import SessionService from "./src/serviceClasses/sessionService.js";
 
 // Main navigation pane buttons
 let navTabs = document.getElementsByClassName("nav-link flex-sm-fill");
@@ -96,3 +97,5 @@ writeStoryBtn.addEventListener("click", (e) => {
     writeStoryBtn.className = writeStoryBtn.className.replace("active", "");
   }
 });
+
+SessionService.renderForm();
