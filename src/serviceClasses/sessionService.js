@@ -53,34 +53,34 @@ class SessionService {
 
   static SignupForm = `
     <form class="card-body" id="session-form">
-        <h3 class="text-center white-text py-3"><i class="fa fa-user"></i> Login:</h3>
+        <h3 class="text-center white-text py-3"><i class="fa fa-user"></i> Signup:</h3>
         <div class="md-form form-group">
             <i class="fa fa-envelope prefix white-text"></i>
             <input type="text" id="signup-firstname" class="form-control">
-            <label for="signup-firstname">Your email</label>
+            <label for="signup-firstname">First name</label>
         </div>
         <div class="md-form form-group">
             <i class="fa fa-envelope prefix white-text"></i>
             <input type="text" id="signup-lastname" class="form-control">
-            <label for="signup-lastname">Your email</label>
+            <label for="signup-lastname">Last name</label>
         </div>
         <div class="md-form form-group">
             <i class="fa fa-envelope prefix white-text"></i>
             <input type="text" id="signup-email" class="form-control">
-            <label for="signup-email">Your email</label>
+            <label for="signup-email">Email</label>
         </div>
         <div class="md-form form-group">
             <i class="fa fa-lock prefix white-text"></i>
             <input type="password" id="signup-password" class="form-control">
-            <label for="signup-password">Your password</label>
+            <label for="signup-password">Password</label>
         </div>
         <div class="md-form form-group">
             <i class="fa fa-lock prefix white-text"></i>
             <input type="password" id="signup-passwordconfirm" class="form-control">
-            <label for="signup-passwordconfirm">Your password</label>
+            <label for="signup-passwordconfirm">Password confirm</label>
         </div>
         <div class="text-center">
-            <button type="submit" class="btn btn-primary waves-effect waves-light">Login</button>
+            <button type="submit" class="btn btn-primary waves-effect waves-light">Signup</button>
         </div>
     </form>`;
 }

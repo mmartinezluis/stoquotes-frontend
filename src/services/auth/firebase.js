@@ -8,7 +8,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-import { sessionService, showModal } from "../../output.js";
+import { sessionService, showModal, User } from "../../output.js";
 
 // Import the functions you need from the SDKs you need
 // TODO: Add SDKs for Firebase products that you want to use
@@ -21,14 +21,6 @@ const firebaseConfig = {};
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-
-const login = document.createElement("button");
-const logout = document.createElement("button");
-login.innerText = "Firebase Login";
-logout.innerText = "Firebase Logout";
-console.log(login);
-login.className = "btn btn-primary";
-logout.className = "btn btn-danger";
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -47,7 +39,7 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
     "login-email": "email",
     "login-password": "password",
     "signup-firstname": "first_name",
-    "signup-lastname": "lastname",
+    "signup-lastname": "last_name",
     "signup-email": "email",
     "signup-password": "password",
     "signup-passwordconfirm": "passwordconfirm",
@@ -67,59 +59,26 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
     }
     payload[fieldsMapping[input.id]] = value;
   }
-  let c;
-  if ((c = payload["passwordconfirm"] && c !== payload["password"])) {
+
+  // compare password and pasword confirm if signing up
+  let c = payload["passwordconfirm"];
+  if (c && c !== payload["password"]) {
     showModal("Password and Password Confirm must match!");
     return;
   }
+
   // If signing up, backend does not need 'passwordconfirm'
   delete payload["passwordconfirm"];
 
   _getToken(payload, isLoginMode ? "/login" : "/signup")
-    .then(({ token }) => {
+    .then(({ token, user }) => {
       console.log(payload);
-      _authenticateWithFirebase(token);
+      _authenticateWithFirebase(token, user);
     })
     .catch((err) => {
       showModal(err.message);
     });
 };
-
-function _extractPayload(e) {
-  e.preventDefault();
-  const form = document.getElementById("session-form");
-  const fieldsMapping = {
-    "login-email": "email",
-    "login-password": "password",
-    "signup-firstname": "first_name",
-    "signup-lastname": "lastname",
-    "signup-email": "email",
-    "signup-password": "password",
-    "signup-passwordconfirm": "passwordconfirm",
-  };
-  let payload = {};
-  for (let input of form.querySelectorAll("input")) {
-    const key = fieldsMapping[input.id];
-    if (!key) {
-      showModal("The form has been tampered with!!! Refresh the page");
-      return;
-    }
-    const value = input.value.trim();
-    if (!value.length) {
-      showModal(key[0].toUpperCase() + key.slice(1) + " cannot be blank!");
-      return;
-    }
-    payload[fieldsMapping[input.id]] = value;
-  }
-  let c;
-  if ((c = payload["passwordconfirm"] && c !== payload["password"])) {
-    showModal("Password and Password Confirm must match!");
-    return;
-  }
-
-  delete payload["passwordconfirm"];
-  return payload;
-}
 
 async function _getToken(payload, endpoint) {
   const response = await fetch(sessionService.baseUrl + endpoint, {
@@ -143,12 +102,14 @@ async function _getToken(payload, endpoint) {
   return token;
 }
 
-function _authenticateWithFirebase(token) {
+function _authenticateWithFirebase(token, user) {
   return signInWithCustomToken(auth, token)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user);
       showModal("You have been sucessfully logged in!!!");
+      User.setUser(user);
+      console.log(User.currentUser);
     })
     .catch((error) => {
       const errorCode = error.code;
