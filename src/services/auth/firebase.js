@@ -96,18 +96,59 @@ onAuthStateChanged(auth, (user) => {
 });
 document.querySelector("main").appendChild(login);
 document.querySelector("main").appendChild(logout);
-// export { login };
 
 export const handleLogin = (e) => {
+  const payload = _extractPayload(e);
+  //   e.preventDefault();
+  //   const form = document.getElementById("session-form");
+  //   const fieldsMapping = {
+  //     "login-email": "email",
+  //     "login-password": "password",
+  //     "signup-firstname": "first_name",
+  //     "signup-lastname": "lastname",
+  //     "signup-email": "email",
+  //     "signup-password": "password",
+  //     "signup-passwordconfirm": "passwordconfirm",
+  //   };
+  //   let payload = {};
+  //   for (let input of form.querySelectorAll("input")) {
+  //     const key = fieldsMapping[input.id];
+  //     if (!key) {
+  //       showModal("The form has been tampered with!!! Refresh the page");
+  //       return;
+  //     }
+  //     const value = input.value.trim();
+  //     if (!value.length) {
+  //       showModal(key[0].toUpperCase() + key.slice(1) + " cannot be blank!");
+  //       return;
+  //     }
+  //     payload[fieldsMapping[input.id]] = value;
+  //   }
+
+  _getToken(payload, "/login")
+    .then(({ token }) => {
+      _authenticateWithFireBase(token);
+    })
+    .catch((err) => {
+      showModal(err.message);
+    });
+};
+
+function _extractPayload(e) {
   e.preventDefault();
   const form = document.getElementById("session-form");
-  const mapping = {
+  const fieldsMapping = {
     "login-email": "email",
     "login-password": "password",
+    "signup-firstname": "first_name",
+    "signup-lastname": "lastname",
+    "signup-email": "email",
+    "signup-password": "password",
+    "signup-passwordconfirm": "passwordconfirm",
   };
   let payload = {};
   for (let input of form.querySelectorAll("input")) {
-    const key = mapping[input.id];
+    const key = fieldsMapping[input.id];
     if (!key) {
       showModal("The form has been tampered with!!! Refresh the page");
       return;
@@ -117,47 +158,21 @@ export const handleLogin = (e) => {
       showModal(key[0].toUpperCase() + key.slice(1) + " cannot be blank!");
       return;
     }
-    payload[mapping[input.id]] = value;
+    payload[fieldsMapping[input.id]] = value;
+  }
+  let c;
+  if ((c = payload["passwordconfirm"] && c !== payload["password"])) {
+    showModal("Password and Password Confirm must match!");
+    return;
   }
 
-  getToken(payload, "/login")
-    .then((data) => {
-      console.log(data.token);
-      return signInWithCustomToken(auth, data.token)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-          showModal("You have been sucessfully logged in!!!");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(error);
-        });
-    })
-    .catch((err) => {
-      showModal(err.message);
-    });
+  delete payload["passwordconfirm"];
+  return payload;
+}
 
-  //   return signInWithCustomToken(
-  //       "eyJfcmFpbHMiOnsibWVzc2FnZSI6Ik1RPT0iLCJleHAiOm51bGwsInB1ciI6InVzZXIifX0"
-  //     )
-  //       .then((userCredential) => {
-  //         // Signed in
-  //         const user = userCredential.user;
-  //         console.log(user);
-  //         // ...
-  //       })
-  //       .catch((error) => {
-  //         const errorCode = error.code;
-  //         const errorMessage = error.message;
-  //         console.log(error);
-  //         // ...
-  //       });
-};
+export const handleSignUp = () => {};
 
-async function getToken(payload, endpoint) {
+async function _getToken(payload, endpoint) {
   const response = await fetch(sessionService.baseUrl + endpoint, {
     method: "POST",
     headers: {
@@ -179,6 +194,18 @@ async function getToken(payload, endpoint) {
   return token;
 }
 
-export const handleSignUp = ({ firstName, lastName, email, password }) => {};
+function _authenticateWithFireBase(token) {
+  return signInWithCustomToken(auth, token)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+      showModal("You have been sucessfully logged in!!!");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(error);
+    });
+}
 
 export const handleLogout = () => {};
