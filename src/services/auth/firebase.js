@@ -30,104 +30,55 @@ console.log(login);
 login.className = "btn btn-primary";
 logout.className = "btn btn-danger";
 
-const loginCallback = (
-  email = "luis_mmartinez@live.com",
-  password = "luis55"
-) => {
-  //   return signInWithEmailAndPassword(
-  //     auth,
-  //     (email = "luis_mmartinez@live.com"),
-  //     (password = "luis55")
-  //   )
-  //     .then((userCredential) => {
-  //       // Signed in
-  //       console.log(userCredential);
-  //       const user = userCredential.user;
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       console.log(error);
-  //       // ..
-  //     });
-  return signInWithCustomToken(
-    "eyJfcmFpbHMiOnsibWVzc2FnZSI6Ik1RPT0iLCJleHAiOm51bGwsInB1ciI6InVzZXIifX0"
-  )
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(error);
-      // ...
-    });
-};
-
-login.addEventListener("click", loginCallback);
-logout.addEventListener("click", () => {
-  signOut(auth)
-    .then((data) => {
-      // Sign-out successful.
-      console.log(data, "success");
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log(error);
-    });
-});
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("user state: logged in", user);
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
-    // ...
   } else {
-    console.log("user state: logged out,");
     // User is signed out
-    // ...
   }
 });
-document.querySelector("main").appendChild(login);
-document.querySelector("main").appendChild(logout);
 
-export const handleLogin = (e) => {
-  const payload = _extractPayload(e);
-  //   e.preventDefault();
-  //   const form = document.getElementById("session-form");
-  //   const fieldsMapping = {
-  //     "login-email": "email",
-  //     "login-password": "password",
-  //     "signup-firstname": "first_name",
-  //     "signup-lastname": "lastname",
-  //     "signup-email": "email",
-  //     "signup-password": "password",
-  //     "signup-passwordconfirm": "passwordconfirm",
-  //   };
-  //   let payload = {};
-  //   for (let input of form.querySelectorAll("input")) {
-  //     const key = fieldsMapping[input.id];
-  //     if (!key) {
-  //       showModal("The form has been tampered with!!! Refresh the page");
-  //       return;
-  //     }
-  //     const value = input.value.trim();
-  //     if (!value.length) {
-  //       showModal(key[0].toUpperCase() + key.slice(1) + " cannot be blank!");
-  //       return;
-  //     }
-  //     payload[fieldsMapping[input.id]] = value;
-  //   }
+export const handleLoginAndSignup = (e, isLoginMode) => {
+  e.preventDefault();
+  const form = document.getElementById("session-form");
+  const fieldsMapping = {
+    "login-email": "email",
+    "login-password": "password",
+    "signup-firstname": "first_name",
+    "signup-lastname": "lastname",
+    "signup-email": "email",
+    "signup-password": "password",
+    "signup-passwordconfirm": "passwordconfirm",
+  };
+  let payload = {};
+  // Generate the payload dynamically using the login form fields or the signup form fields
+  for (let input of form.querySelectorAll("input")) {
+    const key = fieldsMapping[input.id];
+    if (!key) {
+      showModal("The form has been tampered with!!! Refresh the page");
+      return;
+    }
+    const value = input.value.trim();
+    if (!value.length) {
+      showModal(key[0].toUpperCase() + key.slice(1) + " cannot be blank!");
+      return;
+    }
+    payload[fieldsMapping[input.id]] = value;
+  }
+  let c;
+  if ((c = payload["passwordconfirm"] && c !== payload["password"])) {
+    showModal("Password and Password Confirm must match!");
+    return;
+  }
+  // If signing up, backend does not need 'passwordconfirm'
+  delete payload["passwordconfirm"];
 
-  _getToken(payload, "/login")
+  _getToken(payload, isLoginMode ? "/login" : "/signup")
     .then(({ token }) => {
-      _authenticateWithFireBase(token);
+      console.log(payload);
+      _authenticateWithFirebase(token);
     })
     .catch((err) => {
       showModal(err.message);
@@ -170,8 +121,6 @@ function _extractPayload(e) {
   return payload;
 }
 
-export const handleSignUp = () => {};
-
 async function _getToken(payload, endpoint) {
   const response = await fetch(sessionService.baseUrl + endpoint, {
     method: "POST",
@@ -194,7 +143,7 @@ async function _getToken(payload, endpoint) {
   return token;
 }
 
-function _authenticateWithFireBase(token) {
+function _authenticateWithFirebase(token) {
   return signInWithCustomToken(auth, token)
     .then((userCredential) => {
       const user = userCredential.user;

@@ -1,4 +1,4 @@
-import { handleLogin, handleSignUp } from "../services/auth/firebase.js";
+import { handleLoginAndSignup } from "../services/auth/firebase.js";
 
 class SessionService {
   constructor(baseUrl) {
@@ -9,7 +9,7 @@ class SessionService {
 
   static formContainer = `<div></div>`;
 
-  static renderForm = (isLoginMode = true) => {
+  static renderForm = (isLoginMode = false) => {
     let aside = document.querySelector("#aside-session");
     let formContainer = aside?.children[0];
     if (!aside) {
@@ -28,9 +28,8 @@ class SessionService {
       ? SessionService.LoginForm
       : SessionService.SignupForm;
     const submitBtn = el.querySelector('[type="submit"]');
-    submitBtn.addEventListener(
-      "click",
-      isLoginMode ? handleLogin : handleSignUp
+    submitBtn.addEventListener("click", (e) =>
+      handleLoginAndSignup(e, isLoginMode)
     );
   };
 
