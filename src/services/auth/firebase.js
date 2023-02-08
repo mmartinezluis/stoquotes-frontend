@@ -72,19 +72,29 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
   // If signing up, backend does not need 'passwordconfirm'
   delete payload["passwordconfirm"];
 
-  _getToken(payload, isLoginMode ? "/login" : "/signup")
+  _getTokenAndUser(payload, isLoginMode ? "/login" : "/signup")
     .then(({ token, user }) => {
       console.log(payload);
       _authenticateWithFirebase(token, user);
     })
-    // catch the errors related to the token generation and
+    // catches the errors related to the token generation and
     // user retrieval/creation in Ruby on Rails backend
     .catch((err) => {
       showModal(err);
     });
 };
 
-async function _getToken(payload, endpoint) {
+export const handleLogout = () => {
+  signOut(auth)
+    .then(() => {
+      User.cleanupUser();
+    })
+    .catch((err) => {
+      showModal(err);
+    });
+};
+
+async function _getTokenAndUser(payload, endpoint) {
   const response = await fetch(sessionService.baseUrl + endpoint, {
     method: "POST",
     headers: {
@@ -114,7 +124,7 @@ function _authenticateWithFirebase(token, user) {
         console.log(User.currentUser);
         showModal("You have been sucessfully logged in!!!");
       })
-      // Catch the errors related to user authentication in Firebase
+      // Catches the errors related to user authentication in Firebase
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -123,5 +133,3 @@ function _authenticateWithFirebase(token, user) {
       })
   );
 }
-
-export const handleLogout = () => {};

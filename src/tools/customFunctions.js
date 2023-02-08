@@ -11,3 +11,13 @@ export function shuffleArray(array) {
   }
   return array;
 }
+
+export function createPortal(portalId, child) {
+  const portal = document.createElement("aside");
+  portal.id = portalId;
+  portal.appendChild(child);
+}
+
+export function destroyPortal(portalId) {
+  document.getElementById(portalId).remove();
+}
