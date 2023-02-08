@@ -2,11 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithCustomToken,
   signOut,
-  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 import { sessionService, showModal, User } from "../../output.js";
 
@@ -17,11 +15,13 @@ import { sessionService, showModal, User } from "../../output.js";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {};
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+// Firebase user authentication state observer
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
@@ -44,7 +44,9 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
     "signup-password": "password",
     "signup-passwordconfirm": "passwordconfirm",
   };
+
   let payload = {};
+
   // Generate the payload dynamically using the login form fields or the signup form fields
   for (let input of form.querySelectorAll("input")) {
     const key = fieldsMapping[input.id];
@@ -75,8 +77,10 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
       console.log(payload);
       _authenticateWithFirebase(token, user);
     })
+    // catch the errors related to the token generation and
+    // user retrieval/creation in Ruby on Rails backend
     .catch((err) => {
-      showModal(err.message);
+      showModal(err);
     });
 };
 
@@ -89,33 +93,35 @@ async function _getToken(payload, endpoint) {
     body: JSON.stringify(payload),
   });
 
+  // @TODO: properly handle error object to extract message string only
   if (!response.ok) {
     console.log(response);
-    const message =
-      response.status === 406
-        ? "Invalid email or password"
-        : response.statusText + ", code: " + response.status;
-    throw new Error(message);
+    return response.text().then((text) => {
+      throw new Error(text);
+    });
   }
 
-  const token = await response.json();
-  return token;
+  const data = await response.json();
+  return data;
 }
 
 function _authenticateWithFirebase(token, user) {
-  return signInWithCustomToken(auth, token)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-      showModal("You have been sucessfully logged in!!!");
-      User.setUser(user);
-      console.log(User.currentUser);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(error);
-    });
+  return (
+    signInWithCustomToken(auth, token)
+      .then((userCredential) => {
+        //   const user = userCredential.user;
+        User.setUser(user);
+        console.log(User.currentUser);
+        showModal("You have been sucessfully logged in!!!");
+      })
+      // Catch the errors related to user authentication in Firebase
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error);
+        showModal(errorMessage + "; Code: " + errorCode);
+      })
+  );
 }
 
 export const handleLogout = () => {};

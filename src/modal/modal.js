@@ -5,5 +5,5 @@ export function showModal(message) {
   modal.className = "";
   setTimeout(() => {
     modal.className = "hidden";
-  }, 3000);
+  }, 5000);
 }
