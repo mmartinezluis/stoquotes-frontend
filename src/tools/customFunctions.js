@@ -15,7 +15,17 @@ export function shuffleArray(array) {
 export function createPortal(portalId, child) {
   const portal = document.createElement("aside");
   portal.id = portalId;
+  portal.className = "portal-cover";
+  portal.addEventListener("click", (e) => {
+    if (e.target.tagName === "ASIDE") destroyPortal(portalId);
+  });
+  portal.addEventListener("keydown", (e) => {
+    if (e.keyCode === 27) destroyPortal(portalId);
+    console.log(e.keyCode);
+  });
+  child.className = child.className + " portal-area";
   portal.appendChild(child);
+  document.body.appendChild(portal);
 }
 
 export function destroyPortal(portalId) {

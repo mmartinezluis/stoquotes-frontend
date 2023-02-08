@@ -1,4 +1,5 @@
 import { handleLoginAndSignup } from "../services/auth/firebase.js";
+import { createPortal } from "../tools/customFunctions.js";
 
 class SessionService {
   constructor(baseUrl) {
@@ -10,15 +11,12 @@ class SessionService {
   static formContainer = `<div></div>`;
 
   static renderForm = (isLoginMode = false) => {
-    let aside = document.querySelector("#aside-session");
-    let formContainer = aside?.children[0];
-    if (!aside) {
-      aside = document.createElement("aside");
-      aside.id = "aside-session";
+    let sessionPortal = document.querySelector("#session-portal");
+    let formContainer = sessionPortal?.children[0];
+    if (!sessionPortal) {
       formContainer = document.createElement("div");
       formContainer.className = "card indigo form-white";
-      aside.appendChild(formContainer);
-      document.querySelector("main").appendChild(aside);
+      createPortal("session-portal", formContainer);
     }
     SessionService.toggleForm(formContainer, isLoginMode);
   };
@@ -32,6 +30,10 @@ class SessionService {
       handleLoginAndSignup(e, isLoginMode)
     );
   };
+
+  static formToggler = `
+  
+  `;
 
   static LoginForm = `
     <form class="card-body" id="session-form">
