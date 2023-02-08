@@ -256,33 +256,29 @@ textarea{
   translate: -50% 100px;
 }
 
+
+
+
 /* MODAL PORTAL STYLES */
-#modal-box .portal-cover {
-  background-color: rgba(0,0,0,.1);
-  height: 100%;
-  left: 0;
+.modal-portal-cover {
+  background-color: rgba(0,0,0,.4);
   position: fixed;
   top: 0;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  /* width: 100%; */
+  width: 100%;
   z-index: 100;
 }
 
-#modal-box .portal-area {
+.modal-portal-area {
   background-color: #fff;
   border-radius: 7px;
   box-shadow: 0 0 10px 3px rgb(0 0 0 / 10%);
-  left: 50%;
-  max-height: 450px;
-  max-width: 400px;
-  min-height: 320px;
-  min-width: 420px;
   overflow-y: auto;
-  padding: 2em 1.5em 1.5em;
-  position: fixed;
+  padding: 1rem;
   top: 0;
-  translate: -50% 100px;
+  margin: 1.75rem auto;
+  max-width: 500px;
 }
 
 

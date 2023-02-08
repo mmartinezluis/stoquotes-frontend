@@ -13,9 +13,9 @@ export function showModal(message) {
 function createModal(portalId, children) {
   const portal = document.createElement("aside");
   portal.id = portalId;
-  portal.className = "portal-cover";
+  portal.className = "modal-portal-cover";
   const portalArea = document.createElement("div");
-  portalArea.className = "portal-area";
+  portalArea.className = "modal-portal-area";
   portal.appendChild(portalArea);
   for (let child of children) {
     portalArea.appendChild(child);
