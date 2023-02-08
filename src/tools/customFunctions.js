@@ -12,7 +12,9 @@ export function shuffleArray(array) {
   return array;
 }
 
-export function createPortal(portalId, child) {
+// create a portal cover and a portal area, and append the
+// children nodes to the portal area
+export function createPortal(portalId, children) {
   const portal = document.createElement("aside");
   portal.id = portalId;
   portal.className = "portal-cover";
@@ -23,8 +25,12 @@ export function createPortal(portalId, child) {
     if (e.keyCode === 27) destroyPortal(portalId);
     console.log(e.keyCode);
   });
-  child.className = child.className + " portal-area";
-  portal.appendChild(child);
+  const portalArea = document.createElement("div");
+  portalArea.className = "portal-area";
+  portal.appendChild(portalArea);
+  for (let child of children) {
+    portalArea.appendChild(child);
+  }
   document.body.appendChild(portal);
 }
 

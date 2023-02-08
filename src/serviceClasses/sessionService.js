@@ -6,36 +6,41 @@ class SessionService {
     this.baseUrl = baseUrl;
   }
 
-  static removeForm = () => document.querySelector("#aside-");
-
-  static formContainer = `<div></div>`;
-
-  static renderForm = (isLoginMode = false) => {
+  static renderForm = (isLoginMode = true) => {
     let sessionPortal = document.querySelector("#session-portal");
-    let formContainer = sessionPortal?.children[0];
+    let formContainer = sessionPortal?.children[1];
     if (!sessionPortal) {
       formContainer = document.createElement("div");
       formContainer.className = "card indigo form-white";
-      createPortal("session-portal", formContainer);
+      const toggleButtons = document.createElement("div");
+      toggleButtons.className = "btn-group btn-group-toggle";
+      toggleButtons.setAttribute("data-toggle", "buttons");
+      toggleButtons.innerHTML = SessionService.formToggler();
+      createPortal("session-portal", [toggleButtons, formContainer]);
     }
-    SessionService.toggleForm(formContainer, isLoginMode);
+    SessionService.setForm(formContainer, isLoginMode);
   };
 
-  static toggleForm = (el, isLoginMode) => {
+  static setForm = (el, isLoginMode) => {
     el.innerHTML = isLoginMode
-      ? SessionService.LoginForm
-      : SessionService.SignupForm;
+      ? SessionService.LoginForm()
+      : SessionService.SignupForm();
     const submitBtn = el.querySelector('[type="submit"]');
     submitBtn.addEventListener("click", (e) =>
       handleLoginAndSignup(e, isLoginMode)
     );
   };
 
-  static formToggler = `
-  
+  static formToggler = () => `
+        <label class="btn btn-secondary active">
+            <input type="radio" name="login" autocomplete="off" checked>Login
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="signup" autocomplete="off"> SignUp
+        </label>
   `;
 
-  static LoginForm = `
+  static LoginForm = () => `
     <form class="card-body" id="session-form">
         <h3 class="text-center white-text py-3"><i class="fa fa-user"></i> Login:</h3>
         <div class="md-form form-group">
@@ -45,15 +50,15 @@ class SessionService {
         </div>
         <div class="md-form form-group">
             <i class="fa fa-lock prefix white-text"></i>
-            <input type="password" id="login-password" class="form-control">
+            <input type="password" id="login-password" class="form-control" autocomplete="on">
             <label for="login-password">Your password</label>
         </div>
-        <div class="text-center">
+        <div class="text-center d-grid gap-2 d-md-block">
             <button type="submit" class="btn btn-primary waves-effect waves-light">Login</button>
         </div>
     </form>`;
 
-  static SignupForm = `
+  static SignupForm = () => `
     <form class="card-body" id="session-form">
         <h3 class="text-center white-text py-3"><i class="fa fa-user"></i> Signup:</h3>
         <div class="md-form form-group">
@@ -78,7 +83,7 @@ class SessionService {
         </div>
         <div class="md-form form-group">
             <i class="fa fa-lock prefix white-text"></i>
-            <input type="password" id="signup-passwordconfirm" class="form-control">
+            <input type="password" id="signup-passwordconfirm" autocomplete="on" class="form-control">
             <label for="signup-passwordconfirm">Password confirm</label>
         </div>
         <div class="text-center">
