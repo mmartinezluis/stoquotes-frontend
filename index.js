@@ -98,6 +98,6 @@ writeStoryBtn.addEventListener("click", (e) => {
   }
 });
 
-// SessionService.renderForm();
+SessionService.renderForm();
 
 showModal("hello there!!!!!!");

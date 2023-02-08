@@ -1,13 +1,15 @@
 // const modal = document.getElementById("modal-box");
 // Load the message in modal box, hide the modal box, then show it for 3 seconds
 export function showModal(message) {
+  destroyModal("modal-box");
   const d = document.createElement("div");
+  d.className = "text-center";
   d.innerHTML = message;
   createModal("modal-box", [d]);
   setTimeout(() => {
     console.log("HELLO");
     destroyModal("modal-box");
-  }, 300000);
+  }, 3000);
 }
 
 function createModal(portalId, children) {
@@ -24,7 +26,7 @@ function createModal(portalId, children) {
 }
 
 function destroyModal(portalId) {
-  document.getElementById(portalId).remove();
+  document.getElementById(portalId)?.remove();
 }
 
 // export function showModal(message) {
