@@ -17,11 +17,11 @@ li {
   box-shadow: none !important;
 }
 
-#modal-box { 
+/* #modal-box { 
   grid-area: modal;
   border: solid black 2px;
   text-align: center;
-}
+} */
 
 #black-box {
   grid-area: quotes;
@@ -256,10 +256,34 @@ textarea{
   translate: -50% 100px;
 }
 
+/* MODAL PORTAL STYLES */
+#modal-box .portal-cover {
+  background-color: rgba(0,0,0,.1);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* width: 100%; */
+  z-index: 100;
+}
+
+#modal-box .portal-area {
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 0 0 10px 3px rgb(0 0 0 / 10%);
+  left: 50%;
+  max-height: 450px;
+  max-width: 400px;
+  min-height: 320px;
+  min-width: 420px;
+  overflow-y: auto;
+  padding: 2em 1.5em 1.5em;
+  position: fixed;
+  top: 0;
+  translate: -50% 100px;
+}
 
 
 /* LOGIN/SIGNUP FORM */
-#session-portal :is(label[for=login-toggle], label[for=signup-toggle]):checked {
-  /* box-shadow: none; */
-  background-color: var(--bs-purple);
-}
