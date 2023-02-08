@@ -248,10 +248,18 @@ textarea{
   max-height: 450px;
   max-width: 400px;
   min-height: 320px;
-  min-width: 300px;
+  min-width: 420px;
   overflow-y: auto;
   padding: 2em 1.5em 1.5em;
   position: fixed;
   top: 0;
   translate: -50% 100px;
+}
+
+
+
+/* LOGIN/SIGNUP FORM */
+#session-portal :is(label[for=login-toggle], label[for=signup-toggle]):checked {
+  /* box-shadow: none; */
+  background-color: var(--bs-purple);
 }

@@ -16,10 +16,15 @@ class SessionService {
       formContainer.className = "card indigo form-white";
 
       const toggleButtons = document.createElement("div");
+      toggleButtons.className = "row g-0";
       toggleButtons.innerHTML = SessionService.formToggler();
       toggleButtons.querySelectorAll("label").forEach((el) => {
         el.addEventListener("click", (e) => {
-          const login = e.target?.getAttribute("for").includes("login");
+          const label = e.target;
+          const identifier = label.getAttribute("for");
+          if (label.parentElement.querySelector("#" + identifier).checked)
+            return;
+          const login = identifier.includes("login");
           SessionService.setForm(formContainer, login);
         });
       });
@@ -40,61 +45,59 @@ class SessionService {
   };
 
   static formToggler = () => `
-        <input type="radio" class="btn-check" name="options" id="login-toggle" autocomplete="off" checked>
-        <label class="btn btn-outline-secondary" for="login-toggle">Login</label>
-
-        <input type="radio" class="btn-check" name="options" id="signup-toggle" autocomplete="off">
-        <label class="btn btn-outline-secondary" for="signup-toggle">SignUp</label>
+        <div class="d-grid col-6">
+            <input type="radio" class="btn-check shadow-none" name="options" id="login-toggle" autocomplete="off" checked>
+            <label class="btn btn-outline-dark" for="login-toggle">Login</label>
+        </div>
+        <div class="d-grid col-6">
+            <input type="radio" class="btn-check shadow-none" name="options" id="signup-toggle" autocomplete="off">
+            <label class="btn btn-outline-dark" for="signup-toggle">SignUp</label>
+        </div>
 
   `;
 
   static LoginForm = () => `
     <form class="card-body" id="session-form">
-        <h3 class="text-center white-text py-3"><i class="fa fa-user"></i> Login:</h3>
-        <div class="md-form form-group">
-            <i class="fa fa-envelope prefix white-text"></i>
-            <input type="text" id="login-email" class="form-control">
-            <label for="login-email">Your email</label>
+        <h3 class="text-center white-text py-2">SQ</h3>
+        <div class="form-floating mb-3">
+            <input type="email" id="login-email" class="form-control">
+            <label for="login-email">Email</label>
         </div>
-        <div class="md-form form-group">
-            <i class="fa fa-lock prefix white-text"></i>
+        <div class="form-floating mb-3">
             <input type="password" id="login-password" class="form-control" autocomplete="on">
-            <label for="login-password">Your password</label>
+            <label for="login-password">Password</label>
         </div>
-        <div class="text-center d-grid gap-2 ">
+        <div class="text-center d-grid gap-2">
             <button type="submit" class="btn btn-primary waves-effect waves-light">Login</button>
         </div>
     </form>`;
 
   static SignupForm = () => `
     <form class="card-body" id="session-form">
-        <h3 class="text-center white-text py-3"><i class="fa fa-user"></i> Signup:</h3>
-        <div class="md-form form-group">
-            <i class="fa fa-envelope prefix white-text"></i>
-            <input type="text" id="signup-firstname" class="form-control">
-            <label for="signup-firstname">First name</label>
+        <h3 class="text-center white-text py-3">SQ</h3>
+        <div class="row g-3">
+            <div class="form-floating mb-3 col">
+                <input type="text" id="signup-firstname" class="form-control">
+                <label for="signup-firstname">First name</label>
+            </div>
+            <div class="form-floating mb-3 col">
+                <input type="text" id="signup-lastname" class="form-control">
+                <label for="signup-lastname">Last name</label>
+            </div>
         </div>
-        <div class="md-form form-group">
-            <i class="fa fa-envelope prefix white-text"></i>
-            <input type="text" id="signup-lastname" class="form-control">
-            <label for="signup-lastname">Last name</label>
-        </div>
-        <div class="md-form form-group">
-            <i class="fa fa-envelope prefix white-text"></i>
+        <div class="form-floating mb-3">            
             <input type="text" id="signup-email" class="form-control">
             <label for="signup-email">Email</label>
         </div>
-        <div class="md-form form-group">
-            <i class="fa fa-lock prefix white-text"></i>
+        <div class="form-floating mb-3">
             <input type="password" id="signup-password" autocomplete="on" class="form-control">
             <label for="signup-password">Password</label>
         </div>
-        <div class="md-form form-group">
-            <i class="fa fa-lock prefix white-text"></i>
+        <div class="form-floating mb-3">
             <input type="password" id="signup-passwordconfirm" autocomplete="on" class="form-control">
             <label for="signup-passwordconfirm">Password confirm</label>
         </div>
-        <div class="text-center">
+        <div class="text-center d-grid gap-2">
             <button type="submit" class="btn btn-primary waves-effect waves-light">Signup</button>
         </div>
     </form>`;

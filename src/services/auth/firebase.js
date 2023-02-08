@@ -14,15 +14,7 @@ import { sessionService, showModal, User } from "../../output.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDCUFSRicnSC4lUtd1Il6tGK1t8yA8miaA",
-  authDomain: "stoquotes-c7d23.firebaseapp.com",
-  projectId: "stoquotes-c7d23",
-  storageBucket: "stoquotes-c7d23.appspot.com",
-  messagingSenderId: "611499642130",
-  appId: "1:611499642130:web:3b3a50265a5161568b77cb",
-  measurementId: "G-D49P0MF9GP",
-};
+const firebaseConfig = {};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -43,7 +35,15 @@ onAuthStateChanged(auth, (user) => {
 export const handleLoginAndSignup = (e, isLoginMode) => {
   e.preventDefault();
   const form = document.getElementById("session-form");
-  const fieldsMapping = {};
+  const fieldsMapping = {
+    "login-email": "email",
+    "login-password": "password",
+    "signup-firstname": "first_name",
+    "signup-lastname": "lastname",
+    "signup-email": "email",
+    "signup-password": "password",
+    "signup-passwordconfirm": "passwordconfirm",
+  };
 
   let payload = {};
 
