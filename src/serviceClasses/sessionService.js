@@ -9,13 +9,21 @@ class SessionService {
   static renderForm = (isLoginMode = true) => {
     let sessionPortal = document.querySelector("#session-portal");
     let formContainer = sessionPortal?.children[1];
+    // if the portal has not been created, create the portal,
+    // the form container, and the toggle buttons
     if (!sessionPortal) {
       formContainer = document.createElement("div");
       formContainer.className = "card indigo form-white";
+
       const toggleButtons = document.createElement("div");
-      toggleButtons.className = "btn-group btn-group-toggle";
-      toggleButtons.setAttribute("data-toggle", "buttons");
       toggleButtons.innerHTML = SessionService.formToggler();
+      toggleButtons.querySelectorAll("label").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          const login = e.target?.getAttribute("for").includes("login");
+          SessionService.setForm(formContainer, login);
+        });
+      });
+
       createPortal("session-portal", [toggleButtons, formContainer]);
     }
     SessionService.setForm(formContainer, isLoginMode);
@@ -32,12 +40,12 @@ class SessionService {
   };
 
   static formToggler = () => `
-        <label class="btn btn-secondary active">
-            <input type="radio" name="login" autocomplete="off" checked>Login
-        </label>
-        <label class="btn btn-secondary">
-            <input type="radio" name="signup" autocomplete="off"> SignUp
-        </label>
+        <input type="radio" class="btn-check" name="options" id="login-toggle" autocomplete="off" checked>
+        <label class="btn btn-outline-secondary" for="login-toggle">Login</label>
+
+        <input type="radio" class="btn-check" name="options" id="signup-toggle" autocomplete="off">
+        <label class="btn btn-outline-secondary" for="signup-toggle">SignUp</label>
+
   `;
 
   static LoginForm = () => `
@@ -53,7 +61,7 @@ class SessionService {
             <input type="password" id="login-password" class="form-control" autocomplete="on">
             <label for="login-password">Your password</label>
         </div>
-        <div class="text-center d-grid gap-2 d-md-block">
+        <div class="text-center d-grid gap-2 ">
             <button type="submit" class="btn btn-primary waves-effect waves-light">Login</button>
         </div>
     </form>`;
@@ -78,7 +86,7 @@ class SessionService {
         </div>
         <div class="md-form form-group">
             <i class="fa fa-lock prefix white-text"></i>
-            <input type="password" id="signup-password" class="form-control">
+            <input type="password" id="signup-password" autocomplete="on" class="form-control">
             <label for="signup-password">Password</label>
         </div>
         <div class="md-form form-group">
