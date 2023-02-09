@@ -24,10 +24,12 @@ const auth = getAuth(app);
 // Firebase user authentication state observer
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    User.isLoggedIn = true;
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
   } else {
+    User.isLoggedIn = false;
     // User is signed out
   }
 });
