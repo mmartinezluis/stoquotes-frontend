@@ -6,8 +6,12 @@ class User {
   static feed = new Set();
   static reactions = {};
   static isLoggedIn = null;
-  static setUser = (user) => (User.currentUser = user);
+  static setUser = (user) => {
+    User.currentUser = user;
+    User.isLoggedIn = true;
+  };
   static cleanupUser = () => {
+    User.isLoggedIn = false;
     User.currentUser = {};
     User.followers = new Set();
     User.following = new Set();

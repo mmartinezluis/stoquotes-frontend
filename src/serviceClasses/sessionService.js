@@ -21,6 +21,8 @@ class SessionService {
         el.addEventListener("click", (e) => {
           const label = e.target;
           const identifier = label.getAttribute("for");
+          // if the input field for the clicked label is checked,
+          // skip don't rerender the session form
           if (label.parentElement.querySelector("#" + identifier).checked)
             return;
           const login = identifier.includes("login");

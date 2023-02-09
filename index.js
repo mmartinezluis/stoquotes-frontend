@@ -11,6 +11,7 @@ import {
   showModal,
 } from "./src/output.js";
 import SessionService from "./src/serviceClasses/sessionService.js";
+import { handleLogout } from "./src/services/auth/firebase.js";
 
 // Main navigation pane buttons
 let navTabs = document.getElementsByClassName("nav-link flex-sm-fill");
@@ -101,10 +102,11 @@ writeStoryBtn.addEventListener("click", (e) => {
 });
 
 authButton.addEventListener("click", () => {
+  console.log("clicled auth", User.isLoggedIn);
   if (User.isLoggedIn) {
-    User.isLoggedIn = false;
-    authButton.innerText = "Login";
+    handleLogout();
   } else {
+    console.log("here yeah");
     SessionService.renderForm(true);
   }
 });

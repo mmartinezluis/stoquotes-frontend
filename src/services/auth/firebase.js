@@ -21,15 +21,21 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+const authButton = document.getElementById("auth-status-btn");
+
 // Firebase user authentication state observer
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    User.isLoggedIn = true;
+    console.log("from state observer");
+    User.setUser(user);
+    authButton.innerText = "Logout";
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
   } else {
-    User.isLoggedIn = false;
+    console.log("from logged out state observer");
+    User.cleanupUser();
+    authButton.innerText = "Login";
     // User is signed out
   }
 });
@@ -46,9 +52,7 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
     "signup-password": "password",
     "signup-passwordconfirm": "passwordconfirm",
   };
-
   let payload = {};
-
   // Generate the payload dynamically using the login form fields or the signup form fields
   for (let input of form.querySelectorAll("input")) {
     const key = fieldsMapping[input.id];
@@ -89,12 +93,14 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
 export const handleLogout = () => {
   signOut(auth)
     .then(() => {
-      User.cleanupUser();
+      // keep blank for the moment
     })
     .catch((err) => {
       showModal(err, 2);
     });
 };
+
+//<**************** HELPER FUNCTIONS ******************>
 
 async function _getTokenAndUser(payload, endpoint) {
   const response = await fetch(sessionService.baseUrl + endpoint, {
@@ -121,9 +127,9 @@ function _authenticateWithFirebase(token, user) {
   return (
     signInWithCustomToken(auth, token)
       .then((userCredential) => {
+        console.log("from authentication function");
         //   const user = userCredential.user;
-        User.setUser(user);
-        console.log(User.currentUser);
+        // User.setUser(user);
         showModal("You have been sucessfully logged in!!!", 1);
       })
       // Catches the errors related to user authentication in Firebase

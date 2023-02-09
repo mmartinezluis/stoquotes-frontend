@@ -23,7 +23,6 @@ export function createPortal(portalId, children) {
   });
   portal.addEventListener("keydown", (e) => {
     if (e.keyCode === 27) destroyPortal(portalId);
-    console.log(e.keyCode);
   });
   const portalArea = document.createElement("div");
   portalArea.className = "portal-area";
