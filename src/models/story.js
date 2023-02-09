@@ -138,7 +138,7 @@ export default class Story {
   saveUpdatedItem = () => {
     const new_description = this.element.querySelector("textarea").value.trim();
     if (!new_description.length) {
-      showModal("Story description cannot be blank");
+      showModal("Story description cannot be blank", 2);
       return;
     }
     // @TODO use a hashing function to compare the two descriptions

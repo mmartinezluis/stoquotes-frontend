@@ -80,7 +80,7 @@ authorSearchForm.addEventListener("submit", (e) => {
   let input = e.target.querySelector("input").value;
   let author = Author.all.find((author) => author.name === input);
   if (author === undefined) {
-    showModal("Author not found");
+    showModal("Author not found", 3);
   } else {
     authorService.getAuthorQuote(author.id);
   }
@@ -98,6 +98,6 @@ writeStoryBtn.addEventListener("click", (e) => {
   }
 });
 
-SessionService.renderForm();
+// SessionService.renderForm();
 
-showModal("hello there!!!!!!");
+// showModal("hello there!!!!!!");

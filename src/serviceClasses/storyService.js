@@ -27,7 +27,7 @@ export default class StoryService {
       .value.trim();
     if (!description.length) {
       event.target.reset();
-      showModal("Story description cannot be blank");
+      showModal("Story description cannot be blank", 2);
       return;
     }
     const story = {

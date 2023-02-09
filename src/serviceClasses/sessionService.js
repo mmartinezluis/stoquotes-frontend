@@ -13,7 +13,6 @@ class SessionService {
     // the form container, and the toggle buttons
     if (!sessionPortal) {
       formContainer = document.createElement("div");
-      formContainer.className = "card indigo form-white";
 
       const toggleButtons = document.createElement("div");
       toggleButtons.className = "row g-0";
@@ -53,7 +52,6 @@ class SessionService {
             <input type="radio" class="btn-check shadow-none" name="options" id="signup-toggle" autocomplete="off">
             <label class="btn btn-outline-dark" for="signup-toggle">SignUp</label>
         </div>
-
   `;
 
   static LoginForm = () => `
@@ -74,7 +72,7 @@ class SessionService {
 
   static SignupForm = () => `
     <form class="card-body" id="session-form">
-        <h3 class="text-center white-text py-3">SQ</h3>
+        <h3 class="text-center white-text py-2">SQ</h3>
         <div class="row g-3">
             <div class="form-floating mb-3 col">
                 <input type="text" id="signup-firstname" class="form-control">
