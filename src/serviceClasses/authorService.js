@@ -47,7 +47,7 @@ export default class AuthorService {
       })
       .catch((err) => {
         console.log(err);
-        showModal(err);
+        showModal(err, 2);
       });
   }
 }

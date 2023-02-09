@@ -65,7 +65,7 @@ export default class Story {
   }
 
   addToDom() {
-    Story.storyContainer.appendChild(this.storyHTML());
+    Story.storyContainer.prepend(this.storyHTML());
   }
 
   static renderForm(user_id, quote_id) {

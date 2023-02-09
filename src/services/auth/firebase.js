@@ -51,12 +51,12 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
   for (let input of form.querySelectorAll("input")) {
     const key = fieldsMapping[input.id];
     if (!key) {
-      showModal("The form has been tampered with!!! Refresh the page");
+      showModal("The form has been tampered with!!! Refresh the page", 2);
       return;
     }
     const value = input.value.trim();
     if (!value.length) {
-      showModal(key[0].toUpperCase() + key.slice(1) + " cannot be blank!");
+      showModal(key[0].toUpperCase() + key.slice(1) + " cannot be blank!", 2);
       return;
     }
     payload[fieldsMapping[input.id]] = value;
@@ -65,7 +65,7 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
   // compare password and pasword confirm if signing up
   let c = payload["passwordconfirm"];
   if (c && c !== payload["password"]) {
-    showModal("Password and Password Confirm must match!");
+    showModal("Password and Password Confirm must match!", 2);
     return;
   }
 
@@ -80,7 +80,7 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
     // catches the errors related to the token generation and
     // user retrieval/creation in Ruby on Rails backend
     .catch((err) => {
-      showModal(err);
+      showModal(err, 2);
     });
 };
 
@@ -90,7 +90,7 @@ export const handleLogout = () => {
       User.cleanupUser();
     })
     .catch((err) => {
-      showModal(err);
+      showModal(err, 2);
     });
 };
 
@@ -122,14 +122,14 @@ function _authenticateWithFirebase(token, user) {
         //   const user = userCredential.user;
         User.setUser(user);
         console.log(User.currentUser);
-        showModal("You have been sucessfully logged in!!!");
+        showModal("You have been sucessfully logged in!!!", 1);
       })
       // Catches the errors related to user authentication in Firebase
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(error);
-        showModal(errorMessage + "; Code: " + errorCode);
+        showModal(errorMessage + "; Code: " + errorCode, 2);
       })
   );
 }

@@ -17,7 +17,7 @@ export default class StoryService {
       })
       .catch((err) => {
         console.log(err);
-        showModal(err);
+        showModal(err, 3);
       });
   }
 
@@ -56,11 +56,11 @@ export default class StoryService {
           "active",
           ""
         );
-        showModal(`Story successfully created`);
+        showModal(`Story successfully created`, 1);
       })
       .catch((err) => {
         console.log(err);
-        showModal(err);
+        showModal(err, 2);
       });
   }
 
@@ -80,7 +80,7 @@ export default class StoryService {
         story.description = new_description;
         story.storyHTML();
         Story.revertEditFields(event);
-        showModal(`Story #${story.id} successfully updated`);
+        showModal(`Story #${story.id} successfully updated`, 1);
       })
       .catch(function (error) {
         alert(error);
@@ -97,11 +97,11 @@ export default class StoryService {
       .then((resp) => resp.json())
       .then((json) => {
         event.target.parentElement.parentElement.remove();
-        showModal(json.message);
+        showModal(json.message, 1);
       })
       .catch((err) => {
         console.log(err);
-        showModal(err);
+        showModal(err, 2);
       });
   }
 }
