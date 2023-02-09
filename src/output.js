@@ -9,9 +9,12 @@ import QuoteService from "./serviceClasses/quoteService.js";
 import StoryService from "./serviceClasses/storyService.js";
 import SessionService from "./serviceClasses/sessionService.js";
 import { showModal } from "./modal/modal.js";
+import UserService from "./serviceClasses/userService.js";
 
-// any global variables
+// Ruby on Rails backend base url
 const base_url = "http://localhost:3000";
+// Amazon API Gateway–DynamoDB database base url
+const social_url = "";
 
 // Initialiazers
 const authorService = new AuthorService(base_url);
@@ -19,6 +22,7 @@ const storyService = new StoryService(base_url);
 const quoteService = new QuoteService(base_url);
 const categoryService = new CategoryService(base_url);
 const sessionService = new SessionService(base_url);
+const userService = new UserService("", base_url);
 
 export {
   User,
@@ -31,5 +35,6 @@ export {
   categoryService,
   authorService,
   sessionService,
+  userService,
   showModal,
 };
