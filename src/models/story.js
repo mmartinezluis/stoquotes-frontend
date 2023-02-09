@@ -114,12 +114,6 @@ export default class Story {
       // change the span field for the story into an input field for editing
       this.createEditFields();
     } else if (event.target.innerText === "Save") {
-      //   Story.currentlyUpdatingId = null;
-      //   event.target.className = event.target.className.replace(
-      //     "btn-outline-sucess",
-      //     "btn-outline-primary"
-      //   );
-      //   event.target.innerText = "Edit";
       this.saveUpdatedItem(event);
     }
   };
