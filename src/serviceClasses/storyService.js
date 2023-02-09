@@ -64,7 +64,7 @@ export default class StoryService {
       });
   }
 
-  sendPatch(story, new_description) {
+  sendPatch(story, new_description, event) {
     const configObj = {
       method: "PATCH",
       headers: {
@@ -79,6 +79,7 @@ export default class StoryService {
       .then((json) => {
         story.description = new_description;
         story.storyHTML();
+        Story.revertEditFields(event);
         showModal(`Story #${story.id} successfully updated`);
       })
       .catch(function (error) {

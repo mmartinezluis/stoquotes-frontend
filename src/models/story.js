@@ -1,5 +1,5 @@
 import Quote from "./quote.js";
-import { storyService } from "../output.js";
+import { showModal, storyService } from "../output.js";
 import { normalizeDate } from "../tools/customFunctions.js";
 
 export default class Story {
@@ -114,14 +114,13 @@ export default class Story {
       // change the span field for the story into an input field for editing
       this.createEditFields();
     } else if (event.target.innerText === "Save") {
-      Story.currentlyUpdatingId = null;
-      event.target.className = event.target.className.replace(
-        "btn-outline-sucess",
-        "btn-outline-primary"
-      );
-      event.target.innerText = "Edit";
-      this.saveUpdatedItem();
-    } else if (event.target.innerText === "Cancel") {
+      //   Story.currentlyUpdatingId = null;
+      //   event.target.className = event.target.className.replace(
+      //     "btn-outline-sucess",
+      //     "btn-outline-primary"
+      //   );
+      //   event.target.innerText = "Edit";
+      this.saveUpdatedItem(event);
     }
   };
 
@@ -135,7 +134,16 @@ export default class Story {
         </div>`;
   };
 
-  saveUpdatedItem = () => {
+  static revertEditFields = (clickEvent) => {
+    Story.currentlyUpdatingId = null;
+    clickEvent.target.className = clickEvent.target.className.replace(
+      "btn-outline-sucess",
+      "btn-outline-primary"
+    );
+    clickEvent.target.innerText = "Edit";
+  };
+
+  saveUpdatedItem = (event) => {
     const new_description = this.element.querySelector("textarea").value.trim();
     if (!new_description.length) {
       showModal("Story description cannot be blank", 2);
@@ -146,6 +154,6 @@ export default class Story {
       this.storyHTML();
       return;
     }
-    storyService.sendPatch(this, new_description);
+    storyService.sendPatch(this, new_description, event);
   };
 }

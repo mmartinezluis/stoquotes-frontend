@@ -237,7 +237,7 @@ textarea{
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   width: 100%;
-  z-index: 100;
+  z-index: 1100;
 }
 
 .portal-area {
@@ -268,7 +268,7 @@ textarea{
   left: 50%;
   border-radius: 7px;
   transform: translate(-50%, 40%);
-  z-index: 100;
+  z-index: 1150;
   width: auto;
 }
 
