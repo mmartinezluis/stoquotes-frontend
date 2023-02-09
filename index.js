@@ -102,15 +102,9 @@ writeStoryBtn.addEventListener("click", (e) => {
 });
 
 authButton.addEventListener("click", () => {
-  console.log("clicled auth", User.isLoggedIn);
   if (User.isLoggedIn) {
     handleLogout();
   } else {
-    console.log("here yeah");
     SessionService.renderForm(true);
   }
 });
-
-// SessionService.renderForm();
-
-// showModal("hello there!!!!!!");

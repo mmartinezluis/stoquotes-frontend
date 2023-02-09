@@ -1,5 +1,3 @@
-// const modal = document.getElementById("modal-box");
-// Load the message in modal box, hide the modal box, then show it for 3 seconds
 export function showModal(message, statusCode = 1) {
   destroyModal("modal-box");
   const d = document.createElement("div");
@@ -7,7 +5,6 @@ export function showModal(message, statusCode = 1) {
   d.innerHTML = message;
   createModal("modal-box", [d], statusCode);
   setTimeout(() => {
-    console.log("HELLO");
     destroyModal("modal-box");
   }, 3000);
 }

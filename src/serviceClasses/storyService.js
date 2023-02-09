@@ -17,7 +17,7 @@ export default class StoryService {
       })
       .catch((err) => {
         console.log(err);
-        showModal(err, 3);
+        showModal(err, 2);
       });
   }
 

@@ -3,6 +3,8 @@ class UserService {
     this.socialBaseUrl = social_base;
     this.backendBaseUrl = backend_base;
   }
+
+  getUserStories(userId) {}
 }
 
 export default UserService;

@@ -26,17 +26,21 @@ const authButton = document.getElementById("auth-status-btn");
 // Firebase user authentication state observer
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    // Have this code run only when the page is first loaded or refreshed
+    // AND the user is logged in in Firebase
+    if (User.isLoggedIn !== null) return;
     console.log("from state observer");
     User.setUser(user);
+    console.log(user);
     authButton.innerText = "Logout";
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
   } else {
+    // User is signed out
     console.log("from logged out state observer");
+    // if (User.isLoggedIn == null) showModal("Your session has expired", 3);
     User.cleanupUser();
     authButton.innerText = "Login";
-    // User is signed out
   }
 });
 
@@ -47,7 +51,7 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
     "login-email": "email",
     "login-password": "password",
     "signup-firstname": "first_name",
-    "signup-lastname": "lastname",
+    "signup-lastname": "last_name",
     "signup-email": "email",
     "signup-password": "password",
     "signup-passwordconfirm": "passwordconfirm",
@@ -71,7 +75,7 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
   // compare password and pasword confirm if signing up
   let c = payload["passwordconfirm"];
   if (c && c !== payload["password"]) {
-    showModal("Password and Password Confirm must match!", 2);
+    showModal("Password and Password confirm must match!", 2);
     return;
   }
 
@@ -80,7 +84,7 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
 
   _getTokenAndUser(payload, isLoginMode ? "/login" : "/signup")
     .then(({ token, user }) => {
-      console.log(payload);
+      console.log(token, user);
       _authenticateWithFirebase(token, user);
     })
     // catches the errors related to the token generation and
@@ -93,7 +97,8 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
 export const handleLogout = () => {
   signOut(auth)
     .then(() => {
-      // keep blank for the moment
+      console.log("from logout call");
+      showModal("Yuo have been successfully logged out!");
     })
     .catch((err) => {
       showModal(err, 2);
@@ -110,7 +115,6 @@ async function _getTokenAndUser(payload, endpoint) {
     },
     body: JSON.stringify(payload),
   });
-
   // @TODO: properly handle error object to extract message string only
   if (!response.ok) {
     console.log(response);
@@ -118,7 +122,6 @@ async function _getTokenAndUser(payload, endpoint) {
       throw new Error(text);
     });
   }
-
   const data = await response.json();
   return data;
 }
@@ -128,9 +131,7 @@ function _authenticateWithFirebase(token, user) {
     signInWithCustomToken(auth, token)
       .then((userCredential) => {
         console.log("from authentication function");
-        //   const user = userCredential.user;
-        // User.setUser(user);
-        showModal("You have been sucessfully logged in!!!", 1);
+        showModal("You have been successfully logged in!!!", 1);
       })
       // Catches the errors related to user authentication in Firebase
       .catch((error) => {

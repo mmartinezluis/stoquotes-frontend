@@ -17,7 +17,8 @@ export default class AuthorService {
           a.addToDatalist();
         }
         Author.total = authors.length - 1;
-      });
+      })
+      .catch((err) => showModal(err, 2));
   }
 
   getAuthors() {
