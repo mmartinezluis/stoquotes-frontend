@@ -17,6 +17,8 @@ let navTabs = document.getElementsByClassName("nav-link flex-sm-fill");
 // Form for searching for authors
 const authorSearchForm = document.getElementById("search");
 
+const authButton = document.getElementById("auth-status-btn");
+
 // The 'Wrtie a story' button (writeStoryBtn)
 const writeStoryBtn = Story.writeStoryBtn;
 writeStoryBtn.style.display = "none";
@@ -95,6 +97,15 @@ writeStoryBtn.addEventListener("click", (e) => {
   } else {
     Story.storyForm.style.display = "none";
     writeStoryBtn.className = writeStoryBtn.className.replace("active", "");
+  }
+});
+
+authButton.addEventListener("click", () => {
+  if (User.isLoggedIn) {
+    User.isLoggedIn = false;
+    authButton.innerText = "Login";
+  } else {
+    SessionService.renderForm(true);
   }
 });
 
