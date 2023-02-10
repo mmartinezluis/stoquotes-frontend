@@ -30,8 +30,19 @@ onAuthStateChanged(auth, (user) => {
     // AND the user is logged in in Firebase
     if (User.isLoggedIn !== null) return;
     console.log("from state observer");
-    userService.getProfile(user.uid);
-    console.log(user);
+    // userService.getProfile(user.uid);
+    userService
+      .fetchProfileAndSocialData(user.uid)
+      .then(([profile, social]) => {
+        console.log(profile, social);
+        User.setUserProfile(profile);
+        User.setUserSocial(social);
+      })
+      .catch((err) => {
+        showModal(err, 2);
+        console.log(err);
+      });
+
     authButton.innerText = "Logout";
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User

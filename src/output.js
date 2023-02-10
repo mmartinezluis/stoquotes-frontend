@@ -14,7 +14,8 @@ import UserService from "./serviceClasses/userService.js";
 // Ruby on Rails backend base url
 const base_url = "http://localhost:3000";
 // Amazon API Gateway–DynamoDB database base url
-const social_url = "";
+const social_url =
+  "https://8ilsokdkbj.execute-api.us-east-2.amazonaws.com/stoquotesusersv1";
 
 // Initialiazers
 const authorService = new AuthorService(base_url);
@@ -22,7 +23,7 @@ const storyService = new StoryService(base_url);
 const quoteService = new QuoteService(base_url);
 const categoryService = new CategoryService(base_url);
 const sessionService = new SessionService(base_url);
-const userService = new UserService("", base_url);
+const userService = new UserService(social_url, base_url);
 
 export {
   User,
