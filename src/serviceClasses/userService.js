@@ -6,22 +6,23 @@ class UserService {
     this.backendBaseUrl = backend_base;
   }
 
-  getProfile(userId) {
-    fetch(this.backendBaseUrl + "/profile", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ user: { id: userId } }),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        showModal(err, 2);
-      });
-  }
+  //   Leave it here for the moment
+  //   getProfile(userId) {
+  //     fetch(this.backendBaseUrl + "/profile", {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({ user: { id: userId } }),
+  //     })
+  //       .then((resp) => resp.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //       })
+  //       .catch((err) => {
+  //         showModal(err, 2);
+  //       });
+  //   }
 
   // Make parallel http requests;
   // Later, probably make profile fetch the main request, and if it

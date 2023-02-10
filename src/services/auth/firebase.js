@@ -7,6 +7,7 @@ import {
   signOut,
 } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 import { sessionService, showModal, User, userService } from "../../output.js";
+import { destroyPortal } from "../../tools/customFunctions.js";
 
 // Import the functions you need from the SDKs you need
 // TODO: Add SDKs for Firebase products that you want to use
@@ -25,27 +26,26 @@ const authButton = document.getElementById("auth-status-btn");
 
 // Firebase user authentication state observer
 onAuthStateChanged(auth, (user) => {
+  // User is signed in, see docs for a list of available properties
+  // https://firebase.google.com/docs/reference/js/firebase.User
   if (user) {
     // Have this code run only when the page is first loaded or refreshed
     // AND the user is logged in in Firebase
     if (User.isLoggedIn !== null) return;
     console.log("from state observer");
-    // userService.getProfile(user.uid);
     userService
       .fetchProfileAndSocialData(user.uid)
       .then(([profile, social]) => {
         console.log(profile, social);
         User.setUserProfile(profile);
         User.setUserSocial(social);
+        User.isLoggedIn = true;
+        authButton.innerText = "Logout";
       })
       .catch((err) => {
         showModal(err, 2);
         console.log(err);
       });
-
-    authButton.innerText = "Logout";
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
   } else {
     // User is signed out
     console.log("from logged out state observer");
@@ -141,6 +141,9 @@ function _authenticateWithFirebase(token, user) {
     signInWithCustomToken(auth, token)
       .then((userCredential) => {
         console.log("from authentication function");
+        User.setUserProfile(user);
+        // @TODO: fetch social data
+        destroyPortal("session-portal");
         showModal("You have been successfully logged in!!!", 1);
       })
       // Catches the errors related to user authentication in Firebase
