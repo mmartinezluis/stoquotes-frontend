@@ -6,7 +6,7 @@ import {
   signInWithCustomToken,
   signOut,
 } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-import { sessionService, showModal, User } from "../../output.js";
+import { sessionService, showModal, User, userService } from "../../output.js";
 
 // Import the functions you need from the SDKs you need
 // TODO: Add SDKs for Firebase products that you want to use
@@ -30,7 +30,7 @@ onAuthStateChanged(auth, (user) => {
     // AND the user is logged in in Firebase
     if (User.isLoggedIn !== null) return;
     console.log("from state observer");
-    User.setUser(user);
+    userService.getProfile(user.uid);
     console.log(user);
     authButton.innerText = "Logout";
     // User is signed in, see docs for a list of available properties
@@ -84,7 +84,6 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
 
   _getTokenAndUser(payload, isLoginMode ? "/login" : "/signup")
     .then(({ token, user }) => {
-      console.log(token, user);
       _authenticateWithFirebase(token, user);
     })
     // catches the errors related to the token generation and
@@ -98,7 +97,7 @@ export const handleLogout = () => {
   signOut(auth)
     .then(() => {
       console.log("from logout call");
-      showModal("Yuo have been successfully logged out!");
+      showModal("You have been successfully logged out!");
     })
     .catch((err) => {
       showModal(err, 2);

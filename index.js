@@ -102,7 +102,11 @@ writeStoryBtn.addEventListener("click", (e) => {
 });
 
 authButton.addEventListener("click", () => {
-  if (User.isLoggedIn) {
+  const authState = User.isLoggedIn;
+  // Wait until the firebase auth observer verifies the
+  // user state and sets the state to either true or false
+  if (authState === null) return;
+  if (authState) {
     handleLogout();
   } else {
     SessionService.renderForm(true);
