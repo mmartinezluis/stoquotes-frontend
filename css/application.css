@@ -43,6 +43,12 @@ li {
   overflow: scroll;
 }
 
+@media screen and (max-width: 768px) {
+  #offcanvasScrolling {
+    width: 100% !important;
+  }
+}
+
 #machine {
   border: solid red 2px;
   border-radius: 2rem;
@@ -192,10 +198,16 @@ li {
   border-radius: 1rem;
 }
 
+@media screen and (max-width: 576px) {
+  .profile-story :is(.description, .edit-description) {
+    margin: 10px 1rem 0;
+  }
+}
+
 .profile-story .description {
   padding: 15px 20px 10px;
   background-color: antiquewhite;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
 }
 
 .profile-story .edit-description textarea {
