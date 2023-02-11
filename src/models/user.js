@@ -30,7 +30,6 @@ class User {
   };
 
   static cleanupUser = () => {
-    User.isLoggedIn = false;
     User.currentUser = {};
 
     User.feed = new Set();

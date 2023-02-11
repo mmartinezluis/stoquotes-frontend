@@ -49,8 +49,9 @@ onAuthStateChanged(auth, (user) => {
   } else {
     // User is signed out
     console.log("from logged out state observer");
-    // if (User.isLoggedIn == null) showModal("Your session has expired", 3);
     User.cleanupUser();
+    // if (User.isLoggedIn !== null) showModal("Your session has expired", 3);
+    User.isLoggedIn = false;
     authButton.innerText = "Login";
   }
 });
@@ -95,7 +96,7 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
 
   _getTokenAndUser(payload, isLoginMode ? "/login" : "/signup")
     .then(({ token, user }) => {
-      _authenticateWithFirebase(token, user);
+      _authenticateWithFirebase(token, user, isLoginMode);
     })
     // catches the errors related to the token generation and
     // user retrieval/creation in Ruby on Rails backend
@@ -108,7 +109,7 @@ export const handleLogout = () => {
   signOut(auth)
     .then(() => {
       console.log("from logout call");
-      showModal("You have been successfully logged out!");
+      showModal("You have been successfully logged out");
     })
     .catch((err) => {
       showModal(err, 2);
@@ -136,14 +137,18 @@ async function _getTokenAndUser(payload, endpoint) {
   return data;
 }
 
-function _authenticateWithFirebase(token, user) {
+function _authenticateWithFirebase(token, user, isLoginMode) {
   return (
     signInWithCustomToken(auth, token)
       .then((userCredential) => {
         console.log("from authentication function");
+        user = JSON.parse(user);
+        console.log(user);
         User.setUserProfile(user);
         // @TODO: fetch social data
         destroyPortal("session-portal");
+        User.isLoggedIn = true;
+        authButton.innerText = "Logout";
         showModal("You have been successfully logged in!!!", 1);
       })
       // Catches the errors related to user authentication in Firebase
