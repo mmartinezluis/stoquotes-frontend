@@ -142,14 +142,14 @@ function _authenticateWithFirebase(token, user, isLoginMode) {
     signInWithCustomToken(auth, token)
       .then((userCredential) => {
         console.log("from authentication function");
-        user = JSON.parse(user);
-        console.log(user);
-        User.setUserProfile(user);
-        // @TODO: fetch social data
+        profile = JSON.parse(user);
+        console.log(profile);
+        User.setUserProfile(profile);
         destroyPortal("session-portal");
         User.isLoggedIn = true;
         authButton.innerText = "Logout";
         showModal("You have been successfully logged in!!!", 1);
+        if (isLoginMode) userService.fetchSocialData(profile.id);
       })
       // Catches the errors related to user authentication in Firebase
       .catch((error) => {
