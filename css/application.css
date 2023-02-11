@@ -169,13 +169,12 @@ li {
   position: sticky;
   top:0;
   z-index: 10;
-  /* background-color: white; */
-  /* opacity: 0.5; */
 }
 
 .stories-navigation ul {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .stories-navigation ul a.active {

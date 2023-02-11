@@ -5,6 +5,7 @@ import { normalizeDate } from "../tools/customFunctions.js";
 export default class Story {
   static all = [];
   static storyContainer = document.getElementById("stories-container");
+  static publicContainer = "";
   static storyForm = document.getElementById("form-container");
   static showForm = false;
   static currentlyUpdatingId = null;
@@ -45,7 +46,7 @@ export default class Story {
 
   storyHTML() {
     this.element.innerHTML = `
-        <div class="profile-story container">
+        <div class="profile-story">
             <div class="list-group-item list-group-item-action py-3 lh-tigh">
                 ${Quote.generateQuoteTemplate(
                   this.quote,
@@ -64,9 +65,15 @@ export default class Story {
     return this.element;
   }
 
+  publicStoryHTML() {
+    this.element.innerHTML = "";
+  }
+
   addToDom() {
     Story.storyContainer.prepend(this.storyHTML());
   }
+
+  addToPublic() {}
 
   static renderForm(user_id, quote_id) {
     Story.storyForm.innerHTML = `
