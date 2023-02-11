@@ -46,7 +46,7 @@ export default class Story {
 
   storyHTML() {
     this.element.innerHTML = `
-        <div class="profile-story">
+        <div class="profile-story ">
             <div class="list-group-item list-group-item-action py-3 lh-tigh">
                 ${Quote.generateQuoteTemplate(
                   this.quote,
