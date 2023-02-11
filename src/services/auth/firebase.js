@@ -142,7 +142,7 @@ function _authenticateWithFirebase(token, user, isLoginMode) {
     signInWithCustomToken(auth, token)
       .then((userCredential) => {
         console.log("from authentication function");
-        profile = JSON.parse(user);
+        const profile = JSON.parse(user);
         console.log(profile);
         User.setUserProfile(profile);
         destroyPortal("session-portal");

@@ -163,6 +163,7 @@ li {
 #stories-container {
   list-style-type: none;
   padding-top: 10px;
+  overflow-wrap: anywhere;
 }
 
 .stories-navigation {

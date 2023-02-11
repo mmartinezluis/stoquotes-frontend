@@ -107,14 +107,12 @@
                         <!-- <a class="navbar-brand" href="#">Stories</a> -->
                         <span class="navbar-brand" id="auth-status-btn"></span>
 
-                        <div class="navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 700px" >
+                        <div class="navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width: 700px" >
                             <div class="offcanvas-header">
                                 <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Stories</h3>
                                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
-                            <!-- <div class="offcanvas-body">
-                                
-                            </div> -->
+                      
                             <div class="stories-navigation">
                                 <ul>
                                     <li class="nav-item">
@@ -131,14 +129,27 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="collapse d-flex flex-column align-items-stretch flex-shrink-0 bg-white navbar-collapse offcanvas-collapse open" style="width: 650px;">
+
+
+                            <!-- <div class="collapse d-flex flex-column align-items-stretch flex-shrink-0 bg-white navbar-collapse offcanvas-collapse open" style="width: 650px;"> -->
                                 <!-- <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;"></div> -->
-                                <div class="list-group list-group-flush border-top scrollarea">
-                                    <div id="stories-container">
+                                <!-- <div class="list-group list-group-flush border-top scrollarea"> -->
+                                    <!-- <div id="stories-container" class="container"> -->
                                         <!-- STORIES ARE INCLUDED INSIDE THIS CONTAINER -->
-                                    </div>
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+
+
+                            <!-- IMPORTANT: 100% width ensures that the text field generated generated via JS when clicking -->
+                            <!-- on 'edit' on a story the field is not shrank, causing an unpleasant change -->
+                            <div class="offcanvas-body" style="width: 100%">
+                                <div id="stories-container">
+                                    <!-- STORIES ARE INCLUDED INSIDE THIS CONTAINER -->
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </nav>

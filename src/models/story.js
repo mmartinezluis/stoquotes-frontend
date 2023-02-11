@@ -46,7 +46,7 @@ export default class Story {
 
   storyHTML() {
     this.element.innerHTML = `
-        <div class="profile-story ">
+        <div class="profile-story">
             <div class="list-group-item list-group-item-action py-3 lh-tigh">
                 ${Quote.generateQuoteTemplate(
                   this.quote,
@@ -92,13 +92,18 @@ export default class Story {
   }
 
   handleClick = (event) => {
+    const currentlyUpdating = Story.currentlyUpdatingId;
     if (event.target.innerText === "Delete") {
+      if (currentlyUpdating !== null && currentlyUpdating !== this.id) {
+        Story.all.find((s) => s.id === currentlyUpdating)?.storyHTML();
+        Story.currentlyUpdatingId = null;
+      }
       const result = confirm("Are you sure you want to delete this story?");
       if (result) {
         storyService.deleteStory(this.id, event);
       }
     } else if (event.target.innerText === "Edit") {
-      const currentlyUpdating = Story.currentlyUpdatingId;
+      //   const currentlyUpdating = Story.currentlyUpdatingId;
       if (currentlyUpdating !== null && currentlyUpdating !== this.id) {
         // @TODO: Store the currently logged in user stories in a separate static method
         Story.all.find((s) => s.id === currentlyUpdating)?.storyHTML();

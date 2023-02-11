@@ -96,7 +96,7 @@ export default class StoryService {
     })
       .then((resp) => resp.json())
       .then((json) => {
-        event.target.parentElement.parentElement.remove();
+        event.target.parentElement.parentElement.parentElement.remove();
         showModal(json.message, 1);
       })
       .catch((err) => {
