@@ -1,5 +1,5 @@
 import Story from "../models/story.js";
-import { showModal } from "../output.js";
+import { showModal, User } from "../output.js";
 
 export default class StoryService {
   constructor(endpoint) {
@@ -10,10 +10,12 @@ export default class StoryService {
     fetch(`${this.endpoint}/stories`)
       .then((resp) => resp.json())
       .then((stories) => {
-        for (let i = stories.length - 1; i >= 0; i--) {
-          const s = new Story(stories[i]);
-          s.addToDom();
-        }
+        stories.forEach((story) => {
+          const s = new Story(story);
+          Story.all.push(s);
+          Story.allSet.add(s.id);
+          s.addToFeed();
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -45,8 +47,23 @@ export default class StoryService {
     };
 
     fetch(`${this.endpoint}/stories`, config)
-      .then((resp) => resp.json())
+      .then((resp) => {
+        if (!resp.ok) {
+          return resp.text().then((text) => {
+            throw new Error(text);
+          });
+        }
+        return resp.json();
+      })
       .then((story) => {
+        console.log(story);
+        // cleanup the currently no stories message if this is the first
+        // story user is publishing
+        const stories = User.currentUser.stories;
+        if (!stories.length) {
+          Story.storyContainer.innerHTML = "";
+        }
+        User.currentUser.stories.push(story);
         const s = new Story(story);
         s.addToDom();
         event.target.reset();
@@ -56,6 +73,7 @@ export default class StoryService {
           "active",
           ""
         );
+        console.log(User.currentUser);
         showModal(`Story successfully created`, 1);
       })
       .catch((err) => {
@@ -97,6 +115,13 @@ export default class StoryService {
       .then((resp) => resp.json())
       .then((json) => {
         event.target.parentElement.parentElement.parentElement.remove();
+        const stories = User.currentUser.stories;
+        User.currentUser.stories = stories.filter((story) => story.id !== id);
+        if (!User.currentUser.stories.length) {
+          Story.storyContainer.innerHTML =
+            "<h5 class='text-center'><em>It seems you have not created any stories yet!!!</em></h5>";
+        }
+        console.log(User.currentUser);
         showModal(json.message, 1);
       })
       .catch((err) => {

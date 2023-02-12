@@ -56,7 +56,7 @@ class UserService {
         },
         body: JSON.stringify({ user: { id: userId } }),
       }),
-      fetch(this.socialBaseUrl + "/users/" + userId),
+      //   fetch(this.socialBaseUrl + "/users/" + userId),
     ]);
     if (!profileResponse.ok) {
       return profileResponse.text().then((text) => {
@@ -64,7 +64,8 @@ class UserService {
       });
     }
     const profile = await profileResponse.json();
-    const social = await socialResponse.json();
+    // const social = await socialResponse.json();
+    const social = {};
     return [profile, social];
   }
 }

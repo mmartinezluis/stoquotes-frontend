@@ -6,7 +6,7 @@ class SessionService {
     this.baseUrl = baseUrl;
   }
 
-  static renderForm = (isLoginMode = true) => {
+  static renderForm = (isLoginMode = true, afterLoginSignupCallaback) => {
     let sessionPortal = document.querySelector("#session-portal");
     let formContainer = sessionPortal?.children[1];
     // if the portal has not been created, create the portal,
@@ -26,22 +26,30 @@ class SessionService {
           if (label.parentElement.querySelector("#" + identifier).checked)
             return;
           const login = identifier.includes("login");
-          SessionService.setForm(formContainer, login);
+          SessionService.setForm(
+            formContainer,
+            login,
+            afterLoginSignupCallaback
+          );
         });
       });
 
       createPortal("session-portal", [toggleButtons, formContainer]);
     }
-    SessionService.setForm(formContainer, isLoginMode);
+    SessionService.setForm(
+      formContainer,
+      isLoginMode,
+      afterLoginSignupCallaback
+    );
   };
 
-  static setForm = (el, isLoginMode) => {
+  static setForm = (el, isLoginMode, afterLoginSignupCallaback) => {
     el.innerHTML = isLoginMode
       ? SessionService.LoginForm()
       : SessionService.SignupForm();
     const submitBtn = el.querySelector('[type="submit"]');
     submitBtn.addEventListener("click", (e) =>
-      handleLoginAndSignup(e, isLoginMode)
+      handleLoginAndSignup(e, isLoginMode, afterLoginSignupCallaback)
     );
   };
 

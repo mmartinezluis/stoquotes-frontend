@@ -1,4 +1,5 @@
 import Story from "./story.js";
+import User from "./user.js";
 
 export default class Quote {
   static all = [];
@@ -43,6 +44,6 @@ export default class Quote {
     Quote.quotesContainer.innerHTML = quote.element.innerHTML;
     // Once a quote is dsplayed, show the write a story button and activate the new story form
     Story.writeStoryBtn.style.display = "block";
-    Story.renderForm(1, quote.id);
+    Story.renderForm(User.currentUser.id, quote.id);
   }
 }

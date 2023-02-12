@@ -1,11 +1,13 @@
 import Quote from "./quote.js";
-import { showModal, storyService } from "../output.js";
+import { showModal, storyService, User } from "../output.js";
 import { normalizeDate } from "../tools/customFunctions.js";
 
 export default class Story {
+  // all and allSet keep the track of the public stories
   static all = [];
+  static allSet = new Set();
   static storyContainer = document.getElementById("stories-container");
-  static publicContainer = "";
+  static publicContainer = document.getElementById("public-stories-container");
   static storyForm = document.getElementById("form-container");
   static showForm = false;
   static currentlyUpdatingId = null;
@@ -32,12 +34,21 @@ export default class Story {
     this.element.dataset.id = this.id;
     this.element.id = `story-${this.id}`;
     this.element.addEventListener("click", this.handleClick);
-
-    Story.all.push(this);
   }
 
-  quote() {
-    return Quote.all.find((q) => q.id === this.quote_id);
+  static loadProfileStories(stories) {
+    if (!stories.length) {
+      Story.storyContainer.innerHTML =
+        "<h5 class='text-center'><em>It seems you have not created any stories yet!!!</em></h5>";
+      return;
+    }
+    Story.storyContainer.innerHTML = "";
+    stories.forEach((story) => {
+      const s = new Story(story);
+      User.profileStories.push(s);
+      User.storiesIdSet.add(s.id);
+      s.addToDom();
+    });
   }
 
   static storyTemplate(description) {
@@ -73,7 +84,9 @@ export default class Story {
     Story.storyContainer.prepend(this.storyHTML());
   }
 
-  addToPublic() {}
+  addToFeed() {
+    Story.publicContainer.prepend(this.storyHTML());
+  }
 
   static renderForm(user_id, quote_id) {
     Story.storyForm.innerHTML = `
@@ -95,7 +108,9 @@ export default class Story {
     const currentlyUpdating = Story.currentlyUpdatingId;
     if (event.target.innerText === "Delete") {
       if (currentlyUpdating !== null && currentlyUpdating !== this.id) {
-        Story.all.find((s) => s.id === currentlyUpdating)?.storyHTML();
+        User.profileStories
+          .find((s) => s.id === currentlyUpdating)
+          ?.storyHTML();
         Story.currentlyUpdatingId = null;
       }
       const result = confirm("Are you sure you want to delete this story?");
@@ -103,10 +118,11 @@ export default class Story {
         storyService.deleteStory(this.id, event);
       }
     } else if (event.target.innerText === "Edit") {
-      //   const currentlyUpdating = Story.currentlyUpdatingId;
       if (currentlyUpdating !== null && currentlyUpdating !== this.id) {
         // @TODO: Store the currently logged in user stories in a separate static method
-        Story.all.find((s) => s.id === currentlyUpdating)?.storyHTML();
+        User.profileStories
+          .find((s) => s.id === currentlyUpdating)
+          ?.storyHTML();
         Story.currentlyUpdatingId = this.id;
       } else if (currentlyUpdating === null) {
         Story.currentlyUpdatingId = this.id;

@@ -38,7 +38,7 @@ onAuthStateChanged(auth, (user) => {
       .then(([profile, social]) => {
         console.log(profile, social);
         User.setUserProfile(profile);
-        User.setUserSocial(social);
+        // User.setUserSocial(social);
         User.isLoggedIn = true;
         authButton.innerText = "Logout";
       })
@@ -56,7 +56,11 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-export const handleLoginAndSignup = (e, isLoginMode) => {
+export const handleLoginAndSignup = (
+  e,
+  isLoginMode,
+  afterLoginSignupCallaback
+) => {
   e.preventDefault();
   const form = document.getElementById("session-form");
   const fieldsMapping = {
@@ -96,7 +100,12 @@ export const handleLoginAndSignup = (e, isLoginMode) => {
 
   _getTokenAndUser(payload, isLoginMode ? "/login" : "/signup")
     .then(({ token, user }) => {
-      _authenticateWithFirebase(token, user, isLoginMode);
+      _authenticateWithFirebase(
+        token,
+        user,
+        isLoginMode,
+        afterLoginSignupCallaback
+      );
     })
     // catches the errors related to the token generation and
     // user retrieval/creation in Ruby on Rails backend
@@ -137,7 +146,12 @@ async function _getTokenAndUser(payload, endpoint) {
   return data;
 }
 
-function _authenticateWithFirebase(token, user, isLoginMode) {
+function _authenticateWithFirebase(
+  token,
+  user,
+  isLoginMode,
+  afterLoginSignupCallaback
+) {
   return (
     signInWithCustomToken(auth, token)
       .then((userCredential) => {
@@ -149,7 +163,10 @@ function _authenticateWithFirebase(token, user, isLoginMode) {
         User.isLoggedIn = true;
         authButton.innerText = "Logout";
         showModal("You have been successfully logged in!!!", 1);
-        if (isLoginMode) userService.fetchSocialData(profile.id);
+        // if (isLoginMode) userService.fetchSocialData(profile.id);
+        if (typeof afterLoginSignupCallaback === "function") {
+          afterLoginSignupCallaback();
+        }
       })
       // Catches the errors related to user authentication in Firebase
       .catch((error) => {

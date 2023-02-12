@@ -1,8 +1,16 @@
+import { Story } from "../output.js";
+
 class User {
-  // User auth state
+  // User auth status
   static isLoggedIn = null;
   // For logged in user
   static currentUser = {};
+
+  // store the instances of the logged-in user Story class;
+  // keep a set for easy query
+  static profileStories = [];
+  static storiesIdSet = new Set();
+
   // Social data; transformed for easy querying by frontend
   static followers = new Set();
   static following = new Set();
@@ -15,6 +23,7 @@ class User {
 
   static setUserProfile = (user) => {
     User.currentUser = user;
+    Story.loadProfileStories(user.stories);
   };
 
   static setUserSocial = (social) => {
@@ -40,6 +49,9 @@ class User {
     User.followingMirror = {};
     User.feedMirror = {};
     User.reactions = {};
+
+    Story.storyContainer.innerHTML =
+      "<h5 class='text-center'><em>Please <span>login</span> to access this feature</em></h5>";
   };
 
   static publicUsers = [];

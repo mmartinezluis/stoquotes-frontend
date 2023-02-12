@@ -36,7 +36,13 @@ Story.storyForm.addEventListener("submit", handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
-  const user_id = document.getElementsByClassName("user_id")[0].value;
+  // const user_id_field = document.getElementsByClassName("user_id")[0];
+  const user_id = User.currentUser.id;
+  if (user_id === undefined) {
+    SessionService.renderForm(true);
+    showModal("Please login to publish stories", 3);
+    return;
+  }
   const quote_id = document.getElementsByClassName("quote_id")[0].value;
   storyService.createStory(user_id, quote_id, event);
 }
