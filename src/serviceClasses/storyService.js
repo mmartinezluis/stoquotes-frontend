@@ -64,12 +64,12 @@ export default class StoryService {
         console.log(story);
         // cleanup the currently no stories message if this is the first
         // story user is publishing
-        const stories = User.currentUser.stories;
-        if (!stories.length) {
+        if (!User.profileStories.length) {
           Story.storyContainer.innerHTML = "";
         }
-        User.currentUser.stories.push(story);
         const s = new Story(story);
+        User.profileStories.push(s);
+        User.storiesIdSet.add(s.id);
         s.addToDom();
         event.target.reset();
         Story.storyForm.style.display = "none";
@@ -117,8 +117,8 @@ export default class StoryService {
       });
   }
 
-  deleteStory(id, event) {
-    fetch(`${this.endpoint}/stories/${id}`, {
+  deleteStory(id, event, user_id) {
+    fetch(`${this.endpoint}/stories/${id}?user_id=${user_id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -134,12 +134,14 @@ export default class StoryService {
       })
       .then(() => {
         event.target.parentElement.parentElement.parentElement.remove();
-        const stories = User.currentUser.stories;
-        User.currentUser.stories = stories.filter((story) => story.id !== id);
-        if (!User.currentUser.stories.length) {
+        User.profileStories = User.profileStories.filter(
+          (story) => story.id !== id
+        );
+        if (!User.profileStories.length) {
           Story.storyContainer.innerHTML =
             "<h5 class='text-center'><em>It seems you have not created any stories yet!!!</em></h5>";
         }
+        User.storiesIdSet.delete(id);
         console.log(User.currentUser);
         showModal("Story sucessfully deleted", 1);
       })

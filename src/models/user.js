@@ -40,6 +40,8 @@ class User {
 
   static cleanupUser = () => {
     User.currentUser = {};
+    User.profileStories = [];
+    User.storiesIdSet = new Set();
 
     User.feed = new Set();
     User.followers = new Set();

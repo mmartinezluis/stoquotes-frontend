@@ -115,7 +115,7 @@ export default class Story {
       }
       const result = confirm("Are you sure you want to delete this story?");
       if (result) {
-        storyService.deleteStory(this.id, event);
+        storyService.deleteStory(this.id, event, User.currentUser.id);
       }
     } else if (event.target.innerText === "Edit") {
       if (currentlyUpdating !== null && currentlyUpdating !== this.id) {
@@ -177,8 +177,15 @@ export default class Story {
       return;
     }
     const user_id = User.currentUser.id;
-    if (user_id === undefined || user_id !== this.user_id) {
+    if (user_id === undefined) {
       showModal("Cannot proceed; login is required", 2);
+      return;
+    }
+    if (user_id !== this.user_id) {
+      showModal(
+        "You are trying to update another user's story; not allowed",
+        3
+      );
       return;
     }
     storyService.sendPatch(this, new_description, event, user_id);
