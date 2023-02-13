@@ -6,7 +6,13 @@ import {
   signInWithCustomToken,
   signOut,
 } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-import { sessionService, showModal, User, userService } from "../../output.js";
+import {
+  sessionService,
+  showModal,
+  storyService,
+  User,
+  userService,
+} from "../../output.js";
 import { destroyPortal } from "../../tools/customFunctions.js";
 
 // Import the functions you need from the SDKs you need
@@ -41,6 +47,9 @@ onAuthStateChanged(auth, (user) => {
         // User.setUserSocial(social);
         User.isLoggedIn = true;
         authButton.innerText = "Logout";
+
+        // Delete later; have the setUserProfile method set up the user feed
+        storyService.getStories();
       })
       .catch((err) => {
         showModal(err, 2);
@@ -51,6 +60,9 @@ onAuthStateChanged(auth, (user) => {
     console.log("from logged out state observer");
     User.cleanupUser();
     // if (User.isLoggedIn !== null) showModal("Your session has expired", 3);
+    if (User.isLoggedIn === null) {
+      storyService.getStories();
+    }
     User.isLoggedIn = false;
     authButton.innerText = "Login";
   }

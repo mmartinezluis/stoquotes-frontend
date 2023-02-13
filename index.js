@@ -25,7 +25,6 @@ const writeStoryBtn = Story.writeStoryBtn;
 writeStoryBtn.style.display = "none";
 
 // Load the user stories, the categories, and the authors
-storyService.getStories();
 categoryService.getCategories();
 authorService.loadAuthors();
 

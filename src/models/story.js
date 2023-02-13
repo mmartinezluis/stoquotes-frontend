@@ -176,6 +176,11 @@ export default class Story {
       this.storyHTML();
       return;
     }
-    storyService.sendPatch(this, new_description, event);
+    const user_id = User.currentUser.id;
+    if (user_id === undefined || user_id !== this.user_id) {
+      showModal("Cannot proceed; login is required", 2);
+      return;
+    }
+    storyService.sendPatch(this, new_description, event, user_id);
   };
 }

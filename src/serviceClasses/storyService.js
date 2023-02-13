@@ -8,7 +8,12 @@ export default class StoryService {
 
   getStories() {
     fetch(`${this.endpoint}/stories`)
-      .then((resp) => resp.json())
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.statusText + "; Code: " + resp.status);
+        }
+        return resp.json();
+      })
       .then((stories) => {
         stories.forEach((story) => {
           const s = new Story(story);
@@ -82,18 +87,25 @@ export default class StoryService {
       });
   }
 
-  sendPatch(story, new_description, event) {
+  sendPatch(story, new_description, event, user_id) {
     const configObj = {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       // important: the Ruby on Rails backend accepts "description" as a param
-      body: JSON.stringify({ description: new_description }),
+      body: JSON.stringify({ description: new_description, user_id }),
     };
 
     fetch(`${this.endpoint}/stories/${story.id}`, configObj)
-      .then((resp) => resp.json())
+      .then((resp) => {
+        if (!resp.ok) {
+          return resp.text().then((text) => {
+            throw new Error(text + "; code: " + resp.status);
+          });
+        }
+        return resp.json();
+      })
       .then((json) => {
         story.description = new_description;
         story.storyHTML();
@@ -101,7 +113,7 @@ export default class StoryService {
         showModal(`Story #${story.id} successfully updated`, 1);
       })
       .catch(function (error) {
-        alert(error);
+        showModal(error, 2);
       });
   }
 
@@ -112,8 +124,15 @@ export default class StoryService {
         "Content-Type": "application/json",
       },
     })
-      .then((resp) => resp.json())
-      .then((json) => {
+      .then((resp) => {
+        console.log(resp);
+        if (!resp.ok) {
+          return resp.text().then((text) => {
+            throw new Error(text + "; code: " + resp.status);
+          });
+        }
+      })
+      .then(() => {
         event.target.parentElement.parentElement.parentElement.remove();
         const stories = User.currentUser.stories;
         User.currentUser.stories = stories.filter((story) => story.id !== id);
@@ -122,7 +141,7 @@ export default class StoryService {
             "<h5 class='text-center'><em>It seems you have not created any stories yet!!!</em></h5>";
         }
         console.log(User.currentUser);
-        showModal(json.message, 1);
+        showModal("Story sucessfully deleted", 1);
       })
       .catch((err) => {
         console.log(err);
