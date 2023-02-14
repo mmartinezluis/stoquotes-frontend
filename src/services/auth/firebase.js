@@ -52,8 +52,14 @@ onAuthStateChanged(auth, (user) => {
         storyService.getStories();
       })
       .catch((err) => {
+        // if there is an error getting the user profile data from the Ruby on Rails
+        // backend, log the user out of Firebase and clean up the user and the Login button
         showModal(err, 2);
         console.log(err);
+        handleLogout();
+        User.cleanupUser();
+        User.isLoggedIn = false;
+        authButton.innerText = "Login";
       });
   } else {
     // User is signed out
@@ -140,7 +146,7 @@ export const handleLogout = () => {
 //<**************** HELPER FUNCTIONS ******************>
 
 async function _getTokenAndUser(payload, endpoint) {
-  const response = await fetch(sessionService.baseUrl + endpoint, {
+  const resp = await fetch(sessionService.baseUrl + endpoint, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -148,13 +154,16 @@ async function _getTokenAndUser(payload, endpoint) {
     body: JSON.stringify(payload),
   });
   // @TODO: properly handle error object to extract message string only
-  if (!response.ok) {
-    console.log(response);
-    return response.text().then((text) => {
+  if (!resp.ok) {
+    console.log(resp);
+    if (resp.status >= 500) {
+      throw new Error(resp.statusText + "; Code: " + resp.status);
+    }
+    return resp.text().then((text) => {
       throw new Error(text);
     });
   }
-  const data = await response.json();
+  const data = await resp.json();
   return data;
 }
 
