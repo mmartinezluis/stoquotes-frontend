@@ -43,8 +43,12 @@ onAuthStateChanged(auth, (user) => {
       .fetchProfileAndSocialData(user.uid)
       .then(([profile, social]) => {
         console.log(profile, social);
+        const feed = Object.values(social["Items"][0].feed2.M).map(
+          (el) => el.S
+        );
+        console.log(feed);
         User.setUserProfile(profile);
-        // User.setUserSocial(social);
+        User.setUserSocial(social);
         User.isLoggedIn = true;
         authButton.innerText = "Logout";
 

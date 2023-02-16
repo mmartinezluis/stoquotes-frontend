@@ -1,10 +1,11 @@
-import { Story } from "../output.js";
+import { Story, userService } from "../output.js";
 
 class User {
   // User auth status
   static isLoggedIn = null;
   // For logged in user
   static currentUser = {};
+  static publicUsers = [];
 
   // store the instances of the logged-in user Story class;
   // keep a set for easy query
@@ -27,15 +28,18 @@ class User {
   };
 
   static setUserSocial = (social) => {
-    const data = social["Items"][0];
-    User.feed = data.feed && new Set(data.feed.SS);
+    const data = social["Items"] && social["Items"][0];
+    if (!data) return;
+    User.feedPrecursor = data.feed && new Set(data.feed.SS);
     User.following = data.following && new Set(data.following.SS);
     User.followers = data.followers && new Set(data.followers.SS);
     User.reactions = data.reactions;
+    User.feed = [];
 
-    User.feedMirror = data.feed;
+    User.feedPrecursorMirror = data.feed;
     User.followersMirror = data.following;
     User.followersMirror = data.followers;
+    userService.buildFeed(User.feedPrecursor);
   };
 
   static cleanupUser = () => {
@@ -43,13 +47,13 @@ class User {
     User.profileStories = [];
     User.storiesIdSet = new Set();
 
-    User.feed = new Set();
+    User.feedPrecursor = new Set();
     User.followers = new Set();
     User.following = new Set();
 
     User.followersMirror = {};
     User.followingMirror = {};
-    User.feedMirror = {};
+    User.feedPrecursorMirror = {};
     User.reactions = {};
 
     Story.storyContainer.innerHTML =

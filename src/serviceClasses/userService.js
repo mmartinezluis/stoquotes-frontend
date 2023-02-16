@@ -1,4 +1,4 @@
-import { showModal, User } from "../output.js";
+import { showModal, Story, User } from "../output.js";
 
 class UserService {
   constructor(social_base, backend_base) {
@@ -56,7 +56,7 @@ class UserService {
         },
         body: JSON.stringify({ user: { id: userId } }),
       }),
-      //   fetch(this.socialBaseUrl + "/users/" + userId),
+      fetch(this.socialBaseUrl + "/users/" + userId),
     ]);
     if (!profileResponse.ok) {
       return profileResponse.text().then((text) => {
@@ -64,9 +64,38 @@ class UserService {
       });
     }
     const profile = await profileResponse.json();
-    // const social = await socialResponse.json();
-    const social = {};
+    const social = await socialResponse.json();
+    // const social = {};
     return [profile, social];
+  }
+
+  buildFeed(feed_user_ids) {
+    fetch(this.backendBaseUrl + "/feed", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([...feed_user_ids]),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          return resp.text().then((text) => {
+            throw new Error(text + "; code: " + resp.status);
+          });
+        }
+        return resp.json();
+      })
+      .then((stories) => {
+        for (let story of stories) {
+          const s = new Story(story);
+          User.publicUsers.push(story.user);
+          User.feed.push(s);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        showModal(err, 2);
+      });
   }
 }
 
