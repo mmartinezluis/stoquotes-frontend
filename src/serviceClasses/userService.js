@@ -50,7 +50,7 @@ class UserService {
   async fetchProfileAndSocialData(userId) {
     const [profileResponse, socialResponse] = await Promise.all([
       fetch(this.backendBaseUrl + `/profile/` + userId),
-      fetch(this.socialBaseUrl + "/users/" + userId),
+      //   fetch(this.socialBaseUrl + "/users/" + userId),
     ]);
     if (!profileResponse.ok) {
       return profileResponse.text().then((text) => {
@@ -58,8 +58,8 @@ class UserService {
       });
     }
     const profile = await profileResponse.json();
-    const social = await socialResponse.json();
-    // const social = {};
+    // const social = await socialResponse.json();
+    const social = {};
     return [profile, social];
   }
 
@@ -89,6 +89,40 @@ class UserService {
         console.log(err);
         showModal(err, 2);
       });
+  }
+
+  follow(follower, followee) {
+    fetch(this.socialBaseUrl + "/follow", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ follower, followee }),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.statusText + "; Code: " + resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        User.following = new Set(data);
+        finishFollow(follower, followee);
+      })
+      .catch((err) => {
+        console.log(err);
+        showModal(err, 2);
+      });
+  }
+
+  finishFollow(follower, followee) {
+    fetch(this.backendBaseUrl + "/followScheduler", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ follower, followee }),
+    });
   }
 }
 

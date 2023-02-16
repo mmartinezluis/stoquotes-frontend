@@ -65,7 +65,9 @@ export default class Story {
                 )}
                 <span>Story posted by User ${this.user_id} on ${normalizeDate(
       this.created_at
-    )}:</span><br>
+    )}:</span>
+    <span><Follow</span>
+    <br>
                 ${Story.storyTemplate(this.description)}<br>
                 <button class="btn btn-outline-primary btn-sm">Edit</button>
                 <button class="btn btn-outline-danger btn-sm">Delete</button>
