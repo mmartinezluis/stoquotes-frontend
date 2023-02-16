@@ -91,13 +91,13 @@ class UserService {
       });
   }
 
-  follow(follower, followee) {
-    fetch(this.socialBaseUrl + "/follow", {
+  follow(follower, following) {
+    fetch(this.socialBaseUrl + "/users/" + follower + "/following", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ follower, followee }),
+      body: JSON.stringify({ following }),
     })
       .then((resp) => {
         if (!resp.ok) {
@@ -106,6 +106,7 @@ class UserService {
         return resp.json();
       })
       .then((data) => {
+        console.log(data);
         User.following = new Set(data);
         finishFollow(follower, followee);
       })

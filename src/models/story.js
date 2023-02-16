@@ -1,5 +1,5 @@
 import Quote from "./quote.js";
-import { showModal, storyService, User } from "../output.js";
+import { showModal, storyService, User, userService } from "../output.js";
 import { normalizeDate } from "../tools/customFunctions.js";
 
 export default class Story {
@@ -56,7 +56,8 @@ export default class Story {
   }
 
   storyHTML() {
-    this.element.innerHTML = `
+    this.element.innerHTML =
+      `
         <div class="profile-story">
             <div class="list-group-item list-group-item-action py-3 lh-tigh">
                 ${Quote.generateQuoteTemplate(
@@ -64,10 +65,10 @@ export default class Story {
                   Quote.templateStyle.profile
                 )}
                 <span>Story posted by User ${this.user_id} on ${normalizeDate(
-      this.created_at
-    )}:</span>
-    <span><Follow</span>
-    <br>
+        this.created_at
+      )}:</span>` +
+      '<span onclick ="userService.follow(User.current_user.id, this.user_id)">Follow</span>' +
+      `<br>
                 ${Story.storyTemplate(this.description)}<br>
                 <button class="btn btn-outline-primary btn-sm">Edit</button>
                 <button class="btn btn-outline-danger btn-sm">Delete</button>
