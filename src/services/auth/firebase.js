@@ -59,11 +59,11 @@ onAuthStateChanged(auth, (user) => {
         // if there is an error getting the user profile data from the Ruby on Rails
         // backend, log the user out of Firebase and clean up the user and the Login button
         showModal(err, 2);
-        console.log(err);
-        handleLogout();
-        User.cleanupUser();
-        User.isLoggedIn = false;
-        authButton.innerText = "Login";
+        // console.log(err);
+        // handleLogout();
+        // User.cleanupUser();
+        // User.isLoggedIn = false;
+        // authButton.innerText = "Login";
       });
   } else {
     // User is signed out

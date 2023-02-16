@@ -49,13 +49,7 @@ class UserService {
   // success, only then query the social database
   async fetchProfileAndSocialData(userId) {
     const [profileResponse, socialResponse] = await Promise.all([
-      fetch(this.backendBaseUrl + "/profile", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ user: { id: userId } }),
-      }),
+      fetch(this.backendBaseUrl + `/profile/` + userId),
       fetch(this.socialBaseUrl + "/users/" + userId),
     ]);
     if (!profileResponse.ok) {
@@ -69,23 +63,22 @@ class UserService {
     return [profile, social];
   }
 
-  buildFeed(feed_user_ids) {
+  buildFeed(story_ids) {
     fetch(this.backendBaseUrl + "/feed", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify([...feed_user_ids]),
+      body: JSON.stringify({ user: { story_ids: [...story_ids] } }),
     })
       .then((resp) => {
         if (!resp.ok) {
-          return resp.text().then((text) => {
-            throw new Error(text + "; code: " + resp.status);
-          });
+          throw new Error(resp.statusText + "; Code: " + resp.status);
         }
         return resp.json();
       })
       .then((stories) => {
+        console.log(stories);
         for (let story of stories) {
           const s = new Story(story);
           User.publicUsers.push(story.user);
