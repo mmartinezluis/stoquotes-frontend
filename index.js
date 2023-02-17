@@ -9,9 +9,9 @@ import {
   categoryService,
   authorService,
   showModal,
-} from "./src/output.js";
-import SessionService from "./src/serviceClasses/sessionService.js";
-import { handleLogout } from "./src/services/auth/firebase.js";
+} from "./src2/output.js";
+import SessionService from "./src2/serviceClasses/sessionService.js";
+import { handleLogout } from "./src2/services/auth/firebase.js";
 
 // Main navigation pane buttons
 let navTabs = document.getElementsByClassName("nav-link flex-sm-fill");
