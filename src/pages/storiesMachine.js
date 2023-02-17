@@ -4,7 +4,7 @@ const StoriesMachine = () => {
   return (
     // START OF WHITE-BOX; HOLDS ALL CREATED STORIES
     <div className="container" id="white-box">
-      {/* <!-- THIS NAVBAR  --> */}
+      {/* THIS NAVBAR */}
       <nav className="navbar navbar-dark bg-dark" aria-label="Main navigation">
         <div className="container-fluid">
           <button
