@@ -55,6 +55,16 @@ export default class Story {
     return `<div class="description" rows="3">${description}</div>`;
   }
 
+  static sayHello = () => {
+    console.log("HLLOE");
+  };
+
+  static populateDynamically = () => {
+    return Object.assign(`<button>The time is?</button>`, {
+      onclick: Story.sayHello,
+    });
+  };
+
   storyHTML() {
     this.element.innerHTML =
       `
@@ -67,7 +77,8 @@ export default class Story {
                 <span>Story posted by User ${this.user_id} on ${normalizeDate(
         this.created_at
       )}:</span>` +
-      '<span onclick ="userService.follow(User.current_user.id, this.user_id)">Follow</span>' +
+      //   `<span onclick="userService.follow(User.current_user.id, this.user_id)">Follow</span>` +
+      Story.populateDynamically() +
       `<br>
                 ${Story.storyTemplate(this.description)}<br>
                 <button class="btn btn-outline-primary btn-sm">Edit</button>

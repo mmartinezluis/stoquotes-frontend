@@ -97,7 +97,7 @@ class UserService {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ following }),
+      body: JSON.stringify({ following: [following] }),
     })
       .then((resp) => {
         if (!resp.ok) {
