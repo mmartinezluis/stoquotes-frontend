@@ -58,7 +58,7 @@ li {
 
 #white-box {
   grid-area: stories;
-  border: solid  2px;
+  /* border: solid  2px; */
   /* overflow: scroll; */
 }
 
