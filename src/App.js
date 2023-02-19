@@ -1,21 +1,18 @@
+import React from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import QuotesMachine from "./pages/quotesMachine";
-import StoriesMachine from "./pages/storiesMachine";
+import Machine from "./components/Machine";
 
 function App() {
   return (
     <div className="App">
       <div className="container">
-        {/* <Routes>
+        <Routes>
           <Route path="/">
-            <Route index element={<QuotesMachine />} />
-            <Route path="stories" element={<StoriesMachine />} />
+            <Route index element={<Machine />} />
           </Route>
-        </Routes> */}
-        <QuotesMachine />
-        <StoriesMachine />
+        </Routes>
       </div>
     </div>
   );

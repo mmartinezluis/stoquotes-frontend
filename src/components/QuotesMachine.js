@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const QuotesMachine = () => {
+const QuotesMachine = (storiesInterfaceRef) => {
+  const navigate = useNavigate();
   return (
     <>
       {/* STORIES NAVBAR */}
@@ -14,6 +16,13 @@ const QuotesMachine = () => {
             data-bs-target="#offcanvasScrolling"
             aria-controls="offcanvasScrolling"
             aria-label="Toggle navigation"
+            onClick={() => {
+              console.log(storiesInterfaceRef);
+              storiesInterfaceRef &&
+              storiesInterfaceRef.className.includes("show")
+                ? navigate("/")
+                : navigate("/stories");
+            }}
           >
             <span className="navbar-toggler-icon"></span>
           </button>

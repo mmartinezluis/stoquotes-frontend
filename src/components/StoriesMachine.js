@@ -1,6 +1,6 @@
 import React from "react";
 
-const StoriesMachine = () => {
+const StoriesMachine = ({ storiesInterfaceRef }) => {
   return (
     // START OF WHITE-BOX; HOLDS ALL CREATED STORIES
     <div className="container" id="white-box">
@@ -12,6 +12,7 @@ const StoriesMachine = () => {
         id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel"
         style={{ width: "700px" }}
+        ref={storiesInterfaceRef}
       >
         <div className="offcanvas-header">
           <h3 className="offcanvas-title" id="offcanvasScrollingLabel">
@@ -156,30 +157,5 @@ const StoriesMachine = () => {
     </div>
   );
 };
-// const StoriesMachine = () => {
-//   return (
-//     // START OF WHITE-BOX; HOLDS ALL CREATED STORIES
-//     <div className="container" id="white-box">
-//     {/* THIS NAVBAR */}
-//       <nav className="navbar navbar-dark bg-dark" aria-label="Main navigation">
-//         <div className="container-fluid">
-//           <button
-//             className="navbar-toggler p-0 border-0"
-//             type="button"
-//             id="navbarSideCollapse"
-//             data-bs-toggle="offcanvas"
-//             data-bs-target="#offcanvasScrolling"
-//             aria-controls="offcanvasScrolling"
-//             aria-label="Toggle navigation"
-//           >
-//             <span className="navbar-toggler-icon"></span>
-//           </button>
-
-//           <span className="navbar-brand" id="auth-status-btn"></span>
-//         </div>
-//       </nav>
-//     </div>
-//   );
-// };
 
 export default StoriesMachine;
