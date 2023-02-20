@@ -45,8 +45,7 @@ const StoriesMachine = () => {
           style={{ width: "700px" }}
           ref={storiesInterfaceRef}
           onBlur={() => {
-            console.log(storiesInterfaceRef.current.className);
-            if (!storiesInterfaceRef.current.className.includes("show")) {
+            if (!storiesInterfaceRef.current.classList.contains("show")) {
               navigate("/");
             }
           }}
