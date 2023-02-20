@@ -1,12 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const QuotesMachine = (storiesInterfaceRef) => {
-  const navigate = useNavigate();
+const QuotesMachine = () => {
   return (
     <>
       {/* STORIES NAVBAR */}
-      <nav className="navbar navbar-dark bg-dark" aria-label="Main navigation">
+      {/* <nav className="navbar navbar-dark bg-dark" aria-label="Main navigation">
         <div className="container-fluid">
           <button
             className="navbar-toggler p-0 border-0"
@@ -18,7 +16,7 @@ const QuotesMachine = (storiesInterfaceRef) => {
             aria-label="Toggle navigation"
             onClick={() => {
               console.log(storiesInterfaceRef);
-              storiesInterfaceRef &&
+              // storiesInterfaceRef &&
               storiesInterfaceRef.className.includes("show")
                 ? navigate("/")
                 : navigate("/stories");
@@ -31,7 +29,7 @@ const QuotesMachine = (storiesInterfaceRef) => {
             Login
           </span>
         </div>
-      </nav>
+      </nav> */}
 
       {/* // THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF
       AUTHORS AND CATEGORIES */}

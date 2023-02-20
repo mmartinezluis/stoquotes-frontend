@@ -9,8 +9,9 @@ function App() {
     <div className="App">
       <div className="container">
         <Routes>
-          <Route path="/">
-            <Route index element={<Machine />} />
+          <Route element={<Machine />}>
+            <Route path="/" element={null} />
+            <Route path="/stories" element={null} />
           </Route>
         </Routes>
       </div>
