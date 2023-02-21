@@ -6,12 +6,12 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
-import { authorsSlice } from "./app/features/authors/authorsSlice";
+import { extendedAuthorsApiSlice } from "./app/features/authors/authorsSlice";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-console.log(authorsSlice);
-store.dispatch(authorsSlice.endpoints.getAuthors.initiate());
+// console.log(extendedAuthorsApiSlice);
+store.dispatch(extendedAuthorsApiSlice.endpoints.getAuthors.initiate());
 
 root.render(
   <React.StrictMode>

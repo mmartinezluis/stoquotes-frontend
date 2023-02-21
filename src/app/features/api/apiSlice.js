@@ -10,10 +10,10 @@ export const apiSlice = createApi({
   // The "endpoints" represent operations and requests for this server
   endpoints: (builder) => ({
     // The `getPosts` endpoint is a "query" operation that returns data
-    //   getAuthors: builder.query({
-    // The URL for the request is '/fakeApi/posts'
-    // query: () => "/authors",
-    //   }),
+    // getAuthorsrr: builder.query({
+    //   // The URL for the request is '/fakeApi/posts'
+    //   query: () => "/authors",
+    // }),
   }),
 });
 

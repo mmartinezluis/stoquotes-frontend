@@ -21,6 +21,7 @@ export default function Machine() {
   //   }
   //   console.log(selectAllAuthors());
   const authors = useSelector(selectAllAuthors);
+  console.log(authors);
   //   console.log(authors);
   return (
     <>
