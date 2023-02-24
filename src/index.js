@@ -12,6 +12,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // console.log(extendedAuthorsApiSlice);
 store.dispatch(extendedAuthorsApiSlice.endpoints.getAuthors.initiate());
+// console.log(store.getState());
+// console.log(
+//   extendedAuthorsApiSlice.endpoints.getAuthors.select()(store.getState())
+// );
 
 root.render(
   <React.StrictMode>
