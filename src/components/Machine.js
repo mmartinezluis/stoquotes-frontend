@@ -49,11 +49,23 @@ export default function Machine() {
   //   if (isSuccess) return <p>Loading...</p>;
   //   if (isError) return <p>An error has occured</p>;
   //   console.log(store.getState());
-  console.log(authorsData.isFetching);
+  // console.log(authorsData.isFetching);
   return (
     <>
       <ModalContainer isOpen={isOpen} modalContent={modalContent} />
-      {/* <button onClick={() => dispatch(getRandomQuote(1))}>Click me</button> */}
+      <button
+        onClick={() => {
+          dispatch(getRandomQuote(1))
+            .unwrap()
+            .then((data) => console.log(data))
+            .catch((err) => {
+              console.log(err);
+              showModal(err, 2);
+            });
+        }}
+      >
+        Click me
+      </button>
       <button onClick={() => showModal("hello")}>Click me</button>
       <StoriesMachine authorsData={authorsData} />
       <QuotesMachine authorsData={authorsData} />

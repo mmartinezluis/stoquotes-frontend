@@ -14,7 +14,6 @@ function ModalProvider({ children }) {
     setIsOpen(true);
     setTimeout(() => {
       setIsOpen(false);
-      setModalContent(initialState);
     }, time);
   };
 
