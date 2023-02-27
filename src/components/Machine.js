@@ -11,6 +11,7 @@ import {
 } from "../app/features/authors/authorsSlice";
 import { getRandomQuote } from "../app/features/quotes/quotesSlice";
 import { useDispatch } from "react-redux";
+import { store } from "../app/store";
 export default function Machine() {
   const dispatch = useDispatch();
   const authorsData = useGetAuthorsQuery();
@@ -43,6 +44,7 @@ export default function Machine() {
   //   if (isLoading) return <p>Loading...</p>;
   //   if (isSuccess) return <p>Loading...</p>;
   //   if (isError) return <p>An error has occured</p>;
+  //   console.log(store.getState());
   return (
     <>
       <button onClick={() => dispatch(getRandomQuote(1))}>Click me</button>
