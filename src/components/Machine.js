@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import QuotesMachine from "./QuotesMachine";
@@ -13,7 +13,10 @@ import { getRandomQuote } from "../app/features/quotes/quotesSlice";
 import { useDispatch } from "react-redux";
 import { store } from "../app/store";
 import ModalContainer from "./modal/ModalContainer";
+import { ModalContext } from "./modal/ModalContext";
+
 export default function Machine() {
+  const { isOpen, modalContent, showModal } = useContext(ModalContext);
   const dispatch = useDispatch();
   const authorsData = useGetAuthorsQuery();
   //   const {
@@ -46,10 +49,12 @@ export default function Machine() {
   //   if (isSuccess) return <p>Loading...</p>;
   //   if (isError) return <p>An error has occured</p>;
   //   console.log(store.getState());
+  console.log(authorsData.isFetching);
   return (
     <>
-      <ModalContainer />
-      <button onClick={() => dispatch(getRandomQuote(1))}>Click me</button>
+      <ModalContainer isOpen={isOpen} modalContent={modalContent} />
+      {/* <button onClick={() => dispatch(getRandomQuote(1))}>Click me</button> */}
+      <button onClick={() => showModal("hello")}>Click me</button>
       <StoriesMachine authorsData={authorsData} />
       <QuotesMachine authorsData={authorsData} />
       <Outlet />

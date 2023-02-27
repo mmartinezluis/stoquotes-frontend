@@ -8,6 +8,7 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { extendedAuthorsApiSlice } from "./app/features/authors/authorsSlice";
 import axios from "axios";
+import { ModalProvider } from "./components/modal/ModalContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 axios.defaults.baseURL = "http://localhost:3000";
@@ -23,7 +24,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <ModalProvider>
+          <App />
+        </ModalProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>
