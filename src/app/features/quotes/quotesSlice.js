@@ -4,8 +4,14 @@ import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 export const getRandomQuote = createAsyncThunk(
   "quotes/getRandomQuote",
   async (authorId) => {
-    const response = await axios.get(`/${999}/randomquote`);
-    return response.data;
+    try {
+      const response = await axios.get(`/${9999}/randomquote`);
+      return response.data;
+    } catch (error) {
+      // return error;
+      console.log(error);
+      throw error.response.data;
+    }
   }
 );
 

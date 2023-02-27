@@ -59,14 +59,13 @@ export default function Machine() {
             .unwrap()
             .then((data) => console.log(data))
             .catch((err) => {
-              console.log(err);
-              showModal(err, 2);
+              showModal(err.message, 2);
             });
         }}
       >
         Click me
       </button>
-      <button onClick={() => showModal("hello")}>Click me</button>
+      {/* <button onClick={() => showModal("hello")}>Click me</button> */}
       <StoriesMachine authorsData={authorsData} />
       <QuotesMachine authorsData={authorsData} />
       <Outlet />
