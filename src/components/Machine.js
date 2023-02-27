@@ -9,7 +9,10 @@ import {
   selectAuthorsResult,
   useGetAuthorsQuery,
 } from "../app/features/authors/authorsSlice";
+import { getRandomQuote } from "../app/features/quotes/quotesSlice";
+import { useDispatch } from "react-redux";
 export default function Machine() {
+  const dispatch = useDispatch();
   const authorsData = useGetAuthorsQuery();
   //   const {
   //     data: authors,
@@ -42,6 +45,7 @@ export default function Machine() {
   //   if (isError) return <p>An error has occured</p>;
   return (
     <>
+      <button onClick={() => dispatch(getRandomQuote(1))}>Click me</button>
       <StoriesMachine authorsData={authorsData} />
       <QuotesMachine authorsData={authorsData} />
       <Outlet />

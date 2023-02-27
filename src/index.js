@@ -7,8 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { extendedAuthorsApiSlice } from "./app/features/authors/authorsSlice";
-
+import axios from "axios";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+axios.defaults.baseURL = "http://localhost:3000";
 
 // console.log(extendedAuthorsApiSlice);
 store.dispatch(extendedAuthorsApiSlice.endpoints.getAuthors.initiate());

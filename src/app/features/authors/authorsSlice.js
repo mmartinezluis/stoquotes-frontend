@@ -8,17 +8,17 @@ import { apiSlice } from "../api/apiSlice";
 // const initialState = {
 //   authors: [],
 // };
-// const authorsSlice = createSlice({
-//   name: "authors",
-//   initialState,
-//   reducers: {
-//     addAuthor: {
-//       reducer(state, action) {
-//         state.authors.push(action.payload);
-//       },
-//     },
-//   },
-// });
+const authorsSlice = createSlice({
+  name: "authors",
+  initialState: [],
+  reducers: {
+    addAuthor: {
+      reducer(state, action) {
+        state.authors.push(action.payload);
+      },
+    },
+  },
+});
 
 const authorsAdapter = createEntityAdapter();
 const initialState = authorsAdapter.getInitialState();

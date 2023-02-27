@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./features/api/apiSlice";
+import { quotesSlice } from "./features/quotes/quotesSlice";
 
 export const store = configureStore({
   reducer: {
     // authors: authorsSlice,
-    // quotes: "quotesReducer",
+    quotes: quotesSlice.reducer,
     // categories: "quotesReducer",
     // stories: "quotesReducer",
     // users: "quotesReducer",
