@@ -1,0 +1,21 @@
+/* MODAL PORTAL STYLES */
+.modal-portal-cover {
+    background-color: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    border-radius: 7px;
+    transform: translate(-50%, 40%);
+    z-index: 1150;
+    width: auto;
+  }
+  
+  .modal-portal-area {
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 0 10px 3px rgb(0 0 0 / 10%);
+    overflow-y: auto;
+    padding: 0.8rem;
+    margin: 0 auto;
+    min-width: 300px;  
+  }

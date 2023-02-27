@@ -12,6 +12,7 @@ import {
 import { getRandomQuote } from "../app/features/quotes/quotesSlice";
 import { useDispatch } from "react-redux";
 import { store } from "../app/store";
+import ModalContainer from "./modal/ModalContainer";
 export default function Machine() {
   const dispatch = useDispatch();
   const authorsData = useGetAuthorsQuery();
@@ -47,6 +48,7 @@ export default function Machine() {
   //   console.log(store.getState());
   return (
     <>
+      <ModalContainer />
       <button onClick={() => dispatch(getRandomQuote(1))}>Click me</button>
       <StoriesMachine authorsData={authorsData} />
       <QuotesMachine authorsData={authorsData} />
