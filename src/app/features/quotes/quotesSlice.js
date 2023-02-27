@@ -5,11 +5,9 @@ export const getRandomQuote = createAsyncThunk(
   "quotes/getRandomQuote",
   async (authorId) => {
     try {
-      const response = await axios.get(`/${9999}/randomquote`);
+      const response = await axios.get(`/${authorId}/randomquote`);
       return response.data;
     } catch (error) {
-      // return error;
-      console.log(error);
       throw error.response.data;
     }
   }

@@ -9,15 +9,12 @@ import {
   selectAuthorsResult,
   useGetAuthorsQuery,
 } from "../app/features/authors/authorsSlice";
-import { getRandomQuote } from "../app/features/quotes/quotesSlice";
-import { useDispatch } from "react-redux";
-import { store } from "../app/store";
 import ModalContainer from "./modal/ModalContainer";
 import { ModalContext } from "./modal/ModalContext";
 
 export default function Machine() {
-  const { isOpen, modalContent, showModal } = useContext(ModalContext);
-  const dispatch = useDispatch();
+  const { isOpen, modalContent } = useContext(ModalContext);
+
   const authorsData = useGetAuthorsQuery();
   //   const {
   //     data: authors,
@@ -53,19 +50,6 @@ export default function Machine() {
   return (
     <>
       <ModalContainer isOpen={isOpen} modalContent={modalContent} />
-      <button
-        onClick={() => {
-          dispatch(getRandomQuote(1))
-            .unwrap()
-            .then((data) => console.log(data))
-            .catch((err) => {
-              showModal(err.message, 2);
-            });
-        }}
-      >
-        Click me
-      </button>
-      {/* <button onClick={() => showModal("hello")}>Click me</button> */}
       <StoriesMachine authorsData={authorsData} />
       <QuotesMachine authorsData={authorsData} />
       <Outlet />

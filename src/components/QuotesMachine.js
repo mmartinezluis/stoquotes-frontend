@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
+import { getRandomQuote } from "../app/features/quotes/quotesSlice";
+import { ModalContext } from "./modal/ModalContext";
 
-const QuotesMachine = () => {
+const QuotesMachine = ({ authorsData }) => {
+  const dispatch = useDispatch();
+  const { showModal } = useContext(ModalContext);
+
+  const fetchAuthorQuote = (authorId) => {
+    dispatch(getRandomQuote(authorId))
+      .unwrap()
+      .then((data) => console.log(data))
+      .catch((err) => {
+        showModal(err.message, 2);
+      });
+  };
+
   return (
     <>
       {/* STORIES NAVBAR */}
