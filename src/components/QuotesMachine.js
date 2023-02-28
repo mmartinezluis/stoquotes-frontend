@@ -12,18 +12,18 @@ const QuotesMachine = ({ authorsData }) => {
   const [currentQuote, setCurrentQuote] = useState(null);
 
   const fetchAuthorQuote = (authorId) => {
-    dispatch(getRandomQuote(authorId))
+    return dispatch(getRandomQuote(authorId))
       .unwrap()
       .then((data) => {
         setCurrentQuote(data);
-        // console.log(data);
+        return true;
       })
       .catch((err) => {
         showModal(err.message, 2);
+        return false;
       });
   };
 
-  console.log(!!currentQuote);
   const writeStoryBtn = (
     <button
       type="button"
@@ -98,7 +98,11 @@ const QuotesMachine = ({ authorsData }) => {
                 role="tab"
                 aria-controls="nav-random-quote"
                 aria-selected="false"
-                onClick={() => fetchAuthorQuote(1)}
+                onClick={() => {
+                  if (fetchAuthorQuote(1)) {
+                    setShowStoryForm(false);
+                  }
+                }}
               >
                 Quote
               </button>
@@ -184,8 +188,10 @@ const QuotesMachine = ({ authorsData }) => {
               aria-labelledby="nav-random-quote-tab"
             >
               {currentQuote && quoteMachineQuoteTemplate(currentQuote)}
-              {writeStoryBtn}
-              {showStoryForm && quotesMachineStoryForm()}
+              <div className="container" id="story-compose">
+                {writeStoryBtn}
+                {showStoryForm && quotesMachineStoryForm()}
+              </div>
             </div>
 
             <div
