@@ -16,17 +16,18 @@ const QuotesMachine = ({ authorsData }) => {
       .unwrap()
       .then((data) => {
         setCurrentQuote(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((err) => {
         showModal(err.message, 2);
       });
   };
 
+  console.log(!!currentQuote);
   const writeStoryBtn = (
     <button
       type="button"
-      className="btn btn-outline-dark"
+      className={"btn btn-outline-dark " + (showStoryForm ? "active" : null)}
       id="new-story-btn"
       onClick={() => setShowStoryForm(!showStoryForm)}
     >
@@ -97,6 +98,7 @@ const QuotesMachine = ({ authorsData }) => {
                 role="tab"
                 aria-controls="nav-random-quote"
                 aria-selected="false"
+                onClick={() => fetchAuthorQuote(1)}
               >
                 Quote
               </button>
@@ -109,7 +111,6 @@ const QuotesMachine = ({ authorsData }) => {
                 role="tab"
                 aria-controls="nav-authors"
                 aria-selected="false"
-                onClick={() => fetchAuthorQuote(1)}
               >
                 Authors
               </button>
@@ -182,11 +183,9 @@ const QuotesMachine = ({ authorsData }) => {
               role="tabpanel"
               aria-labelledby="nav-random-quote-tab"
             >
-              {/* <!-- Nothing is displayed here; the quote is actually displayed in the quotes-container div below --> */}
-              {/* <!-- However, for every click on this div's parent nav tab, a new random quote is displayed --> */}
               {currentQuote && quoteMachineQuoteTemplate(currentQuote)}
               {writeStoryBtn}
-              {showStoryForm && quotesMachineStoryForm}
+              {showStoryForm && quotesMachineStoryForm()}
             </div>
 
             <div
@@ -236,9 +235,9 @@ const QuotesMachine = ({ authorsData }) => {
           </div>
           {/* <!-- END OF NAV TABS CONTENT --> */}
 
-          <div id="quotes-container">
-            {/* <!-- quotes are displayed here; this container is used across multitple NAV TABS --> */}
-          </div>
+          {/* <div id="quotes-container"> */}
+          {/* <!-- quotes are displayed here; this container is used across multitple NAV TABS --> */}
+          {/* </div> */}
           {/* <!-- END OF QUOTES CONTAINER --> */}
           <div className="container" id="story-compose">
             {/* <button
@@ -248,9 +247,9 @@ const QuotesMachine = ({ authorsData }) => {
             >
               Write a story
             </button> */}
-            <div id="form-container">
-              {/* <!-- This is the new story form container --> */}
-            </div>
+            {/* <div id="form-container"> */}
+            {/* <!-- This is the new story form container --> */}
+            {/* </div> */}
             {/* <!-- END OF NEW STORY FORM CONTAINER --> */}
           </div>
         </div>
