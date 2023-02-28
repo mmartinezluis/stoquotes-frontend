@@ -1,20 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRandomQuote } from "../app/features/quotes/quotesSlice";
 import { ModalContext } from "./modal/ModalContext";
+import { quoteMachineQuoteTemplate } from "./quotes/quoteTemplates";
+import { quotesMachineStoryForm } from "./stories/storyForms";
 
 const QuotesMachine = ({ authorsData }) => {
   const dispatch = useDispatch();
   const { showModal } = useContext(ModalContext);
+  const [showStoryForm, setShowStoryForm] = useState(false);
+  const [currentQuote, setCurrentQuote] = useState(null);
 
   const fetchAuthorQuote = (authorId) => {
     dispatch(getRandomQuote(authorId))
       .unwrap()
-      .then((data) => console.log(data))
+      .then((data) => {
+        setCurrentQuote(data);
+        console.log(data);
+      })
       .catch((err) => {
         showModal(err.message, 2);
       });
   };
+
+  const writeStoryBtn = (
+    <button
+      type="button"
+      className="btn btn-outline-dark"
+      id="new-story-btn"
+      onClick={() => setShowStoryForm(!showStoryForm)}
+    >
+      Write a story
+    </button>
+  );
 
   return (
     <>
@@ -91,6 +109,7 @@ const QuotesMachine = ({ authorsData }) => {
                 role="tab"
                 aria-controls="nav-authors"
                 aria-selected="false"
+                onClick={() => fetchAuthorQuote(1)}
               >
                 Authors
               </button>
@@ -158,12 +177,16 @@ const QuotesMachine = ({ authorsData }) => {
             </div>
 
             <div
+              className="tab-pane fade"
               id="nav-random-quote"
               role="tabpanel"
               aria-labelledby="nav-random-quote-tab"
             >
               {/* <!-- Nothing is displayed here; the quote is actually displayed in the quotes-container div below --> */}
               {/* <!-- However, for every click on this div's parent nav tab, a new random quote is displayed --> */}
+              {currentQuote && quoteMachineQuoteTemplate(currentQuote)}
+              {writeStoryBtn}
+              {showStoryForm && quotesMachineStoryForm}
             </div>
 
             <div
@@ -218,13 +241,13 @@ const QuotesMachine = ({ authorsData }) => {
           </div>
           {/* <!-- END OF QUOTES CONTAINER --> */}
           <div className="container" id="story-compose">
-            <button
+            {/* <button
               type="button"
               className="btn btn-outline-dark"
               id="new-story-btn"
             >
               Write a story
-            </button>
+            </button> */}
             <div id="form-container">
               {/* <!-- This is the new story form container --> */}
             </div>
