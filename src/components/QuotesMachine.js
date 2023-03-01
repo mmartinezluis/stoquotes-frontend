@@ -18,6 +18,7 @@ const QuotesMachine = ({ authorsData }) => {
     return dispatch(getRandomQuote(authorId))
       .unwrap()
       .then((data) => {
+        console.log(data);
         setCurrentQuote(data);
         return true;
       })
@@ -37,6 +38,18 @@ const QuotesMachine = ({ authorsData }) => {
       Write a story
     </button>
   );
+
+  const quoteAndStoryForm = () => {
+    return currentQuote ? (
+      <>
+        {quoteMachineQuoteTemplate(currentQuote)}
+        <div className="container" id="story-compose">
+          {writeStoryBtn}
+          {showStoryForm && quotesMachineStoryForm()}
+        </div>
+      </>
+    ) : null;
+  };
 
   console.log(authorsData);
 
@@ -125,6 +138,7 @@ const QuotesMachine = ({ authorsData }) => {
                   setRandomAuthorsList(
                     shuffleArray(authorsData.data.ids.slice()).slice(0, 10)
                   );
+                  setCurrentQuote(null);
                 }}
               >
                 Authors
@@ -198,11 +212,12 @@ const QuotesMachine = ({ authorsData }) => {
               role="tabpanel"
               aria-labelledby="nav-random-quote-tab"
             >
-              {currentQuote && quoteMachineQuoteTemplate(currentQuote)}
+              {/* {currentQuote && quoteMachineQuoteTemplate(currentQuote)}
               <div className="container" id="story-compose">
                 {writeStoryBtn}
                 {showStoryForm && quotesMachineStoryForm()}
-              </div>
+              </div> */}
+              {quoteAndStoryForm()}
             </div>
 
             <div
@@ -216,14 +231,23 @@ const QuotesMachine = ({ authorsData }) => {
                 <ul>
                   {randomAuthorsList.map((authorId) => {
                     const authors = authorsData.data.entities;
-                    const name = authors[authorId].name;
+                    const author = authors[authorId];
                     return (
                       <li key={authorId}>
-                        <a href="/">{name}</a>
+                        <a
+                          href="/"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            fetchAuthorQuote(author.id);
+                          }}
+                        >
+                          {author.name}
+                        </a>
                       </li>
                     );
                   })}
                 </ul>
+                {quoteAndStoryForm()}
               </div>
             </div>
 
