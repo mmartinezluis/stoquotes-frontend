@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRandomQuote } from "../app/features/quotes/quotesSlice";
+import { shuffleArray } from "../tools/customFunctions";
 import { randomAuthor } from "./authors/author";
 import { ModalContext } from "./modal/ModalContext";
 import { quoteMachineQuoteTemplate } from "./quotes/quoteTemplates";
@@ -36,6 +37,8 @@ const QuotesMachine = ({ authorsData }) => {
       Write a story
     </button>
   );
+
+  console.log(authorsData);
 
   return (
     <>
@@ -119,7 +122,9 @@ const QuotesMachine = ({ authorsData }) => {
                 aria-controls="nav-authors"
                 aria-selected="false"
                 onClick={() => {
-                  // setRandomAuthorsList()
+                  setRandomAuthorsList(
+                    shuffleArray(authorsData.data.ids.slice()).slice(0, 10)
+                  );
                 }}
               >
                 Authors
@@ -207,11 +212,18 @@ const QuotesMachine = ({ authorsData }) => {
               aria-labelledby="nav-authors-tab"
             >
               <div id="authors-container">
-                {randomAuthorsList.map((authorId) => {
-                  const authors = authorsData.data.entities;
-                  return <a key={authorId}>{authors[authorId].name}</a>;
-                })}
                 {/* <!-- Authors are displayed here --> */}
+                <ul>
+                  {randomAuthorsList.map((authorId) => {
+                    const authors = authorsData.data.entities;
+                    const name = authors[authorId].name;
+                    return (
+                      <li key={authorId}>
+                        <a href="/">{name}</a>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             </div>
 
