@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRandomQuote } from "../app/features/quotes/quotesSlice";
+import { randomAuthor } from "./authors/author";
 import { ModalContext } from "./modal/ModalContext";
 import { quoteMachineQuoteTemplate } from "./quotes/quoteTemplates";
 import { quotesMachineStoryForm } from "./stories/storyForms";
@@ -10,6 +11,7 @@ const QuotesMachine = ({ authorsData }) => {
   const { showModal } = useContext(ModalContext);
   const [showStoryForm, setShowStoryForm] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(null);
+  const [randomAuthorsList, setRandomAuthorsList] = useState([]);
 
   const fetchAuthorQuote = (authorId) => {
     return dispatch(getRandomQuote(authorId))
@@ -99,7 +101,8 @@ const QuotesMachine = ({ authorsData }) => {
                 aria-controls="nav-random-quote"
                 aria-selected="false"
                 onClick={() => {
-                  if (fetchAuthorQuote(1)) {
+                  const authorsCount = authorsData.data.ids.length;
+                  if (fetchAuthorQuote(randomAuthor(authorsCount))) {
                     setShowStoryForm(false);
                   }
                 }}
@@ -115,6 +118,9 @@ const QuotesMachine = ({ authorsData }) => {
                 role="tab"
                 aria-controls="nav-authors"
                 aria-selected="false"
+                onClick={() => {
+                  // setRandomAuthorsList()
+                }}
               >
                 Authors
               </button>
@@ -201,6 +207,10 @@ const QuotesMachine = ({ authorsData }) => {
               aria-labelledby="nav-authors-tab"
             >
               <div id="authors-container">
+                {randomAuthorsList.map((authorId) => {
+                  const authors = authorsData.data.entities;
+                  return <a key={authorId}>{authors[authorId].name}</a>;
+                })}
                 {/* <!-- Authors are displayed here --> */}
               </div>
             </div>
