@@ -1,21 +1,41 @@
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRandomQuote } from "../app/features/quotes/quotesSlice";
+import {
+  getCategoryQuote,
+  getRandomQuote,
+} from "../app/features/quotes/quotesSlice";
 import { shuffleArray } from "../tools/customFunctions";
 import { randomAuthor } from "./authors/author";
 import { ModalContext } from "./modal/ModalContext";
 import { quoteMachineQuoteTemplate } from "./quotes/quoteTemplates";
 import { quotesMachineStoryForm } from "./stories/storyForms";
 
-const QuotesMachine = ({ authorsData }) => {
+const QuotesMachine = ({ authorsData, categoriesData }) => {
   const dispatch = useDispatch();
   const { showModal } = useContext(ModalContext);
   const [showStoryForm, setShowStoryForm] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(null);
   const [randomAuthorsList, setRandomAuthorsList] = useState([]);
 
+  const authors = authorsData.data?.entities;
+  const categories = categoriesData.data?.entities;
+
   const fetchAuthorQuote = (authorId) => {
     return dispatch(getRandomQuote(authorId))
+      .unwrap()
+      .then((data) => {
+        console.log(data);
+        setCurrentQuote(data);
+        return true;
+      })
+      .catch((err) => {
+        showModal(err.message, 2);
+        return false;
+      });
+  };
+
+  const fetchCategoryQuote = (categoryId) => {
+    return dispatch(getCategoryQuote(categoryId))
       .unwrap()
       .then((data) => {
         console.log(data);
@@ -152,6 +172,7 @@ const QuotesMachine = ({ authorsData }) => {
                 role="tab"
                 aria-controls="nav-categories"
                 aria-selected="false"
+                onClick={() => setCurrentQuote(null)}
               >
                 Categories
               </button>
@@ -230,7 +251,6 @@ const QuotesMachine = ({ authorsData }) => {
                 {/* <!-- Authors are displayed here --> */}
                 <ul>
                   {randomAuthorsList.map((authorId) => {
-                    const authors = authorsData.data.entities;
                     const author = authors[authorId];
                     return (
                       <li key={authorId}>
@@ -238,7 +258,9 @@ const QuotesMachine = ({ authorsData }) => {
                           href="/"
                           onClick={(e) => {
                             e.preventDefault();
-                            fetchAuthorQuote(author.id);
+                            if (fetchAuthorQuote(author.id)) {
+                              setShowStoryForm(false);
+                            }
                           }}
                         >
                           {author.name}
@@ -259,6 +281,28 @@ const QuotesMachine = ({ authorsData }) => {
             >
               <div id="categories-container">
                 {/* <!-- Categories are displayed here --> */}
+                <ul>
+                  {categoriesData.data?.ids.map((categoryId) => {
+                    const category = categories[categoryId];
+                    return (
+                      <li key={categoryId}>
+                        <span
+                          role="button"
+                          href="javascript:void(0)"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (fetchCategoryQuote(category.id)) {
+                              setShowStoryForm(false);
+                            }
+                          }}
+                        >
+                          {category.name}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                {quoteAndStoryForm()}
               </div>
             </div>
 

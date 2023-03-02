@@ -13,6 +13,18 @@ export const getRandomQuote = createAsyncThunk(
   }
 );
 
+export const getCategoryQuote = createAsyncThunk(
+  "quotes/getCategoryQuote",
+  async (categoryId) => {
+    try {
+      const response = await axios.get(`/${categoryId}/categoryquote`);
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
 export const quotesSlice = createSlice({
   name: "quotes",
   initialState: {
@@ -21,5 +33,6 @@ export const quotesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getRandomQuote.fulfilled, (state, action) => {});
+    builder.addCase(getCategoryQuote.fulfilled, (state, action) => {});
   },
 });

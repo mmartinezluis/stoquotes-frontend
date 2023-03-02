@@ -11,11 +11,13 @@ import {
 } from "../app/features/authors/authorsSlice";
 import ModalContainer from "./modal/ModalContainer";
 import { ModalContext } from "./modal/ModalContext";
+import { useGetCategoriesQuery } from "../app/features/categories/categoriesSlice";
 
 export default function Machine() {
   const { isOpen, modalContent } = useContext(ModalContext);
 
   const authorsData = useGetAuthorsQuery();
+  const categoriesData = useGetCategoriesQuery();
   //   const {
   //     data: authors,
   //     isLoading,
@@ -51,7 +53,10 @@ export default function Machine() {
     <>
       <ModalContainer isOpen={isOpen} modalContent={modalContent} />
       <StoriesMachine authorsData={authorsData} />
-      <QuotesMachine authorsData={authorsData} />
+      <QuotesMachine
+        authorsData={authorsData}
+        categoriesData={categoriesData}
+      />
       <Outlet />
     </>
   );

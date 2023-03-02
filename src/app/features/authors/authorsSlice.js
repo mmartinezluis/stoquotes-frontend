@@ -5,9 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
 
-// const initialState = {
-//   authors: [],
-// };
 const authorsSlice = createSlice({
   name: "authors",
   initialState: [],
