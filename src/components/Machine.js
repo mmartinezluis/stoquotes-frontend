@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import QuotesMachine from "./QuotesMachine";
@@ -18,6 +18,7 @@ export default function Machine() {
 
   const authorsData = useGetAuthorsQuery();
   const categoriesData = useGetCategoriesQuery();
+  const authorIds = useMemo(() => authorsData.data?.ids, [authorsData.data]);
   //   const {
   //     data: authors,
   //     isLoading,
@@ -56,6 +57,7 @@ export default function Machine() {
       <QuotesMachine
         authorsData={authorsData}
         categoriesData={categoriesData}
+        authorIds={authorIds}
       />
       <Outlet />
     </>
