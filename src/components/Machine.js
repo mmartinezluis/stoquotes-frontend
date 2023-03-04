@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import QuotesMachine from "./QuotesMachine";
 import StoriesMachine from "./StoriesMachine";
@@ -12,6 +12,8 @@ import {
 import ModalContainer from "./modal/ModalContainer";
 import { ModalContext } from "./modal/ModalContext";
 import { useGetCategoriesQuery } from "../app/features/categories/categoriesSlice";
+import QuoteTab from "./quotes/QuoteTab";
+import HomeTab from "./home/HomeTab";
 
 export default function Machine() {
   const { isOpen, modalContent } = useContext(ModalContext);
@@ -54,11 +56,21 @@ export default function Machine() {
     <>
       <ModalContainer isOpen={isOpen} modalContent={modalContent} />
       <StoriesMachine authorsData={authorsData} />
-      <QuotesMachine
-        authorsData={authorsData}
-        categoriesData={categoriesData}
-        authorIds={authorIds}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <QuotesMachine
+              authorsData={authorsData}
+              categoriesData={categoriesData}
+              authorIds={authorIds}
+            />
+          }
+        >
+          <Route index element={<HomeTab />} />
+          <Route path="/quote" element={<QuoteTab />} />
+        </Route>
+      </Routes>
       <Outlet />
     </>
   );

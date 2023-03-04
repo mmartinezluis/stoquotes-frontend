@@ -3,8 +3,6 @@ import React from "react";
 import "./App.css";
 import { Routes, Route, Outlet } from "react-router-dom";
 import Machine from "./components/Machine";
-import StoriesMachine from "./components/StoriesMachine";
-import QuotesMachine from "./components/QuotesMachine";
 
 function App() {
   return (
@@ -28,12 +26,16 @@ function App() {
     // </div>
     <div className="App">
       <div className="container">
-        <Routes>
+        <Machine />
+        {/* <Routes>
           <Route element={<Machine />}>
-            <Route path="/" element={null} />
-            <Route path="/stories" element={null} />
+          <Route path="/" element={null} />
+          <Route path="/" element={<Machine />} />
+          <Route path="/quote" element={<Machine />} />
+          <Route path="/stories" element={<Machine />} />
+          <Route path="/quote" element={<Machine />} />
           </Route>
-        </Routes>
+        </Routes> */}
       </div>
     </div>
   );
