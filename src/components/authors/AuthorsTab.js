@@ -1,5 +1,14 @@
 import React from "react";
+import { useOutletContext } from "react-router-dom";
 export default function AuthorsTab() {
+  const {
+    authorsData,
+    quoteAndStoryForm,
+    setShowStoryForm,
+    fetchAuthorQuote,
+    randomAuthorsList,
+  } = useOutletContext();
+  const { entities } = authorsData.data;
   return (
     <div
       className="tab-pane fade"
@@ -10,15 +19,15 @@ export default function AuthorsTab() {
       <div id="authors-container">
         <ul>
           <h1>AUTHORS</h1>
-          {/* {randomAuthorsList.map((authorId) => {
-            const author = authors[authorId];
+          {randomAuthorsList.map((authorId) => {
+            const author = entities[authorId];
             return (
               <li key={authorId}>
                 <a
                   href="/"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (fetchAuthorQuote(author.id)) {
+                    if (fetchAuthorQuote(authorId)) {
                       setShowStoryForm(false);
                     }
                   }}
@@ -27,9 +36,9 @@ export default function AuthorsTab() {
                 </a>
               </li>
             );
-          })} */}
+          })}
         </ul>
-        {/* {quoteAndStoryForm()} */}
+        {quoteAndStoryForm()}
       </div>
     </div>
   );

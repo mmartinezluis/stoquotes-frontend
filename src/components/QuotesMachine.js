@@ -7,22 +7,18 @@ import {
 } from "../app/features/quotes/quotesSlice";
 import { shuffleArray } from "../tools/customFunctions";
 import { randomAuthor } from "./authors/author";
-import HomeTab from "./home/HomeTab";
 import { ModalContext } from "./modal/ModalContext";
-import QuoteTab from "./quotes/QuoteTab";
 import { quoteMachineQuoteTemplate } from "./quotes/quoteTemplates";
+import QuotesMachineSkeleton from "./skeletons/QuotesMachineSkeleton";
 import { quotesMachineStoryForm } from "./stories/storyForms";
 
-const QuotesMachine = ({ authorsData, categoriesData, authorIds }) => {
+const QuotesMachine = ({ authorsData, categoriesData }) => {
   const dispatch = useDispatch();
   const { showModal } = useContext(ModalContext);
   const [showStoryForm, setShowStoryForm] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(null);
   const [randomAuthorsList, setRandomAuthorsList] = useState([]);
   const navigate = useNavigate();
-
-  const authors = authorsData.data?.entities;
-  const categories = categoriesData.data?.entities;
 
   const fetchAuthorQuote = (authorId) => {
     return dispatch(getRandomQuote(authorId))
@@ -73,6 +69,10 @@ const QuotesMachine = ({ authorsData, categoriesData, authorIds }) => {
     ) : null;
   };
 
+  if (authorsData.isLoading || categoriesData.isLoading) {
+    return <QuotesMachineSkeleton />;
+  }
+
   return (
     <>
       {/* // THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF
@@ -82,19 +82,6 @@ const QuotesMachine = ({ authorsData, categoriesData, authorIds }) => {
         <div className="container" id="machine">
           {/* <!-- THE NAV TABS --> */}
           <nav>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">HOME</Link>
-                </li>
-                <li>
-                  <Link to="/quote">QUOTE</Link>
-                </li>
-                <li>
-                  <Link to="/books/new">New Book</Link>
-                </li>
-              </ul>
-            </nav>
             <div
               className="nav nav-tabs nav-pills flex-column flex-sm-row"
               // id="nav-tab"
@@ -144,9 +131,10 @@ const QuotesMachine = ({ authorsData, categoriesData, authorIds }) => {
                 aria-selected="false"
                 onClick={() => {
                   setRandomAuthorsList(
-                    shuffleArray(authorIds.slice()).slice(0, 10)
+                    shuffleArray(authorsData.data.ids.slice()).slice(0, 10)
                   );
                   setCurrentQuote(null);
+                  navigate("/authors");
                 }}
               >
                 Authors
@@ -160,7 +148,10 @@ const QuotesMachine = ({ authorsData, categoriesData, authorIds }) => {
                 role="tab"
                 // aria-controls="nav-categories"
                 // aria-selected="false"
-                onClick={() => setCurrentQuote(null)}
+                onClick={() => {
+                  setCurrentQuote(null);
+                  navigate("/categories");
+                }}
               >
                 Categories
               </button>
@@ -173,6 +164,7 @@ const QuotesMachine = ({ authorsData, categoriesData, authorIds }) => {
                 role="tab"
                 // aria-controls="nav-search-author"
                 // aria-selected="false"
+                onClick={() => navigate("/author-search")}
               >
                 Search Author
               </button>
@@ -181,7 +173,17 @@ const QuotesMachine = ({ authorsData, categoriesData, authorIds }) => {
 
           {/* <!-- THE CONTENT FOR THE NAV TABS --> */}
           <div className="tab-content" id="nav-tabContent">
-            <Outlet context={{ quoteAndStoryForm }} />
+            <Outlet
+              context={{
+                quoteAndStoryForm,
+                authorsData,
+                categoriesData,
+                fetchAuthorQuote,
+                fetchCategoryQuote,
+                setShowStoryForm,
+                randomAuthorsList,
+              }}
+            />
           </div>
           {/* <!-- END OF NAV TABS CONTENT --> */}
         </div>

@@ -11,7 +11,6 @@ export default function QuoteTab() {
       aria-labelledby="nav-random-quote-tab"
     >
       {quoteAndStoryForm()}
-      <h1>RENDER THE COMPONENT</h1>
     </div>
   );
 }

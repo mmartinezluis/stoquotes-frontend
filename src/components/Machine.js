@@ -14,6 +14,9 @@ import { ModalContext } from "./modal/ModalContext";
 import { useGetCategoriesQuery } from "../app/features/categories/categoriesSlice";
 import QuoteTab from "./quotes/QuoteTab";
 import HomeTab from "./home/HomeTab";
+import AuthorsTab from "./authors/AuthorsTab";
+import CategoriesTab from "./categories/CategoriesTab";
+import SearchAuthorTab from "./authors/SearchAuthorTab";
 
 export default function Machine() {
   const { isOpen, modalContent } = useContext(ModalContext);
@@ -69,6 +72,9 @@ export default function Machine() {
         >
           <Route index element={<HomeTab />} />
           <Route path="/quote" element={<QuoteTab />} />
+          <Route path="/authors" element={<AuthorsTab />} />
+          <Route path="/categories" element={<CategoriesTab />} />
+          <Route path="/author-search" element={<SearchAuthorTab />} />
         </Route>
       </Routes>
       <Outlet />

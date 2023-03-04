@@ -1,5 +1,13 @@
 import React from "react";
-export default function CategoriesTab({ categoriesData }) {
+import { useOutletContext } from "react-router-dom";
+export default function CategoriesTab() {
+  const {
+    categoriesData,
+    quoteAndStoryForm,
+    fetchCategoryQuote,
+    setShowStoryForm,
+  } = useOutletContext();
+  const { ids, entities } = categoriesData.data;
   return (
     <div
       className="tab-pane fade"
@@ -10,15 +18,15 @@ export default function CategoriesTab({ categoriesData }) {
       <div id="categories-container">
         <ul>
           <h1>Categories</h1>
-          {/* {categoriesData.data?.ids.map((categoryId) => {
-            const category = categories[categoryId];
+          {ids.map((categoryId) => {
+            const category = entities[categoryId];
             return (
               <li key={categoryId}>
                 <span
                   role="button"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (fetchCategoryQuote(category.id)) {
+                    if (fetchCategoryQuote(categoryId)) {
                       setShowStoryForm(false);
                     }
                   }}
@@ -27,9 +35,9 @@ export default function CategoriesTab({ categoriesData }) {
                 </span>
               </li>
             );
-          })} */}
+          })}
         </ul>
-        {/* {quoteAndStoryForm()} */}
+        {quoteAndStoryForm()}
       </div>
     </div>
   );

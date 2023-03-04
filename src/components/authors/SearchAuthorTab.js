@@ -1,5 +1,8 @@
 import React from "react";
-export default function SearchAuthorTab({ authorsData, quoteAndStoryForm }) {
+import { useOutletContext } from "react-router-dom";
+export default function SearchAuthorTab() {
+  const { authorsData, quoteAndStoryForm } = useOutletContext();
+  const { ids, entities } = authorsData;
   return (
     <div
       className="tab-pane fade"
@@ -17,9 +20,9 @@ export default function SearchAuthorTab({ authorsData, quoteAndStoryForm }) {
           <label htmlFor="author-name">Author name:</label>
           <input type="text" list="author-name" />
           <datalist id="author-name">
-            {authorsData.data?.ids.map((id) => {
+            {ids.map((id) => {
               console.log("dfdfd");
-              return <option key={id}>{authors[id].name}</option>;
+              return <option key={id}>{entities[id].name}</option>;
             })}
           </datalist>
           <input
