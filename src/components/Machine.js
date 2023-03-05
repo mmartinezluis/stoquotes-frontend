@@ -54,7 +54,25 @@ export default function Machine() {
   //   if (isError) return <p>An error has occured</p>;
   //   console.log(store.getState());
   // console.log(authorsData.isFetching);
-  console.log("Machine");
+  // console.log("Machine");
+  // console.log(authorsData.data);
+  const authorsMap = useMemo(() => {
+    return {};
+  }, []);
+  console.log(authorsMap);
+  const authorsDatalist = useMemo(() => {
+    return (
+      <datalist id="author-name">
+        {authorsData.data?.ids.map((id) => {
+          console.log("dfdfd");
+          const authorName = authorsData.data?.entities[id].name;
+          authorsMap[authorName] = id;
+          return <option key={id}>{authorName}</option>;
+        })}
+      </datalist>
+    );
+  }, [authorsData.data?.ids, authorsData.data?.entities, authorsMap]);
+
   return (
     <>
       <ModalContainer isOpen={isOpen} modalContent={modalContent} />
@@ -73,7 +91,12 @@ export default function Machine() {
           <Route path="/quote" element={<QuoteTab />} />
           <Route path="/authors" element={<AuthorsTab />} />
           <Route path="/categories" element={<CategoriesTab />} />
-          <Route path="/author-search" element={<SearchAuthorTab />} />
+          <Route
+            path="/author-search"
+            element={
+              <SearchAuthorTab authorsDatalist={authorsDatalist} authorsMap />
+            }
+          />
         </Route>
       </Routes>
       <Outlet />
