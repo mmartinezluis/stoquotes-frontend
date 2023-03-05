@@ -10,14 +10,13 @@ export default function CategoriesTab() {
   const { ids, entities } = categoriesData.data;
   return (
     <div
-      className="tab-pane fade"
+      // className="tab-pane fade"
       id="nav-categories"
       role="tabpanel"
       aria-labelledby="nav-categories-tab"
     >
       <div id="categories-container">
         <ul>
-          <h1>Categories</h1>
           {ids.map((categoryId) => {
             const category = entities[categoryId];
             return (

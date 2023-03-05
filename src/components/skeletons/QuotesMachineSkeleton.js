@@ -7,12 +7,12 @@ export default function QuotesMachineSkeleton() {
       <div className="container" id="machine">
         <nav>
           <div
-            class="nav nav-tabs nav-pills flex-column flex-sm-row"
+            className="nav nav-tabs nav-pills flex-column flex-sm-row"
             id="nav-tab"
             role="tablist"
           >
             <button
-              class="nav-link flex-sm-fill active"
+              className="nav-link flex-sm-fill active"
               id="nav-home-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-home"
@@ -24,7 +24,7 @@ export default function QuotesMachineSkeleton() {
               Home
             </button>
             <button
-              class="nav-link flex-sm-fill"
+              className="nav-link flex-sm-fill"
               id="nav-random-quote-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-random-quote"
@@ -36,7 +36,7 @@ export default function QuotesMachineSkeleton() {
               Quote
             </button>
             <button
-              class="nav-link flex-sm-fill"
+              className="nav-link flex-sm-fill"
               id="nav-authors-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-authors"
@@ -48,7 +48,7 @@ export default function QuotesMachineSkeleton() {
               Authors
             </button>
             <button
-              class="nav-link flex-sm-fill"
+              className="nav-link flex-sm-fill"
               id="nav-categories-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-categories"
@@ -60,7 +60,7 @@ export default function QuotesMachineSkeleton() {
               Categories
             </button>
             <button
-              class="nav-link flex-sm-fill"
+              className="nav-link flex-sm-fill"
               id="nav-search-author-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-search-author"

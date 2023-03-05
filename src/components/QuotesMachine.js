@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Outlet, Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import {
   getCategoryQuote,
   getRandomQuote,
@@ -19,6 +19,8 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
   const [currentQuote, setCurrentQuote] = useState(null);
   const [randomAuthorsList, setRandomAuthorsList] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const activeState = (path) => (location.pathname === path ? "active" : "");
 
   const fetchAuthorQuote = (authorId) => {
     return dispatch(getRandomQuote(authorId))
@@ -72,7 +74,7 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
   if (authorsData.isLoading || categoriesData.isLoading) {
     return <QuotesMachineSkeleton />;
   }
-
+  console.log(location);
   return (
     <>
       {/* // THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF
@@ -88,9 +90,9 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
               role="tablist"
             >
               <button
-                className="nav-link flex-sm-fill"
+                className={"nav-link flex-sm-fill " + activeState("/")}
                 // id="nav-home-tab"
-                data-bs-toggle="tab"
+                // data-bs-toggle="tab"
                 // data-bs-target="#nav-home"
                 type="button"
                 role="tab"
@@ -102,9 +104,9 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
                 Home
               </button>
               <button
-                className="nav-link flex-sm-fill"
+                className={"nav-link flex-sm-fill " + activeState("/quote")}
                 // id="nav-random-quote-tab"
-                data-bs-toggle="tab"
+                // data-bs-toggle="tab"
                 // data-bs-target="#nav-random-quote"
                 type="button"
                 role="tab"
@@ -121,9 +123,9 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
                 Quote
               </button>
               <button
-                className="nav-link flex-sm-fill"
+                className={"nav-link flex-sm-fill " + activeState("/authors")}
                 id="nav-authors-tab"
-                data-bs-toggle="tab"
+                // data-bs-toggle="tab"
                 data-bs-target="#nav-authors"
                 type="button"
                 role="tab"
@@ -140,9 +142,11 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
                 Authors
               </button>
               <button
-                className="nav-link flex-sm-fill"
+                className={
+                  "nav-link flex-sm-fill " + activeState("/categories")
+                }
                 // id="nav-categories-tab"
-                data-bs-toggle="tab"
+                // data-bs-toggle="tab"
                 // data-bs-target="#nav-categories"
                 type="button"
                 role="tab"
@@ -156,15 +160,20 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
                 Categories
               </button>
               <button
-                className="nav-link flex-sm-fill"
+                className={
+                  "nav-link flex-sm-fill " + activeState("/author-search")
+                }
                 // id="nav-search-author-tab"
-                data-bs-toggle="tab"
+                // data-bs-toggle="tab"
                 // data-bs-target="#nav-search-author"
                 type="button"
                 role="tab"
                 // aria-controls="nav-search-author"
                 // aria-selected="false"
-                onClick={() => navigate("/author-search")}
+                onClick={() => {
+                  navigate("/author-search");
+                  setCurrentQuote(null);
+                }}
               >
                 Search Author
               </button>

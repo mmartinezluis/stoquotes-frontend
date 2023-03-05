@@ -2,10 +2,10 @@ import React from "react";
 import { useOutletContext } from "react-router-dom";
 export default function SearchAuthorTab() {
   const { authorsData, quoteAndStoryForm } = useOutletContext();
-  const { ids, entities } = authorsData;
+  const { ids, entities } = authorsData.data;
   return (
     <div
-      className="tab-pane fade"
+      // className="tab-pane fade"
       id="nav-search-author"
       role="tabpanel"
       aria-labelledby="nav-search-author-tab"

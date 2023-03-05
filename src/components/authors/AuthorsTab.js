@@ -11,14 +11,13 @@ export default function AuthorsTab() {
   const { entities } = authorsData.data;
   return (
     <div
-      className="tab-pane fade"
+      // className="tab-pane fade"
       id="nav-authors"
       role="tabpanel"
       aria-labelledby="nav-authors-tab"
     >
       <div id="authors-container">
         <ul>
-          <h1>AUTHORS</h1>
           {randomAuthorsList.map((authorId) => {
             const author = entities[authorId];
             return (
