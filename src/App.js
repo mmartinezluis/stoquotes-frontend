@@ -28,13 +28,8 @@ function App() {
       <div className="container">
         <Machine />
         {/* <Routes>
-          <Route element={<Machine />}>
-          <Route path="/" element={null} />
           <Route path="/" element={<Machine />} />
-          <Route path="/quote" element={<Machine />} />
           <Route path="/stories" element={<Machine />} />
-          <Route path="/quote" element={<Machine />} />
-          </Route>
         </Routes> */}
       </div>
     </div>
