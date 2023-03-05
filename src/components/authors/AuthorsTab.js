@@ -4,7 +4,6 @@ export default function AuthorsTab() {
   const {
     authorsData,
     quoteAndStoryForm,
-    setShowStoryForm,
     fetchAuthorQuote,
     randomAuthorsList,
   } = useOutletContext();
@@ -26,9 +25,7 @@ export default function AuthorsTab() {
                   href="/"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (fetchAuthorQuote(authorId)) {
-                      setShowStoryForm(false);
-                    }
+                    fetchAuthorQuote(authorId);
                   }}
                 >
                   {author.name}

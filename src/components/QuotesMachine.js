@@ -27,6 +27,7 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
       .unwrap()
       .then((data) => {
         setCurrentQuote(data);
+        setShowStoryForm(false);
         return true;
       })
       .catch((err) => {
@@ -40,6 +41,7 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
       .unwrap()
       .then((data) => {
         setCurrentQuote(data);
+        setShowStoryForm(false);
         return true;
       })
       .catch((err) => {
@@ -70,6 +72,8 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
       </>
     ) : null;
   };
+
+  console.log("QuotesMachine");
 
   if (authorsData.isLoading || categoriesData.isLoading) {
     return <QuotesMachineSkeleton />;
@@ -114,10 +118,8 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
                 aria-selected="false"
                 onClick={() => {
                   const authorsCount = authorsData.data.ids.length;
-                  if (fetchAuthorQuote(randomAuthor(authorsCount))) {
-                    setShowStoryForm(false);
-                    navigate("/quote");
-                  }
+                  fetchAuthorQuote(randomAuthor(authorsCount));
+                  navigate("/quote");
                 }}
               >
                 Quote

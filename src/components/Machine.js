@@ -54,6 +54,7 @@ export default function Machine() {
   //   if (isError) return <p>An error has occured</p>;
   //   console.log(store.getState());
   // console.log(authorsData.isFetching);
+  console.log("Machine");
   return (
     <>
       <ModalContainer isOpen={isOpen} modalContent={modalContent} />
