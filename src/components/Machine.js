@@ -1,6 +1,5 @@
 import React, { useContext, useMemo } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
 import QuotesMachine from "./QuotesMachine";
 import StoriesMachine from "./StoriesMachine";
 import {
@@ -52,14 +51,11 @@ export default function Machine() {
   //   if (isLoading) return <p>Loading...</p>;
   //   if (isSuccess) return <p>Loading...</p>;
   //   if (isError) return <p>An error has occured</p>;
-  //   console.log(store.getState());
-  // console.log(authorsData.isFetching);
-  // console.log("Machine");
-  // console.log(authorsData.data);
+
   const authorsMap = useMemo(() => {
     return {};
   }, []);
-  console.log(authorsMap);
+
   const authorsDatalist = useMemo(() => {
     return (
       <datalist id="author-name">
@@ -94,7 +90,10 @@ export default function Machine() {
           <Route
             path="/author-search"
             element={
-              <SearchAuthorTab authorsDatalist={authorsDatalist} authorsMap />
+              <SearchAuthorTab
+                authorsDatalist={authorsDatalist}
+                authorsMap={authorsMap}
+              />
             }
           />
         </Route>
