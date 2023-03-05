@@ -1,8 +1,10 @@
 import React from "react";
 import { useOutletContext } from "react-router-dom";
 export default function SearchAuthorTab() {
-  const { authorsData, quoteAndStoryForm } = useOutletContext();
+  const { authorsData, quoteAndStoryForm, fetchAuthorQuote, showModal } =
+    useOutletContext();
   const { ids, entities } = authorsData.data;
+  const authorsMap = {};
   return (
     <div
       // className="tab-pane fade"
@@ -15,6 +17,12 @@ export default function SearchAuthorTab() {
           id="search"
           onSubmit={(e) => {
             e.preventDefault();
+            const userInput = e.target.querySelector("input").value;
+            if (!authorsMap.hasOwnProperty(userInput)) {
+              showModal("Author not found", 3);
+              return;
+            }
+            fetchAuthorQuote(authorsMap[userInput]);
           }}
         >
           <label htmlFor="author-name">Author name:</label>
@@ -22,7 +30,9 @@ export default function SearchAuthorTab() {
           <datalist id="author-name">
             {ids.map((id) => {
               console.log("dfdfd");
-              return <option key={id}>{entities[id].name}</option>;
+              const authorName = entities[id].name;
+              authorsMap[authorName] = id;
+              return <option key={id}>{authorName}</option>;
             })}
           </datalist>
           <input

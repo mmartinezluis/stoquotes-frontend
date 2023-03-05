@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
+import { ModalContext } from "./modal/ModalContext";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import {
   getCategoryQuote,
@@ -7,10 +8,9 @@ import {
 } from "../app/features/quotes/quotesSlice";
 import { shuffleArray } from "../tools/customFunctions";
 import { randomAuthor } from "./authors/author";
-import { ModalContext } from "./modal/ModalContext";
 import { quoteMachineQuoteTemplate } from "./quotes/quoteTemplates";
-import QuotesMachineSkeleton from "./skeletons/QuotesMachineSkeleton";
 import { quotesMachineStoryForm } from "./stories/storyForms";
+import QuotesMachineSkeleton from "./skeletons/QuotesMachineSkeleton";
 
 const QuotesMachine = ({ authorsData, categoriesData }) => {
   const dispatch = useDispatch();
@@ -74,15 +74,15 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
   if (authorsData.isLoading || categoriesData.isLoading) {
     return <QuotesMachineSkeleton />;
   }
-  console.log(location);
+
   return (
     <>
-      {/* // THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF
+      {/* THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF
       AUTHORS AND CATEGORIES */}
       <div className="container" id="black-box">
-        {/* <!-- START OF MACHINE CONTAINER --> */}
+        {/* START OF MACHINE CONTAINER */}
         <div className="container" id="machine">
-          {/* <!-- THE NAV TABS --> */}
+          {/* THE NAV TABS */}
           <nav>
             <div
               className="nav nav-tabs nav-pills flex-column flex-sm-row"
@@ -180,7 +180,7 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
             </div>
           </nav>
 
-          {/* <!-- THE CONTENT FOR THE NAV TABS --> */}
+          {/* THE CONTENT FOR THE NAV TABS */}
           <div className="tab-content" id="nav-tabContent">
             <Outlet
               context={{
@@ -191,14 +191,15 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
                 fetchCategoryQuote,
                 setShowStoryForm,
                 randomAuthorsList,
+                showModal,
               }}
             />
           </div>
-          {/* <!-- END OF NAV TABS CONTENT --> */}
+          {/* END OF NAV TABS CONTENT */}
         </div>
-        {/* <!-- END OF MACHINE CONTAINER --> */}
+        {/* END OF MACHINE CONTAINER */}
       </div>
-      {/* // END OF BLACK BOX CONTAINER */}
+      {/* END OF BLACK BOX CONTAINER */}
     </>
   );
 };

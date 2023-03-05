@@ -22,7 +22,8 @@ export default function CategoriesTab() {
             return (
               <li key={categoryId}>
                 <span
-                  role="button"
+                  className="nav-link"
+                  style={{ padding: "0", cursor: "pointer", display: "inline" }}
                   onClick={(e) => {
                     e.preventDefault();
                     if (fetchCategoryQuote(categoryId)) {

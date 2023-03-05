@@ -2,7 +2,7 @@ import React from "react";
 export default function HomeTab() {
   return (
     <div
-      //   className="tab-pane fade show active"
+      // className="tab-pane fade show active"
       className=""
       id="nav-home"
       role="tabpanel"

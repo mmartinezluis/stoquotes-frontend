@@ -23,7 +23,6 @@ export default function Machine() {
 
   const authorsData = useGetAuthorsQuery();
   const categoriesData = useGetCategoriesQuery();
-  const authorIds = useMemo(() => authorsData.data?.ids, [authorsData.data]);
   //   const {
   //     data: authors,
   //     isLoading,
@@ -66,7 +65,6 @@ export default function Machine() {
             <QuotesMachine
               authorsData={authorsData}
               categoriesData={categoriesData}
-              authorIds={authorIds}
             />
           }
         >
