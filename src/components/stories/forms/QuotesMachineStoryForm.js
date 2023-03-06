@@ -14,8 +14,6 @@ export default function QuotesMachineStoryForm({ quoteId, userId, showModal }) {
   return (
     <div id="form-container">
       <form id="new-story-form" onSubmit={processForm}>
-        {/* <input type="hidden" class="user_id" value= ${user_id}>
-    <input type="hidden" class="quote_id" value= ${quote_id}> */}
         <br />
         <div className="form-floating">
           <textarea
