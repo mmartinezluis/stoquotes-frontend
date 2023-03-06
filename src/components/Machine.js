@@ -19,9 +19,26 @@ import SearchAuthorTab from "./authors/SearchAuthorTab";
 
 export default function Machine() {
   const { isOpen, modalContent } = useContext(ModalContext);
-
   const authorsData = useGetAuthorsQuery();
   const categoriesData = useGetCategoriesQuery();
+
+  const authorsMap = useMemo(() => {
+    return {};
+  }, []);
+
+  const authorsDatalist = useMemo(() => {
+    return (
+      <datalist id="author-name">
+        {authorsData.data?.ids.map((id) => {
+          console.log("dfdfd");
+          const authorName = authorsData.data?.entities[id].name;
+          authorsMap[authorName] = id;
+          return <option key={id}>{authorName}</option>;
+        })}
+      </datalist>
+    );
+  }, [authorsData.data?.ids, authorsData.data?.entities, authorsMap]);
+
   //   const {
   //     data: authors,
   //     isLoading,
@@ -51,23 +68,6 @@ export default function Machine() {
   //   if (isLoading) return <p>Loading...</p>;
   //   if (isSuccess) return <p>Loading...</p>;
   //   if (isError) return <p>An error has occured</p>;
-
-  const authorsMap = useMemo(() => {
-    return {};
-  }, []);
-
-  const authorsDatalist = useMemo(() => {
-    return (
-      <datalist id="author-name">
-        {authorsData.data?.ids.map((id) => {
-          console.log("dfdfd");
-          const authorName = authorsData.data?.entities[id].name;
-          authorsMap[authorName] = id;
-          return <option key={id}>{authorName}</option>;
-        })}
-      </datalist>
-    );
-  }, [authorsData.data?.ids, authorsData.data?.entities, authorsMap]);
 
   return (
     <>

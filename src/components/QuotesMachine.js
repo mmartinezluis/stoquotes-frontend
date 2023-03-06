@@ -9,7 +9,7 @@ import {
 import { shuffleArray } from "../tools/customFunctions";
 import { randomAuthor } from "./authors/author";
 import { quoteMachineQuoteTemplate } from "./quotes/quoteTemplates";
-import { quotesMachineStoryForm } from "./stories/storyForms";
+import QuotesMachineStoryForm from "./stories/forms/QuotesMachineStoryForm";
 import QuotesMachineSkeleton from "./skeletons/QuotesMachineSkeleton";
 
 const QuotesMachine = ({ authorsData, categoriesData }) => {
@@ -67,7 +67,13 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
         {quoteMachineQuoteTemplate(currentQuote)}
         <div className="container" id="story-compose">
           {writeStoryBtn}
-          {showStoryForm && quotesMachineStoryForm()}
+          {showStoryForm && (
+            <QuotesMachineStoryForm
+              quoteId={currentQuote.id}
+              userId={null}
+              showModal={showModal}
+            />
+          )}
         </div>
       </>
     ) : null;
