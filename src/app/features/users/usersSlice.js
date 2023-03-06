@@ -1,6 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const getProfile = createAsyncThunk(
+  "users/getProfile",
+  async (userId) => {
+    try {
+      const response = await axios.get("/profile/" + userId);
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
 export const createStory = createAsyncThunk(
   "users/createStory",
   async (description, userId, quoteId) => {
@@ -36,7 +48,7 @@ export const deleteStory = createAsyncThunk(
   "users/deleteStory",
   async (storyId, userId) => {
     try {
-      const response = await axios.delete("/stories" + storyId, {
+      const response = await axios.delete("/stories/" + storyId, {
         story: {
           user_id: userId,
         },
