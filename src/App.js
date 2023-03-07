@@ -30,6 +30,10 @@ function App() {
         {/* <Routes>
           <Route path="/" element={<Machine />} />
           <Route path="/stories" element={<Machine />} />
+          <Route path="/quote" element={<Machine />} />
+          <Route path="/authors" element={<Machine />} />
+          <Route path="/categories" element={<Machine />} />
+          <Route path="/author-search" element={<Machine />} />
         </Routes> */}
       </div>
     </div>

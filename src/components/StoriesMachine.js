@@ -19,7 +19,7 @@ const StoriesMachine = () => {
             aria-label="Toggle navigation"
             onClick={() => {
               if (storiesInterfaceRef.current.className.includes("show")) {
-                navigate("/stories");
+                // navigate("/stories");
                 storiesInterfaceRef.current.focus();
               }
             }}

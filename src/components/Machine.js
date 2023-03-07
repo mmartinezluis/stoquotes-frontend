@@ -75,7 +75,6 @@ export default function Machine() {
       <StoriesMachine authorsData={authorsData} />
       <Routes>
         <Route
-          path="/"
           element={
             <QuotesMachine
               authorsData={authorsData}
@@ -83,7 +82,7 @@ export default function Machine() {
             />
           }
         >
-          <Route index element={<HomeTab />} />
+          <Route path="/" element={<HomeTab />} />
           <Route path="/quote" element={<QuoteTab />} />
           <Route path="/authors" element={<AuthorsTab />} />
           <Route path="/categories" element={<CategoriesTab />} />
