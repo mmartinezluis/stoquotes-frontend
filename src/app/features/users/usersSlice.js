@@ -15,10 +15,11 @@ export const getProfile = createAsyncThunk(
 
 export const createStory = createAsyncThunk(
   "users/createStory",
-  async (description, userId, quoteId) => {
+  async (payload) => {
+    // console.log(description, userId, quoteId);
     try {
       const response = await axios.post("/stories", {
-        story: { description, user_id: userId, quote_id: quoteId },
+        story: payload,
       });
       return response.data;
     } catch (error) {
@@ -33,7 +34,7 @@ export const updateStory = createAsyncThunk(
     try {
       const response = await axios.patch("/stories/" + story.id, {
         story: {
-          description,
+          description: story.description,
           user_id: userId,
         },
       });
