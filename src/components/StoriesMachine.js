@@ -46,7 +46,7 @@ const StoriesMachine = () => {
           ref={storiesInterfaceRef}
           onBlur={() => {
             if (!storiesInterfaceRef.current.classList.contains("show")) {
-              navigate("/");
+              // navigate("/");
             }
           }}
         >
