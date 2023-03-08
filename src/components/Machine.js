@@ -16,6 +16,7 @@ import HomeTab from "./home/HomeTab";
 import AuthorsTab from "./authors/AuthorsTab";
 import CategoriesTab from "./categories/CategoriesTab";
 import SearchAuthorTab from "./authors/SearchAuthorTab";
+import Login from "./login/Login";
 
 export default function Machine() {
   const { isOpen, modalContent } = useContext(ModalContext);
@@ -72,6 +73,7 @@ export default function Machine() {
   return (
     <>
       <ModalContainer isOpen={isOpen} modalContent={modalContent} />
+      <Login />
       <StoriesMachine authorsData={authorsData} />
       <Routes>
         <Route
