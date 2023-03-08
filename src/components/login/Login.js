@@ -2,10 +2,12 @@ import { useState } from "react";
 import Portal from "../portal/Portal";
 
 export default function Login() {
-  const [isLogin, setIslogin] = useState();
+  const [isLogin, setIslogin] = useState(true);
 
+  const handleLogin = () => {};
+  const handleSignUp = () => {};
   const formToggler = () => (
-    <>
+    <div className="row g-0">
       <div class="d-grid col-6">
         <input
           type="radio"
@@ -13,7 +15,7 @@ export default function Login() {
           name="options"
           id="login-toggle"
           autocomplete="off"
-          checked={true}
+          checked={isLogin === true}
           onClick={() => setIslogin(true)}
         />
         <label class="btn btn-outline-dark" for="login-toggle">
@@ -27,13 +29,14 @@ export default function Login() {
           name="options"
           id="signup-toggle"
           autocomplete="off"
+          checked={isLogin === false}
           onClick={() => setIslogin(false)}
         />
         <label class="btn btn-outline-dark" for="signup-toggle">
           SignUp
         </label>
       </div>
-    </>
+    </div>
   );
 
   const LoginForm = () => (
