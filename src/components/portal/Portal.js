@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 export default function Portal({ isOpen, children }) {
-  if (!isOpen) return null;
+  const [showPortal, setShowPportal] = useState(false);
+
+  const activate = () => {
+    setShowPportal(true);
+  };
+  const deactivate = () => {
+    setShowPportal(false);
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      activate();
+    }
+  }, [isOpen]);
+
+  if (!showPortal) return null;
+
   return ReactDOM.createPortal(
     <aside
       tag="aside"
@@ -9,6 +25,7 @@ export default function Portal({ isOpen, children }) {
       tabIndex="-1"
       aria-modal="true"
       className="portal-cover"
+      // onClick={() => deactivate()}
     >
       <div className="portal-area">{children}</div>
     </aside>,

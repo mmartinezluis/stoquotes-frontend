@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { PortalContext } from "./portal/PortalContext";
 
 const StoriesMachine = () => {
   const storiesInterfaceRef = useRef();
   const navigate = useNavigate();
+  const { setLoginControls } = useContext(PortalContext);
   return (
     <>
       {/* STORIES NAVBAR */}
@@ -27,7 +29,16 @@ const StoriesMachine = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <span className="navbar-brand" id="auth-status-btn">
+          <span
+            className="navbar-brand"
+            id="auth-status-btn"
+            onClick={() => {
+              console.log("dfdfd");
+              setLoginControls((state) => {
+                return { ...state, isOpen: true };
+              });
+            }}
+          >
             Login
           </span>
         </div>

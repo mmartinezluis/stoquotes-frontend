@@ -17,9 +17,12 @@ import AuthorsTab from "./authors/AuthorsTab";
 import CategoriesTab from "./categories/CategoriesTab";
 import SearchAuthorTab from "./authors/SearchAuthorTab";
 import Login from "./login/Login";
+import { PortalContext } from "./portal/PortalContext";
+import Portal from "./portal/Portal";
 
 export default function Machine() {
   const { isOpen, modalContent } = useContext(ModalContext);
+  const { loginControls } = useContext(PortalContext);
   const authorsData = useGetAuthorsQuery();
   const categoriesData = useGetCategoriesQuery();
 
@@ -73,7 +76,9 @@ export default function Machine() {
   return (
     <>
       <ModalContainer isOpen={isOpen} modalContent={modalContent} />
-      <Login />
+      <Portal isOpen={loginControls.isOpen}>
+        <Login isLoginMode={loginControls.isLoginMode} />
+      </Portal>
       <StoriesMachine authorsData={authorsData} />
       <Routes>
         <Route

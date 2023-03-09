@@ -3,6 +3,7 @@ import React from "react";
 import "./App.css";
 import { Routes, Route, Outlet } from "react-router-dom";
 import Machine from "./components/Machine";
+import { PortalProvider } from "./components/portal/PortalContext";
 
 function App() {
   return (
@@ -26,7 +27,9 @@ function App() {
     // </div>
     <div className="App">
       <div className="container">
-        <Machine />
+        <PortalProvider>
+          <Machine />
+        </PortalProvider>
         {/* <Routes>
           <Route path="/" element={<Machine />} />
           <Route path="/stories" element={<Machine />} />
