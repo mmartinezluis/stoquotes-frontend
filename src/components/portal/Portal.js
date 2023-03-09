@@ -10,6 +10,11 @@ export default function Portal({ isOpen, children }) {
     setShowPportal(false);
   };
 
+  const onClickOutside = (E) => {
+    if (E.target.tagName !== "ASIDE") return;
+    deactivate();
+  };
+
   useEffect(() => {
     if (isOpen) {
       activate();
@@ -25,7 +30,7 @@ export default function Portal({ isOpen, children }) {
       tabIndex="-1"
       aria-modal="true"
       className="portal-cover"
-      // onClick={() => deactivate()}
+      onClick={onClickOutside}
     >
       <div className="portal-area">{children}</div>
     </aside>,

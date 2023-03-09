@@ -35,7 +35,7 @@ const StoriesMachine = () => {
             onClick={() => {
               console.log("dfdfd");
               setLoginControls((state) => {
-                return { ...state, isOpen: true };
+                return { ...state, isOpen: {} };
               });
             }}
           >
