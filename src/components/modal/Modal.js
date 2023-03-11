@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./modal.css";
-export default function ModalContainer({ isOpen, modalContent }) {
+export default function Modal({ isOpen, modalContent }) {
   if (!isOpen) return null;
   return ReactDOM.createPortal(
     <aside

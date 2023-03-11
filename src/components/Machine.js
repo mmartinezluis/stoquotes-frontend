@@ -8,8 +8,6 @@ import {
   selectAuthorsResult,
   useGetAuthorsQuery,
 } from "../app/features/authors/authorsSlice";
-import ModalContainer from "./modal/ModalContainer";
-import { ModalContext } from "./modal/ModalContext";
 import { useGetCategoriesQuery } from "../app/features/categories/categoriesSlice";
 import QuoteTab from "./quotes/QuoteTab";
 import HomeTab from "./home/HomeTab";
@@ -21,7 +19,6 @@ import { PortalContext } from "./portal/PortalContext";
 import Portal from "./portal/Portal";
 
 export default function Machine() {
-  const { isOpen, modalContent } = useContext(ModalContext);
   const { loginControls } = useContext(PortalContext);
   const authorsData = useGetAuthorsQuery();
   const categoriesData = useGetCategoriesQuery();
@@ -75,7 +72,6 @@ export default function Machine() {
 
   return (
     <>
-      <ModalContainer isOpen={isOpen} modalContent={modalContent} />
       <Portal isOpen={loginControls.isOpen}>
         <Login isLoginMode={loginControls.isLoginMode} />
       </Portal>

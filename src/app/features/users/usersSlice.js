@@ -69,6 +69,7 @@ export const usersStories = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getProfile.fulfilled, (state, acition) => {});
     builder.addCase(createStory.fulfilled, (state, action) => []);
     builder.addCase(updateStory.fulfilled, (state, action) => {});
     builder.addCase(deleteStory.fulfilled, (state, action) => {});
