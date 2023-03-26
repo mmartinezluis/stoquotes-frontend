@@ -1,11 +1,10 @@
 import { useState } from "react";
-import Portal from "../portal/Portal";
 
 export default function Login({ isLoginMode }) {
   const [isLogin, setIslogin] = useState(isLoginMode);
 
-  const handleLogin = () => {};
-  const handleSignUp = () => {};
+  // const handleLogin = () => {};
+  // const handleSignUp = () => {};
   const formToggler = (
     <div className="row g-0">
       <div className="d-grid col-6">

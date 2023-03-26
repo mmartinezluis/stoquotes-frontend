@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useCallback, useState } from "react";
 
 const ModalContext = createContext();
 
@@ -6,7 +6,7 @@ function ModalProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(initialState);
 
-  const showModal = (content, status = 1, time = 3000) => {
+  const showModal = useCallback((content, status = 1, time = 3000) => {
     setModalContent({
       content: content,
       status: statusCodes[status] || "green",
@@ -15,7 +15,7 @@ function ModalProvider({ children }) {
     setTimeout(() => {
       setIsOpen(false);
     }, time);
-  };
+  }, []);
 
   return (
     <ModalContext.Provider value={{ isOpen, modalContent, showModal }}>

@@ -1,10 +1,10 @@
 import React, { useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { PortalContext } from "./portal/PortalContext";
 
 const StoriesMachine = () => {
   const storiesInterfaceRef = useRef();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { setLoginControls } = useContext(PortalContext);
   return (
     <>

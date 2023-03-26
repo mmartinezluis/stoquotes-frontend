@@ -1,11 +1,14 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
 import {
   getAuth,
   onAuthStateChanged,
-  signInWithCustomToken,
+  // signInWithCustomToken,
   signOut,
-} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+} from "firebase/auth";
+// } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 // import { destroyPortal } from "../../tools/customFunctions.js";
 
 // Import the functions you need from the SDKs you need
@@ -26,9 +29,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 
-const authButton = document.getElementById("auth-status-btn");
+// const authButton = document.getElementById("auth-status-btn");
 
 export const auth = getAuth(app);
 
@@ -102,56 +105,56 @@ export const handleLogout = () => {
 
 //<**************** HELPER FUNCTIONS ******************>
 
-async function _getTokenAndUser(payload, endpoint) {
-  const resp = await fetch("sessionService.baseUrl" + endpoint, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-  // @TODO: properly handle error object to extract message string only
-  if (!resp.ok) {
-    console.log(resp);
-    if (resp.status >= 500) {
-      throw new Error(resp.statusText + "; Code: " + resp.status);
-    }
-    return resp.text().then((text) => {
-      throw new Error(text);
-    });
-  }
-  const data = await resp.json();
-  return data;
-}
+// async function _getTokenAndUser(payload, endpoint) {
+//   const resp = await fetch("sessionService.baseUrl" + endpoint, {
+//     method: "POST",
+//     headers: {
+//       "content-type": "application/json",
+//     },
+//     body: JSON.stringify(payload),
+//   });
+//   // @TODO: properly handle error object to extract message string only
+//   if (!resp.ok) {
+//     console.log(resp);
+//     if (resp.status >= 500) {
+//       throw new Error(resp.statusText + "; Code: " + resp.status);
+//     }
+//     return resp.text().then((text) => {
+//       throw new Error(text);
+//     });
+//   }
+//   const data = await resp.json();
+//   return data;
+// }
 
-function _authenticateWithFirebase(
-  token,
-  user,
-  isLoginMode,
-  afterLoginSignupCallaback
-) {
-  return (
-    signInWithCustomToken(auth, token)
-      .then((userCredential) => {
-        // console.log("from authentication function");
-        // const profile = JSON.parse(user);
-        // console.log(profile);
-        // User.setUserProfile(profile);
-        // destroyPortal("session-portal");
-        // User.isLoggedIn = true;
-        // authButton.innerText = "Logout";
-        // showModal("You have been successfully logged in!!!", 1);
-        // // if (isLoginMode) userService.fetchSocialData(profile.id);
-        // if (typeof afterLoginSignupCallaback === "function") {
-        //   afterLoginSignupCallaback();
-        // }
-      })
-      // Catches the errors related to user authentication in Firebase
-      .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        console.log(error);
-        // showModal(errorMessage + "; Code: " + errorCode, 2);
-      })
-  );
-}
+// function _authenticateWithFirebase(
+//   token,
+//   user,
+//   isLoginMode,
+//   afterLoginSignupCallaback
+// ) {
+//   return (
+//     signInWithCustomToken(auth, token)
+//       .then((userCredential) => {
+//         // console.log("from authentication function");
+//         // const profile = JSON.parse(user);
+//         // console.log(profile);
+//         // User.setUserProfile(profile);
+//         // destroyPortal("session-portal");
+//         // User.isLoggedIn = true;
+//         // authButton.innerText = "Logout";
+//         // showModal("You have been successfully logged in!!!", 1);
+//         // // if (isLoginMode) userService.fetchSocialData(profile.id);
+//         // if (typeof afterLoginSignupCallaback === "function") {
+//         //   afterLoginSignupCallaback();
+//         // }
+//       })
+//       // Catches the errors related to user authentication in Firebase
+//       .catch((error) => {
+//         // const errorCode = error.code;
+//         // const errorMessage = error.message;
+//         console.log(error);
+//         // showModal(errorMessage + "; Code: " + errorCode, 2);
+//       })
+//   );
+// }

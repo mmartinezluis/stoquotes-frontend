@@ -9,14 +9,14 @@ RUN npm install
 
 COPY . .
 
-RUN npm build
+RUN npm run build
 
 EXPOSE 5501
 
 CMD ["npm", "start"]
 
 # stage 2- Construct the server
-FROM nginx
-WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
-COPY --from=builder /app/build .
+# FROM nginx
+# WORKDIR /usr/share/nginx/html
+# RUN rm -rf ./*
+# COPY --from=builder /app/build .

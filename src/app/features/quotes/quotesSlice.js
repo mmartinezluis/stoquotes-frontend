@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getRandomQuote = createAsyncThunk(
   "quotes/getRandomQuote",

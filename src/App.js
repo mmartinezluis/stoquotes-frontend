@@ -1,12 +1,10 @@
 import React, { useContext, useEffect } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
-import { Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Machine from "./components/Machine";
 import { PortalProvider } from "./components/portal/PortalContext";
 import { auth, onAuthStateChanged } from "./app/services/auth/firebase";
-import axios from "axios";
 import { getProfile } from "./app/features/users/usersSlice";
 import { ModalContext } from "./components/modal/ModalContext";
 import Modal from "./components/modal/Modal";
@@ -63,7 +61,7 @@ function App() {
         // authButton.innerText = "Login";
       }
     });
-  }, []);
+  }, [showModal, dispatch]);
 
   return (
     // <div className="App">

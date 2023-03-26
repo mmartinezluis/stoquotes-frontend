@@ -3,9 +3,9 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import QuotesMachine from "./QuotesMachine";
 import StoriesMachine from "./StoriesMachine";
 import {
-  extendedAuthorsApiSlice,
-  selectAllAuthors,
-  selectAuthorsResult,
+  // extendedAuthorsApiSlice,
+  // selectAllAuthors,
+  // selectAuthorsResult,
   useGetAuthorsQuery,
 } from "../app/features/authors/authorsSlice";
 import { useGetCategoriesQuery } from "../app/features/categories/categoriesSlice";
