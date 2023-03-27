@@ -1,0 +1,11 @@
+version: '1.0'
+
+services:
+
+  stoquotes-frontend-prod:
+    container_name: stoquotes-frontend-prod
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - '8787:80'

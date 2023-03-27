@@ -1,0 +1,15 @@
+version: '1.0'
+
+services:
+  stoquotes-frontend:
+    container_name: stoquotes-frontend
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/client'
+      - '/client/node_modules'
+    ports:
+      - 5501:3000
+    environment:
+      - CHODIKAR_USEPOLLING=true

@@ -8,3 +8,5 @@ build
 **/node_modules
 .gitignore
 
+/src2
+
