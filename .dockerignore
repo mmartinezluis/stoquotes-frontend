@@ -4,6 +4,7 @@ build
 .circleci
 .vscode
 /.DS_Store
+**/.git
 **/node_modules
 .gitignore
 

@@ -10,6 +10,7 @@ import { ModalContext } from "./components/modal/ModalContext";
 import Modal from "./components/modal/Modal";
 
 function App() {
+  console.log("dfdf");
   const dispatch = useDispatch();
   const { isOpen, modalContent, showModal } = useContext(ModalContext);
 
