@@ -3,7 +3,8 @@ import { useOutletContext } from "react-router-dom";
 export default function CategoriesTab() {
   const { categoriesData, quoteAndStoryForm, fetchCategoryQuote } =
     useOutletContext();
-  const { ids, entities } = categoriesData.data;
+  const ids = categoriesData.data?.ids;
+  const entities = categoriesData.data?.entities;
   return (
     <div
       // className="tab-pane fade"
@@ -13,7 +14,7 @@ export default function CategoriesTab() {
     >
       <div id="categories-container">
         <ul>
-          {ids.map((categoryId) => {
+          {ids?.map((categoryId) => {
             const category = entities[categoryId];
             return (
               <li key={categoryId}>

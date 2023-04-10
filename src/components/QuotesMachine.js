@@ -31,6 +31,7 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
         return true;
       })
       .catch((err) => {
+        console.log(err);
         showModal(err.message, 2);
         return false;
       });
@@ -123,7 +124,8 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
                 aria-controls="nav-random-quote"
                 aria-selected="false"
                 onClick={() => {
-                  const authorsCount = authorsData.data.ids.length;
+                  const authorsCount = authorsData.data?.ids.length;
+                  // if(authorsCount) return
                   fetchAuthorQuote(randomAuthor(authorsCount));
                   navigate("/quote");
                 }}
@@ -141,7 +143,7 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
                 aria-selected="false"
                 onClick={() => {
                   setRandomAuthorsList(
-                    shuffleArray(authorsData.data.ids.slice()).slice(0, 10)
+                    shuffleArray(authorsData.data?.ids.slice()).slice(0, 10)
                   );
                   setCurrentQuote(null);
                   navigate("/authors");

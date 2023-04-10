@@ -7,7 +7,7 @@ export default function AuthorsTab() {
     fetchAuthorQuote,
     randomAuthorsList,
   } = useOutletContext();
-  const { entities } = authorsData.data;
+  const entities = authorsData.data?.entities;
   return (
     <div
       // className="tab-pane fade"
