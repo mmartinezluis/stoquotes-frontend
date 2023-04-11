@@ -20,7 +20,6 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
   const [randomAuthorsList, setRandomAuthorsList] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const activeState = (path) => (location.pathname === path ? "active" : "");
 
   const fetchAuthorQuote = (authorId) => {
     return dispatch(getRandomQuote(authorId))
@@ -80,10 +79,12 @@ const QuotesMachine = ({ authorsData, categoriesData }) => {
     ) : null;
   };
 
+  const activeState = (path) => (location.pathname === path ? "active" : "");
+
   console.log("QuotesMachine");
 
   if (authorsData.isLoading || categoriesData.isLoading) {
-    return <QuotesMachineSkeleton />;
+    return <QuotesMachineSkeleton activeState={activeState} />;
   }
 
   return (

@@ -1,4 +1,4 @@
-export default function QuotesMachineSkeleton() {
+export default function QuotesMachineSkeleton({ activeState }) {
   return (
     // THE BLACK BOX; HANDLES DISPLAY AND CREATION OF QUOTES AND DISPLAY OF
     // AUTHORS AND CATEGORIES
@@ -12,7 +12,7 @@ export default function QuotesMachineSkeleton() {
             role="tablist"
           >
             <button
-              className="nav-link flex-sm-fill active"
+              className={"nav-link flex-sm-fill " + activeState("/")}
               id="nav-home-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-home"
@@ -24,7 +24,7 @@ export default function QuotesMachineSkeleton() {
               Home
             </button>
             <button
-              className="nav-link flex-sm-fill"
+              className={"nav-link flex-sm-fill " + activeState("/quote")}
               id="nav-random-quote-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-random-quote"
@@ -36,7 +36,7 @@ export default function QuotesMachineSkeleton() {
               Quote
             </button>
             <button
-              className="nav-link flex-sm-fill"
+              className={"nav-link flex-sm-fill " + activeState("/authors")}
               id="nav-authors-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-authors"
@@ -48,7 +48,7 @@ export default function QuotesMachineSkeleton() {
               Authors
             </button>
             <button
-              className="nav-link flex-sm-fill"
+              className={"nav-link flex-sm-fill " + activeState("/categories")}
               id="nav-categories-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-categories"
@@ -60,7 +60,9 @@ export default function QuotesMachineSkeleton() {
               Categories
             </button>
             <button
-              className="nav-link flex-sm-fill"
+              className={
+                "nav-link flex-sm-fill " + activeState("/author-search")
+              }
               id="nav-search-author-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-search-author"
